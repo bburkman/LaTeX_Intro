@@ -1,0 +1,54 @@
+\begin{thebibliography}{8}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Barros and Lloret(2015)}]{Barros:15}
+Cristina Barros and Elena Lloret. 2015.
+\newblock Input seed features for guiding the generation process: A statistical
+  approach for spanish.
+\newblock In \emph{Proceedings of the 15th European Workshop on Natural
+  Language Generation (ENLG)}, pages 9--17, Brighton.
+
+\bibitem[{Bird et~al.(2009)Bird, Loper, and Klein}]{Bird:09}
+Steven Bird, Edward Loper, and Ewan Klein. 2009.
+\newblock \emph{Natural Language Processing with Python}.
+\newblock O'Reilly Media, Stebanstopol, CA.
+
+\bibitem[{Fontaine(2014)}]{Fontaine:14}
+Baptiste Fontaine. 2014.
+\newblock Trigrams-based text generation.
+\newblock \url{https://github.com/bfontaine/trigrams}.
+\newblock Accessed: 2018-12-03.
+
+\bibitem[{Kumagai et~al.(2016)Kumagai, Kobayashi, Mochihashi, Asoh, Nakamura,
+  and Nagai}]{Kumagai:16}
+Kaori Kumagai, Ichiro Kobayashi, Daichi Mochihashi, Hideki Asoh, Tomoaki
+  Nakamura, and Takayuki Nagai. 2016.
+\newblock Human-like natural language generation using monte carlo tree search.
+\newblock In \emph{Proceedings of the INLK 2016 Workshop on Computational
+  Creativity and Natural Language Generation}, pages 11--18, Edinburgh.
+
+\bibitem[{Matulik(2018)}]{Matulik:18}
+Martin Matulik. 2018.
+\newblock \emph{Natural Language Generation from Structured Data}.
+\newblock Ph.D. thesis, Czech Technical University in Prague.
+
+\bibitem[{Peixoto(2014)}]{peixoto_graph-tool_2014}
+Tiago~P. Peixoto. 2014.
+\newblock \href {https://doi.org/10.6084/m9.figshare.1164194} {The graph-tool
+  python library}.
+\newblock \emph{figshare}.
+
+\bibitem[{Srivastava(2018)}]{Srivastava:18}
+Pranjal Srivastava. 2018.
+\newblock How to create a poet/writer using deep learning (text generation
+  using python)?
+\newblock
+  \url{https://www.analyticsvidhya.com/blog/2018/03/text-generation-using-python-nlp/}.
+\newblock Accessed: 2018-12-02.
+
+\bibitem[{Wilson and Watkins(1990)}]{Wilson:90}
+Robin~J. Wilson and John~J. Watkins. 1990.
+\newblock \emph{Graphs: An Introductory Approach}.
+\newblock Wiley, New York.
+
+\end{thebibliography}

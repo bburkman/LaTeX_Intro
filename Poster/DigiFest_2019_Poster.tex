@@ -1,0 +1,493 @@
+\documentclass[final]{beamer}
+  \mode<presentation>
+  {
+% you can chose your theme here:
+\usetheme{Berlin}
+% further beamerposter themes are available at 
+% http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php
+}
+  \usepackage{type1cm}
+  \usepackage{calc} 
+  \usepackage{times}
+  \usepackage{amsmath,amsthm, amssymb, latexsym}
+	\usepackage{color}
+	\usepackage{tikz}
+	\usetikzlibrary{shadows}
+	\usetikzlibrary{positioning}
+\usepackage{adjustbox}	
+%  \boldmath
+  \usepackage[english]{babel}
+  \usepackage[latin1]{inputenc}
+
+\setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
+\usepackage[orientation=portrait,size=custom,height=73.66,width=99.16,scale=1.1,debug]{beamerposter}
+%\usepackage[orientation=portrait,size=custom,height=91.44,width=121.92,scale=1.352,debug]{beamerposter}
+  \graphicspath{{figures/}}
+	\setbeamertemplate{blocks}[rounded,shadow=false]
+
+
+  \title[DigiFest]{DigiFest South 2019}
+  \author[Burkman]{J. Bradford Burkman}
+  \institute[LSMSA]{Louisiana School for Math, Science, and the Arts}
+
+\setbeamertemplate{itemize item}{$\bullet$\ }
+\setbeamertemplate{itemize subitem}{\tiny$\blacksquare$\ }
+\setbeamertemplate{itemize subsubitem}{$\bullet$\ }
+
+%\usepackage{amssymb}
+%\renewcommand{\labelitemi}{\tiny$\blacksquare$}
+%\renewcommand{\labelitemi}{$\bullet$}
+%\renewcommand{\labelitemii}{$\cdot$}
+%\renewcommand{\labelitemiii}{$\diamond$}
+%\renewcommand{\labelitemiv}{$\ast$}
+
+\setlength{\itemsep}{5mm}
+
+  \begin{document}
+
+%define some nice colors 
+%	\definecolor{blue}{RGB}{25,74,188}
+	\definecolor{blue}{RGB}{1,45,110} % Official
+	\definecolor{gold}{RGB}{255,189,77}
+%	\definecolor{gold}{RGB}{169,130,67} % Official
+
+%	\definecolor{darkgreen}{RGB}{0,122,64}
+%	\definecolor{lightgreen}{RGB}{89,184,130}
+	\definecolor{darkgreen}{RGB}{128,0,128}
+	\definecolor{lightgreen}{RGB}{128,0,128}
+%	\colorlet{lightgreen}{white!50!darkgreen}	
+
+%	\begin{Large}
+\setbeamercolor{block body}{bg=white} 
+\setbeamercolor{block body alerted}{fg=black, bg=white} 
+\setbeamercolor{block body example}{fg=black, bg=white} 
+\setbeamercolor{block title}{fg=black, bg=white} 
+%\setbeamercolor{exampleblock body}{bg=white} 
+  \begin{frame}[plain]{}
+
+% Frame
+\begin{tikzpicture}[remember picture,overlay]
+% \fill [blue]
+% (current page.south west) rectangle (current page.north east);
+\draw [line width=4cm,rounded corners=3.5cm, blue] (current page.south west) rectangle (current page.north east);
+\end{tikzpicture}
+
+
+% Title
+	\begin{tikzpicture}[remember picture, overlay]
+		\node [xshift=4cm,yshift=-2.5cm] at (current page.north west)
+		[below right]
+		{
+%		     \includegraphics[height=8cm]{LSMSA-Crest.jpg}
+		     \includegraphics[height=8cm]{LSMSACrest_solid_blue.png}
+		};
+		\node [xshift=15cm,yshift=-3.5cm] at (current page.north west)
+		[text width=78cm,fill=gold,rounded corners=1.5cm, below right,drop shadow]
+		{
+			\vskip 0.5cm
+			\color{black}
+			\Huge 
+			\centerline{
+				Census \ Tracts in \ Bossier \ Parish: \  Map \ Making \ is \  Both \ Science \ and \ Art
+				}
+			\Large
+			\centerline{
+				\vrule width 0pt height 2cm depth .5cm
+				\Large
+				Brad Burkman \qquad Louisiana School for Math, Science, and the Arts
+			}
+
+
+		};
+	\end{tikzpicture}
+
+	\vskip 7cm
+
+	\begin{columns}[t]
+	\begin{column}{5mm}
+	\end{column}
+	\begin{column}{.3\linewidth}  {\color{white} xxx}
+
+% How to Make a Map
+
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=blue,rounded corners=.5cm, below right,drop shadow]
+			{
+				\Large
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\color{gold}
+				Steps \ in \ Making \ a \ Map: \  Science \ or \ Art?
+				}
+			};
+		\end{tikzpicture}
+
+		\vskip 12pt
+
+\begin{tikzpicture}[x=10mm, y=15mm]
+	\path (1,1) node [rotate=45] {Science};
+	\path (5,1) node [rotate=45] {Art};
+	\foreach \i in {1,2,3,4,5}
+		\path (\i,0) node {\i};
+	\foreach \i in {-1, -2.5, -4, -5, -6, -7, -8, -9.5, -11, -12, -13}{
+		\draw [thin, dashed] (0.5,\i) -- (5.5,\i);
+		\foreach \j in {1,2,3,4,5}
+			\draw [thin] (\j, \i-0.1) -- (\j, \i+0.1);
+	}
+
+	\path (6,-1) node [right] {Decide what story you want your map to tell.};
+	\fill (5,-1) circle (9pt);
+
+	\path (6,-2.5) node [right] {
+		\begin{tabular}{@{}l}
+			Find some relevant data, and decide whether \cr
+			the data is accurate, up to date, and unbiased.\cr
+		\end{tabular}
+		};
+	\fill (3,-2.5) circle (9pt);
+	
+	\path (6,-4) node [right] {Plot the points.};
+	\fill (1,-4) circle (9pt);
+
+	\path (6,-5) node [right] {Choose appropriate colors for the polygons.};
+	\fill (4,-5) circle (9pt);
+
+	\path (7,-6) node [right] {What do you want the colors to represent?};
+	\fill (5,-6) circle (9pt);
+
+	\path (7,-7) node [right] {How many colors do you need?};
+	\fill (2,-7) circle (9pt);
+	
+	\path (7,-8) node [right] {Can most viewers easily tell the colors apart?};
+	\fill (2,-8) circle (9pt);
+	
+	\path (7,-9.5) node [right] {
+		\begin{tabular}{@{}l}
+			Can a viewer with one of several common \cr
+			color blindnesses easily tell the colors apart?\cr
+		\end{tabular}
+		};
+	\fill (1,-9.5) circle (9pt);
+	
+	\path (7,-11) node [right] {Is the color scheme aesthetically pleasing?};
+	\fill (5,-11) circle (9pt);
+	
+	\path (6,-12) node [right] {Choose appropriate symbols (colors and sizes).};
+	\fill (4,-12) circle (9pt);
+	
+	\path (6,-13) node [right] {Choose appropriate text (colors, fonts, and sizes).};
+	\fill (2,-13) circle (9pt);
+\end{tikzpicture}
+
+
+	\end{block}
+
+% Plot Some Points	
+
+	\begin{block}{}
+	
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=gold,rounded corners=.5cm, below right,drop shadow]
+			{
+				\Large
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				Plot \ Some \ Points \ (194 \ Vertices)
+				}
+			};
+		\end{tikzpicture}
+
+		\
+
+		These maps show census tracts in Bossier Parish.  A census tract is a geographic area with 1000-8000 people, and is the smallest area on which the Census Bureau publicly reports its data.  The figure below is Census Tract 106.02, Bossier Parish, Louisiana, where you are today.  The boundaries are defined as a polygon with vertices given as longitude and latitude.  
+
+\
+
+		\input{Plot_Points_Contents}
+		
+\
+
+	Geography Challenge:  Why are the longitudes (the $x$-values) negative?	
+	\end{block}
+
+
+
+
+	
+	\end{column}
+%%%%%%%%%%%%%%%%%
+%
+% Second Column
+%
+%%%%%%%%%%%%%%%	
+	\begin{column}{.3\linewidth}  {\color{white} xxx}
+	
+
+% Connect the Dots
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=gold,rounded corners=.5cm, below right,drop shadow]
+			{
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\Large
+				Connect \ the \ Dots \ and \ Add \ Labels
+				}
+			};
+		\end{tikzpicture}
+
+		\vskip -12pt
+		\begin{center}
+		\begin{tabular}{p{0.1in}p{3in}p{2in}p{2in}}		
+		&
+		\adjustbox{valign=T}{
+			\input{Connect_Dots_Contents}
+					}
+		&
+		\adjustbox{valign=T}{
+%			\input{Three_Colors_Contents}
+			\input{Context_Contents}
+		}
+		&
+		\adjustbox{valign=T}{
+		}
+		\cr
+		\end{tabular}
+		\end{center}
+
+		\vskip -3.7in		
+		{\Large Data Sources}
+			
+		Demographic Data:  
+		
+		\qquad 2017 American 
+		
+		\qquad \qquad Community Survey,
+			
+		\qquad US Census Bureau
+		
+		Map Coordinates:  
+		
+		\qquad TIGER/Line Shapefile, 2017, 
+		
+		\qquad U.S. Census Bureau	
+
+	\end{block}
+
+\vskip -24pt
+
+% Connect the Dots
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=gold,rounded corners=.5cm, below right,drop shadow]
+			{
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\Large
+				What \ Stories \ do \ These \ Maps \ Tell \ ?
+				}
+			};
+		\end{tikzpicture}
+		
+		\vskip 48pt
+		
+		\begin{center}
+		\begin{tabular}{p{4.5in}p{.5in}p{4in}}		
+%		\adjustbox{valign=T}{
+			\centerline{\Large Education}
+
+		\vskip 6pt
+		
+		Percentage of adults over 25 who graduated from college
+%		}
+		&&
+%		\adjustbox{valign=T}{
+			\centerline{\Large Income}
+		
+		\vskip 6pt
+			
+			Average household income
+%		}
+		\end{tabular}
+		\end{center}
+		
+		\vskip -36pt
+
+		\begin{center}
+		\begin{tabular}{p{5in}p{4in}}		
+		\adjustbox{valign=T}{
+			\input{Education_Contents}
+		}
+		&
+		\adjustbox{valign=T}{
+			\input{Income_Contents}
+		}
+		\end{tabular}
+		\end{center}
+
+	\end{block}
+
+	
+
+
+	\end{column}
+
+% Third Column
+	\begin{column}{.3\linewidth} {\color{white} xxx}
+
+% Connect the Dots
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=blue,rounded corners=.5cm, below right,drop shadow]
+			{
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\Large\color{gold}
+				Make \ Your \ Map, \  Tell  \ Your \ Story
+				}
+			};
+		\end{tikzpicture}
+	\end{block}
+
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=gold,rounded corners=.5cm, below right,drop shadow]
+			{
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\Large
+				Option \ 1: \  Color \ by \ Numbers
+				}
+			};
+		\end{tikzpicture}
+		
+		\
+		
+		\begin{itemize}
+			\setlength\itemsep{0.4em}
+			\item Decide which story you want to tell.
+			\vskip 4pt
+			\begin{itemize}
+				\setlength\itemsep{0.2em}
+				\item Population Density
+				\item Immigrants
+				\item Median Age
+				\item Black or African American
+				\item American Indian and Alaska Native
+				\item Asian
+				\item Hispanic or Latino Origin
+				\item Speak Language Other than English at Home
+				\item Bachelor's Degree
+				\item Median Income
+			\end{itemize}
+			\item Get a map, data sheet, and colored pencils.
+			\item Decide how you will use color.
+			\vskip 4pt
+			\begin{itemize}
+				\setlength\itemsep{0.2em}
+				\item How many colors?
+				\item Which colors?
+				\item What does each color represent?
+				\item If using shading, what does the scale represent?
+			\end{itemize}
+			\item Choose symbols and text labels.
+		\end{itemize}
+		
+	\end{block}
+
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=gold,rounded corners=.5cm, below right,drop shadow]
+			{
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\Large
+				Option \ 2: \ Draw \ Your \ Own \ Map
+				}
+			};
+		\end{tikzpicture}
+		
+		\
+		
+		\begin{itemize}
+			\setlength\itemsep{0.4em}
+			\item Decide which story you want to tell.
+			\item Get a blank sheet and colored pencils.
+			\item Draw your neighborhood, yard, house floor plan, \dots .
+			\item Decide how you will use color. [See above.]
+			\item Choose symbols and text labels.
+		\end{itemize}
+	\end{block}
+
+			
+			
+
+% Contact Me
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=blue,rounded corners=.5cm, below right,drop shadow]
+			{
+				\Large
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\color{gold}
+					Contact \ Us
+				}
+			};
+		\end{tikzpicture}
+
+		\
+
+		\setlength{\baselineskip}{1.2\baselineskip}
+		Louisiana School for Math, Science, and the Arts
+		
+		Natchitoches, Louisiana
+	
+		{\tt\bf admissions@lsmsa.edu}
+
+
+	\end{block}
+
+
+
+	\end{column}
+
+	\end{columns}
+
+
+  \end{frame}
+%	\end{Large}
+\end{document}
+
+% Connect the Dots
+	\begin{block}{}
+		\begin{tikzpicture}
+			\node (0,0) [text width=28cm,fill=lightgreen,rounded corners=.5cm, below right,drop shadow]
+			{
+				\centerline{
+				\vrule width 0pt height 40pt depth 12pt
+				\Large
+				Add \ Context \ ($\approx 20,000$ Vertices)
+				}
+			};
+		\end{tikzpicture}
+
+		\
+
+			\input{Income_Contents}
+		
+%		\begin{center}
+%		\input{Context_Contents}
+%		\end{center}
+
+	\end{block}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t

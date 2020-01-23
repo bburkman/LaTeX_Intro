@@ -1,0 +1,8 @@
+# Reduction algorithm on pages 1082-1083
+
+for x1 in range (2):
+    for x2 in range (2):
+        a=1
+        if x1==1 and x2==0:
+            a=0
+        print (x1, !x1)

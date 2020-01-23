@@ -1,0 +1,203 @@
+\section{Knapsack Problem, \S 16.2, Exercise 35-7}
+
+We have $n$ items.  The $i^{th}$ item has value $v_i$ and weight $w_i$.  We have a knapsack with total weight capacity $W$.  We need to choose a set of items to take that will maximize the value without exceeding the weight limit.  
+
+In the {\bf 0-1 knapsack problem}, the values and weights are integers, and we can only choose between taking or not taking an item.  We cannot take part of an item nor more than one of an item.  
+
+In the {\bf fractional knapsack problem}, we can take fractions of items.  
+
+Both problems exhibit optimal substructure.  Consider the most valuable load that weighs at most $W$ pounds.  If we remove item $j$ from the load, the remaining load must be the most valuable load weighing at most $W-w_j$ pounds that we can take from the $n-1$ original items excluding $j$.  
+
+The fractional knapsack problem has the greedy-choice property, and thus can be solved with a greedy algorithm.  Sort the items by $v_i/w_i$, value per pound.  Take as much as possible of the most valuable item.  If it runs out, go to the next most valuable.  Continue until the knapsack reaches its weight limit.  The greedy algorithm runs in $O(n \lg n)$ time, basically the time to sort.  
+
+The 0-1 problem cannot be solved using a greedy algorithm.  When we consider whether to include an item in the knapsack, we must compare the solution to the subproblem that includes the item with the solution to the subproblem that excludes the item.  
+
+\subsection{0-1, Top-Down with Memoization}
+
+$W$ is the weight capacity of the knapsack.
+
+$n$ is the number of objects.
+
+$v[i]$ is the value of object $i$.
+
+$w[i]$ is the weight of object $i$.  
+
+\lstinputlisting[numbers=none, showstringspaces=false, language=python]{Knapsack.py}
+
+
+\subsection{Old Exam Questions}
+
+	% F15 #L4
+\subsubsection{ Fall 2015 \#L4}
+	
+\begin{enumerate}[label=\alph*.]
+	\item Describe maximum clique problem.
+	\item Write a pseudo code to obtain the maximum clique of a graph with $N$ nodes and $E$ edges using generate and test strategy.  That is, generate all possible subsets of vertices and test whether the subset is a clique.  (Make any assumptions explicitly.)
+	\item Find the time and space complexity of your algorithm.
+	\item Describe the 0-1 knapsack problem.
+	\item Show that the 0-1 knapsack problem belongs to NP-class.
+	\item Briefly describe a practical way of solving a 0-1 knapsack problem and its time complexity assuming that the knapsack capacity is $K$ and there are $M$ objects.  The weight and profit of an object $i$ are denoted by $w_i$ and $p_i$ respectively.  
+\end{enumerate}
+
+\subsubsection{Solution}
+
+\begin{enumerate}[label=\alph*.]
+	\item A {\it clique} is a complete subgraph.  The {\it [maximum] clique problem} is to find a largest complete subgraph in a graph.  It is known to be NP-complete.  
+	\item Loop over all sets of vertices, and test whether each is complete.  If it is, find its size.  If a clique is larger than the previously-found largest clique, write it down.  
+	\item For a graph $G(V,E)$, the number of subgraphs is
+	$$\sum_{k=0}^{|V|} {|V| \choose k} = 2^{|V|}$$
+	For each of those subgraphs, we need to test whether it is complete, which takes $O(k^2)$ time for a subgraph of size $k$.  It doesn't really matter, however, for a graph of nontrivial size, because the time complexity is already exponential. 
+	
+	The size complexity is much more tame, just a small multiple of the size of the data structure storing the graph.  
+	\item In the 0-1 knapsack problem, we have $M$ objects, with each object $i$ having positive integer weight $w_i$ and profit $v_i$, and a knapsack with weight capacity $K$.  We have to choose whether to include (or not include) each of the $M$ objects in the knapsack in order to maximize the total value while not exceeding the capacity $K$.  
+	\item To show that a problem belongs to the NP class, we have to show that we can verify a solution in polynomial time.  A solution to the 0-1 knapsack problem is a subset of the $M$ objects to be included in the knapsack, or, equivalently, a binary $M$-tuple signifying whether each of the $M$ objects is included.  To verify the solution is to add up the weights of the included objects, verify that the total weight is less than $K$, add up the values of the included objects, and verify that the total value is the value in the certificate.  This verifying the solution should take linear time, which is a trivial case of polynomial time; therefore, the 0-1 knapsack problem is in class NP.  
+	 \item See that the algorithm has optimal substructure.  
+	 
+	 Let the $M$ objects be ordered, and let $V(n,w)$ be the maximum possible value of a subset of the first $n$ objects having no more than total weight $w$.  We see that $V(0,w) = 0$ and $V(n,0) = 0$, signifying the cases where there are no objects or no weight capacity.  
+	 
+	 We have this optimal substructure, that the maximum total value of a subset of the first $n$ objects, $V(n,w)$, is, if the last item is included, $V(n-1,w-w_i) + v_i$, or if the last item is not included, $V(n-1,w)$.  The determination on whether to include the last of the $n$ objects depends on which is greater.  
+	 
+	 $$V(n,w) = \max( V(n-1,w-w_i) + v_i, V(n-1,v))$$
+	 
+	 To solve the 0-1 knapsack problem, build up an $(M+1) \times (K+1)$ array with zeros in the first row and column, and build each row according to the recursion above, keeping track of which items are included to give each total value.  
+	 
+	 The time complexity is $O(MK)$.  
+\end{enumerate}
+
+\subsubsection{Fall 2016 \#L2}
+
+	% F16 #L2
+	\begin{enumerate}
+		\item 	Explain what do you understand by ``principle of optimality'' in the context of dynamic programming.
+		\item Characterize 0-1 knapsack problem in terms of objective function, constraints, and the time and space complexity.  (Assume there are $n$ objects.  Suppose an object $i$ has weight $w_i$ and profit $p_i$.  The overall capacity of the container is $W$).
+		\item Show the 0-1 knapsack problem belong to NP-class.
+		\item Does it belong to P-class?  (Provide an explanation accordingly.)
+		\item Write down the basic rule that satisfy the principle of optimality and domain related constraints to the following problems:
+		\begin{enumerate}
+			\item 0-1 knapsack problem
+			\item Pairwise shortest path problem
+		\end{enumerate}
+	\end{enumerate}
+
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item From Bellman, ``An optimal policy has the property that whatever the initial state and initial decision are, the remaining decisions must constitute an optimal policy with regard to the state resulting from the first decision.''
+	
+	A dynamic programming problem builds on optimal substructure and overlapping subproblems.  A problem exhibits optimal substructure if an optimal solution to the problem contains within it optimal solutions to subproblems.  A problem has overlapping subproblems when a recursive algorithm solves the same subproblems repeatedly.  A dynamic programming algorithm will save the results of the subproblems and look up the solutions rather than recalculating.  
+	
+	\item Find a subset $A$ of the ordered set of objects $B$.
+	
+	\begin{description}
+		\item [Objective function]  Maximize $\displaystyle\sum_{i \in A} p_i$.  
+		\item [Constraints] $\displaystyle \sum_{i \in A} w_i \le W$
+		
+	\end{description}
+	
+	\item (See solution to previous exam.)
+	
+	\item The 0-1 knapsack problem has a dynamic programming algorithm, but it is only pseudo-polynomial; that is, the algorithm is time complexity is polynomial in the value of the input, but may be exponential in the number of bits required to represent the input; thus, the knapsack problem is weakly NP-complete and does not belong to P-class.  
+	
+	\item For the 0-1 knapsack problem, the rule that satisfies the principal of optimality is this 
+	
+\end{enumerate}
+
+\subsubsection{Spring 2016 \#L2}
+
+\begin{enumerate}
+		\item Explain what you understand by ``principle of optimality.''
+		\item Write down the basic rule that satisfies the principle of optimality and domain related constraints to the following problems.
+		\begin{enumerate}
+			\item Knapsack Problem
+			\item Pairwise Shortest Path Problem
+			\item Chain Matrix Multiplication Problem
+		\end{enumerate}
+		\item The optimal solution to the 0-1 knapsack problem belongs to NP-class.  John says dynamic program formulation optimally solves the 0-1 knapsack problem.  If you agree with John, explain why; otherwise, explain why not.
+	\end{enumerate}
+
+
+\subsubsection{Spring 2018 \#L4}
+
+\begin{enumerate}[label=\alph*.]
+		\item Define the following classes of a decision problem:  P, NP, and NP-completeness.
+		\item Consider the 0-1 knapsack problem with $n$ objects each with its respective pre-defined profit.  The objective is to maximize the total profit that can be accommodated into a container of capacity $W$.  Define appropriate notations for weight and profit of objects, formulate the problem.
+		\item Convert of the problem that you have defined in (b) into a decision problem.
+		\item Show the problem that you have defined in (c) belongs to NP-class.
+		\item Does the problem in (d) belong to the P-class or NP-completeness. (Justify your answer.)
+		\item If principle of optimality be applicable to solve the problem defined in (c), formulate it.  Otherwise, explain why not.  
+		\item What would be your explanation, if 0-1 knapsack problem is solved by dynamic programming in polynomial time?
+	\end{enumerate}
+
+\subsubsection{Solutions}
+
+\begin{enumerate}[label=\alph*.]
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item Since the 0-1 knapsack problem is only pseudopolynomial, it is weakly NP-complete.  If it can be solved in polynomial time, then P = NP.  
+\end{enumerate}
+
+
+
+\subsubsection{Spring 2019 \#L2}
+
+Knapsack problem:  Suppose you want to pack a knapsack with weight limit $W$.  Item $i$ has an integer weight $w_i$ and real value $v_i$.  Your goal is to choose a subset of items with a maximum total value subject to the total weight $\le \ W$.  
+	\index{Knapsack Problem!S19 \#L2}
+
+	Let $M[n,W]$ denote the maximum value that a set of items $\in \{1,2,\dots,n\}$ can have such that the weight is no more than $W$.  We have the following recursive formula.  
+	
+	$$M[n,W] = 
+	\begin{cases}
+		0 & \text{if $n=0$ or $W=0$} \cr
+		M[n-1,W] & \text{if $w_n>W$} \cr
+		\max( M[n-1,W-w_n] + v_n, M[n-1,W]) & \text{otherwise} \cr
+	\end{cases}
+	$$
+	
+	The time complexity of a simple recursive procedure as given below is exponential.  
+\lstset{mathescape}
+\begin{lstlisting}
+$M(n,W)$
+{
+	if ($n$==0 or $W$==0) 
+		return 0;
+	if ($w_n>W$)
+		result = $M(n-1,W)$;
+	else
+		result = $\max\{ v_n + M(n-1,W-w_n), M(n-1,W)\}$;
+	return result;
+}
+\end{lstlisting}
+
+Provide a dynamic programming solution of the Knapsack problem after adding two lines of code to the above procedure.  (Hint:  Use a table to memorize the results.)
+
+\subsubsection{Solution}
+
+\lstset{mathescape}
+\begin{lstlisting}
+$M(n,W)$
+{
+	for (i=0; i<=$n$; i++){
+		for (j=0; j<=$W$; j++){
+			if (i==0 or j==0) 
+				M[i,j] = 0;
+			else if ($w_n>j$)
+				$M$[i,j] = $M$[i-1,j];
+			else
+				$M[i,j]  = \max\{ v_i + M[i-1,j-w_i], M[i-1,j]\}$;
+		}
+	}
+	return M;
+}
+\end{lstlisting}
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+\section{Old Exam Questions:  Sorting}
+
+\subsubsection{Fall 2018 \#S2}
+	% F18 #S2
+	\begin{enumerate}[label=\alph*.]
+		\item What is the lower bound for comparisons based sorting algorithm? (Outline the justification of your answer.)
+		\item What is the strategy behind greedy algorithm?
+	\end{enumerate}
+
+
+
+\subsubsection{Fall 2016 \#S2}
+% Finished
+	% F16 #S2	
+	\begin{enumerate}
+		\item Briefly describe a quick sort algorithm for sorting objects in an ascending order of their keys.
+		\item What is the best and worst case time complexity of quick sort and the reason for such complexity?
+	\end{enumerate}
+	
+\subsubsection{Solution}
+
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item Take the last element of the array, $x = A[n]$.  
+		\item Partition the remaining array into two subarrays, $B$ whose elements are no more than $x$, and $C$ whose elements are greater than $x$, rearranging $A$ so that it is $B + \{x\} + C$ (with ``+'' meaning concatenation).
+		\item Recurse on both $B$ and $C$.  
+	\end{enumerate}
+	\item The best time complexity happens when each partition divides $A$ ``evenly'' into subarrays of length $n/2$ and $n/2-1$.  The recurrence is then $T(n) = 2T(n/2) + cn = \Theta(n \lg n)$.  
+	
+	The worst case happens the last element in each subarray is the largest value in the subarray, meaning that the partition is into subarrays of length $n-1$ and $0$, giving a recurrence $T(n) = T(n-1) + cn = \Theta(n^2)$.  
+	
+	The worst-time case happens, ironically, when the original array is already sorted in ascending order.  The average time complexity is much closer to the best-time than the worst-time.  
+\end{enumerate}
+
+
+\subsubsection{Fall 2015 \#S3}
+
+	% #F15 S3
+	What is the time complexity of insertion sort algorithm?  Suppose you already know the total number of keys and range of the key values.  What would be the best and worst results you will get when sorting $n$ items?  In addition to the previous information, if you already know that the key values are uniformly distributed, what would be your best and worst results?  (Make sure you sketch the algorithm and provide rationale of your expected results.  Do NOT derive the result.)
+
+\subsubsection{Solution}
+
+See above about best and worst cases.  
+
+I don't know that being uniformly distributed makes a difference.  ?????
+
+\subsubsection{Spring 2015 \#S2}
+	
+	% S15 \#S2
+	In terms of run time efficiency, compare and contrast quick sort and merge sort.  What is the best and the worst case time complexity of the quick sort algorithm?  Also state under what conditions one may expect these two extreme cases.
+	
+\subsubsection{Solution}
+
+Merge sort and quick sort both use a divide-and-conquer strategy.  
+
+Merge sort divides the array of length $n$ into $n$ subarrays of length 1, then recombines them two at a time into sorted arrays.  The merge of two subarrays of length $n$ takes $\Theta(n)$ time.  The recurrence is $T(n) = 2T(n/2) + \Theta (n) = \Theta(n \lg n)$.
+
+Quick sort partitions the array of length $n$ into two subarrays of length $m$ and $n-m-1$.  In the best case, $m = n/2$, and in the worst case, $m=0$.    In the best case, the recurrence is $T(n) = 2T(n/2) + cn = \Theta(n \lg n)$, and in the worst, $T(n) = T(n-1) + cn = \Theta(n^2)$.  The worst case happens, ironically, when the array is already sorted.  
+

@@ -1,0 +1,111 @@
+\BOOKMARK [1][-]{chapter*.1}{Index}{}% 1
+\BOOKMARK [1][-]{section.0.1}{Topics Remaining}{}% 2
+\BOOKMARK [1][-]{section.0.2}{Take to Exam}{}% 3
+\BOOKMARK [1][-]{section.0.3}{Definitions}{}% 4
+\BOOKMARK [0][-]{chapter.1}{Time Complexity}{}% 5
+\BOOKMARK [1][-]{section.1.1}{Time Complexity}{chapter.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.1}{Definitions}{section.1.1}% 7
+\BOOKMARK [2][-]{subsection.1.1.2}{Algorithms}{section.1.1}% 8
+\BOOKMARK [2][-]{subsection.1.1.3}{Old Exam Problems}{section.1.1}% 9
+\BOOKMARK [0][-]{chapter.2}{Data Structures and Search Algorithms}{}% 10
+\BOOKMARK [1][-]{section.2.1}{Balanced Search Tree}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.1.1}{Method for Inserting and Deleting a Key}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.2}{Old Exam Questions}{section.2.1}% 13
+\BOOKMARK [1][-]{section.2.2}{Binary Search Trees}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.1}{Definition, Chapter 12}{section.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.2}{Old Exam Questions}{section.2.2}% 16
+\BOOKMARK [1][-]{section.2.3}{Optimal Binary Search Tree}{chapter.2}% 17
+\BOOKMARK [2][-]{subsection.2.3.1}{Definition, \24715.5}{section.2.3}% 18
+\BOOKMARK [2][-]{subsection.2.3.2}{Brad's Example}{section.2.3}% 19
+\BOOKMARK [2][-]{subsection.2.3.3}{Old Exam Questions}{section.2.3}% 20
+\BOOKMARK [2][-]{subsection.2.3.4}{F16 \043L4, Similar to above}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.5}{S17 \043L4, Similar to above}{section.2.3}% 22
+\BOOKMARK [1][-]{section.2.4}{Height Balanced Binary Search Tree \(AVL Tree\), \24713, Problem 13-3}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.4.1}{Old Exam Questions}{section.2.4}% 24
+\BOOKMARK [1][-]{section.2.5}{Heaps}{chapter.2}% 25
+\BOOKMARK [2][-]{subsection.2.5.1}{Old Exam Questions}{section.2.5}% 26
+\BOOKMARK [0][-]{chapter.3}{Sorting}{}% 27
+\BOOKMARK [1][-]{section.3.1}{Insertion Sort}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.1.1}{Algorithm}{section.3.1}% 29
+\BOOKMARK [2][-]{subsection.3.1.2}{Time Complexity}{section.3.1}% 30
+\BOOKMARK [1][-]{section.3.2}{Quicksort}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.2.1}{Code and Example}{section.3.2}% 32
+\BOOKMARK [2][-]{subsection.3.2.2}{Time Complexity}{section.3.2}% 33
+\BOOKMARK [1][-]{section.3.3}{Heap Sort}{chapter.3}% 34
+\BOOKMARK [1][-]{section.3.4}{Old Exam Questions: Sorting}{chapter.3}% 35
+\BOOKMARK [0][-]{chapter.4}{NP-Complete}{}% 36
+\BOOKMARK [1][-]{section.4.1}{NP-Completeness \24734}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.1.1}{Polynomial-time Reduction Algorithm}{section.4.1}% 38
+\BOOKMARK [2][-]{subsection.4.1.2}{Showing a Problem is NP-Complete}{section.4.1}% 39
+\BOOKMARK [2][-]{subsection.4.1.3}{Circuit Satisfiability \24734.4}{section.4.1}% 40
+\BOOKMARK [2][-]{subsection.4.1.4}{Traveling Salesman Problem}{section.4.1}% 41
+\BOOKMARK [2][-]{subsection.4.1.5}{Knapsack Problem}{section.4.1}% 42
+\BOOKMARK [2][-]{subsection.4.1.6}{Old Exam Problems}{section.4.1}% 43
+\BOOKMARK [1][-]{section.4.2}{Traveling Salesman Problem}{chapter.4}% 44
+\BOOKMARK [2][-]{subsection.4.2.1}{With the Triangle Inequality}{section.4.2}% 45
+\BOOKMARK [2][-]{subsection.4.2.2}{Old Exam Problems}{section.4.2}% 46
+\BOOKMARK [0][-]{chapter.5}{Graph Algorithms}{}% 47
+\BOOKMARK [1][-]{section.5.1}{Graph Algorithms Summary}{chapter.5}% 48
+\BOOKMARK [1][-]{section.5.2}{Breadth First Search and Depth First Search \(BFS and DFS\)}{chapter.5}% 49
+\BOOKMARK [2][-]{subsection.5.2.1}{Old Exam Questions}{section.5.2}% 50
+\BOOKMARK [1][-]{section.5.3}{Strongly Connected Components}{chapter.5}% 51
+\BOOKMARK [2][-]{subsection.5.3.1}{Definition}{section.5.3}% 52
+\BOOKMARK [2][-]{subsection.5.3.2}{Algorithm}{section.5.3}% 53
+\BOOKMARK [2][-]{subsection.5.3.3}{Old Exam Questions}{section.5.3}% 54
+\BOOKMARK [1][-]{section.5.4}{Minimum Spanning Trees}{chapter.5}% 55
+\BOOKMARK [2][-]{subsection.5.4.1}{Definitions}{section.5.4}% 56
+\BOOKMARK [2][-]{subsection.5.4.2}{Kruskal's Algorithm}{section.5.4}% 57
+\BOOKMARK [2][-]{subsection.5.4.3}{Prim's Algorithm}{section.5.4}% 58
+\BOOKMARK [2][-]{subsection.5.4.4}{Old Exam Questions}{section.5.4}% 59
+\BOOKMARK [1][-]{section.5.5}{Single-Source Shortest Paths}{chapter.5}% 60
+\BOOKMARK [1][-]{section.5.6}{Dijkstra}{chapter.5}% 61
+\BOOKMARK [2][-]{subsection.5.6.1}{Old Exam Questions}{section.5.6}% 62
+\BOOKMARK [1][-]{section.5.7}{Ford-Fulkerson Algorithm}{chapter.5}% 63
+\BOOKMARK [2][-]{subsection.5.7.1}{Old Exam Problems}{section.5.7}% 64
+\BOOKMARK [1][-]{section.5.8}{Max Flow}{chapter.5}% 65
+\BOOKMARK [2][-]{subsection.5.8.1}{Old Exam Problems}{section.5.8}% 66
+\BOOKMARK [0][-]{chapter.6}{Dynamic Programming}{}% 67
+\BOOKMARK [1][-]{section.6.1}{Knapsack Problem, \24716.2, Exercise 35-7}{chapter.6}% 68
+\BOOKMARK [2][-]{subsection.6.1.1}{0-1, Top-Down with Memoization}{section.6.1}% 69
+\BOOKMARK [2][-]{subsection.6.1.2}{Old Exam Questions}{section.6.1}% 70
+\BOOKMARK [0][-]{chapter.7}{Greedy Algorithms}{}% 71
+\BOOKMARK [1][-]{section.7.1}{Huffman Codes}{chapter.7}% 72
+\BOOKMARK [2][-]{subsection.7.1.1}{Old Exam Questions}{section.7.1}% 73
+\BOOKMARK [1][-]{section.7.2}{Matrix Chain Multiplication}{chapter.7}% 74
+\BOOKMARK [2][-]{subsection.7.2.1}{Exercise 15.2-3}{section.7.2}% 75
+\BOOKMARK [2][-]{subsection.7.2.2}{Optimal Substructure}{section.7.2}% 76
+\BOOKMARK [2][-]{subsection.7.2.3}{Python Code}{section.7.2}% 77
+\BOOKMARK [2][-]{subsection.7.2.4}{Textbook Example \(page 376\)}{section.7.2}% 78
+\BOOKMARK [0][-]{chapter.8}{Hashing}{}% 79
+\BOOKMARK [1][-]{section.8.1}{Hashing}{chapter.8}% 80
+\BOOKMARK [2][-]{subsection.8.1.1}{Definitions}{section.8.1}% 81
+\BOOKMARK [2][-]{subsection.8.1.2}{Examples of Hash Functions}{section.8.1}% 82
+\BOOKMARK [2][-]{subsection.8.1.3}{Collision Resolution}{section.8.1}% 83
+\BOOKMARK [2][-]{subsection.8.1.4}{Cuckoo Hashing: NOT IN TEXTBOOK}{section.8.1}% 84
+\BOOKMARK [2][-]{subsection.8.1.5}{Perfect Hashing}{section.8.1}% 85
+\BOOKMARK [2][-]{subsection.8.1.6}{Old Exam Questions}{section.8.1}% 86
+\BOOKMARK [0][-]{chapter.9}{Old Exams}{}% 87
+\BOOKMARK [1][-]{section.9.1}{Spring 2019}{chapter.9}% 88
+\BOOKMARK [2][-]{subsection.9.1.1}{Short Questions \(Answer all six questions.\)}{section.9.1}% 89
+\BOOKMARK [2][-]{subsection.9.1.2}{Long Questions \(Answer all four questions.\)}{section.9.1}% 90
+\BOOKMARK [2][-]{subsection.9.1.3}{Solutions}{section.9.1}% 91
+\BOOKMARK [1][-]{section.9.2}{Fall 2018}{chapter.9}% 92
+\BOOKMARK [2][-]{subsection.9.2.1}{Short Questions \(Answer five of six.\)}{section.9.2}% 93
+\BOOKMARK [2][-]{subsection.9.2.2}{Long Questions \(Answer four of five.\)}{section.9.2}% 94
+\BOOKMARK [1][-]{section.9.3}{Spring 2018}{chapter.9}% 95
+\BOOKMARK [2][-]{subsection.9.3.1}{Short Questions \(Answer six of seven.\)}{section.9.3}% 96
+\BOOKMARK [2][-]{subsection.9.3.2}{Long Questions \(Answer three of four.\)}{section.9.3}% 97
+\BOOKMARK [1][-]{section.9.4}{Spring 2017}{chapter.9}% 98
+\BOOKMARK [2][-]{subsection.9.4.1}{Short Questions \(Answer all six.\)}{section.9.4}% 99
+\BOOKMARK [2][-]{subsection.9.4.2}{Long Questions \(Answer three of four.\)}{section.9.4}% 100
+\BOOKMARK [1][-]{section.9.5}{Fall 2016}{chapter.9}% 101
+\BOOKMARK [2][-]{subsection.9.5.1}{Short Questions. \(Answer eight of ten.\)}{section.9.5}% 102
+\BOOKMARK [2][-]{subsection.9.5.2}{Notes}{section.9.5}% 103
+\BOOKMARK [2][-]{subsection.9.5.3}{Long Questions. \(Answer three of four.\)}{section.9.5}% 104
+\BOOKMARK [2][-]{subsection.9.5.4}{Notes}{section.9.5}% 105
+\BOOKMARK [1][-]{section.9.6}{Fall 2015}{chapter.9}% 106
+\BOOKMARK [2][-]{subsection.9.6.1}{Short Questions \(Answer all eight.\)}{section.9.6}% 107
+\BOOKMARK [2][-]{subsection.9.6.2}{Long Questions \(Answer three of four.\)}{section.9.6}% 108
+\BOOKMARK [1][-]{section.9.7}{Spring 2015}{chapter.9}% 109
+\BOOKMARK [2][-]{subsection.9.7.1}{Short Questions}{section.9.7}% 110
+\BOOKMARK [2][-]{subsection.9.7.2}{Long Questions \(Answer three of four.\)}{section.9.7}% 111

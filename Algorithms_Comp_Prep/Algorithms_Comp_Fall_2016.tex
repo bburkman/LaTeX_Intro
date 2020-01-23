@@ -1,0 +1,228 @@
+%%%%%%%%%%%%%%%%%%%
+\section{Fall 2016}
+% Finished copying questions
+% Finished indexing
+
+\subsection{Short Questions.  (Answer eight of ten.)}
+
+\begin{enumerate}
+	% F16 #S1
+	\item \begin{enumerate}
+		\item Define an upper and the tight time bound of an algorithm.
+		\item In which way the average time bound will add more value to the tight bound?
+	\end{enumerate}
+	
+	\index{Time Complexity!Big-O!F16 \#S1}
+	\index{Time Complexity!Big-$\Theta$!F16 \#S1}
+
+	% F16 #S2	
+	\item\begin{enumerate}
+		\item Briefly describe a quick sort algorithm for sorting objects in an ascending order of their keys.
+		\item What is the best and worst case time complexity of quick sort and the reason for such complexity?
+	\end{enumerate}
+	
+	\index{Quick Sort Algorithm!F16 \#S2}
+	\index{Time Complexity!F16 \#S2}
+	
+	% F16 #S3
+	\item Find the tight [time bound, time complexity?] for the recurrence relations without using the master theorem. 
+	\begin{enumerate}
+		\item $T(n) = T(n-2) + 2 \lg(n)$
+		\item $T(n) = T(\sqrt{n}) + \lg(n)$
+	\end{enumerate}
+	
+	\index{Time Complexity!Big-$\Theta$!F16 \#S3}
+	\index{Recurrence!F16 \#S3}
+	\index{Master Theorem!F16 \#S3}
+	
+	% F16 #S4
+	\item \begin{enumerate}
+		\item What are the properties of min heap and max heaps.
+		\item What is the preferred data structure of implementing binary heap, also justify your answer.
+		\item What is the time complexity of merging two different min heap with sizes of $n$ and $m$.
+	\end{enumerate}
+	
+	\index{Heaps!Min Heap!F16 \#S4}
+	\index{Heaps!Max Heap!F16 \#S4}
+	\index{Heaps!Binary Heap!F16 \#S4}
+	\index{Heaps!Min Heap!Merging!F16 \#S4}
+	
+	% F16 #S5
+	\item Suppose there are $n$ clauses and $m$ variables (propositions) in a given $3-p$ sat problem.
+	\begin{itemize}
+		\item How many possible interpretations are there?
+		\item Find the tight bound of checking for satisfiability of the $n$ clauses.  
+	\end{itemize}
+	
+	\index{NP!3-p sat!F16 \#S5}
+	\index{Time Complexity!Big-$\Theta$!F16 \#S5}
+	
+	% F16 #S6
+	\item \begin{enumerate}
+		\item Briefly define greedy strategy.
+		\item Will it always yield an optimal solution?  If not, provide an algorithm that yields an optimal solution.  
+	\end{enumerate}
+	
+	\index{Greedy Algorithms!F16 \#S6}
+	
+	% F16 #S7
+	\item \begin{enumerate}
+		\item Define strongly connected components.
+		\item Does a strongly connected component graph cyclic or acyclic?  Justify your answer.  
+	\end{enumerate}
+	
+	\index{Strongly Connected Components!F16 \#S7}
+	
+	% F16 #S8
+	\item Mark true/false (T/F) against the following statements.  
+	
+	\begin{itemize}
+		\item A binary search tree of size $N$ will always find a key at most $O(\lg N)$ time
+		\item A breadth first search can be considered as a special case of heuristic search algorithm.
+		\item An optimal binary search tree is not necessarily being a balanced tree.
+		\item A dynamic programming approach uses top-down problem solving strategy to solve optimization problem.
+	\end{itemize}
+	
+	\index{Breadth First Search!F16 \#S8}
+	\index{Binary Search Tree!Optimal!F16 \#S8}
+	\index{Dynamic Programming!F16 \#S8}
+	\index{Top-Down!F16 \#S8}
+	
+	% F16 #S9
+	\item Given two hash functions $h_1$ and $h_2$ for Cuckoo hashing under two tables, $T_1$ and $T_2$, 
+	\begin{itemize}
+		\item Describe the steps involved in inserting a record with the key of $K_{new}$.
+		\item Cuckoo hashing can be analyzed by the Cuckoo graph, whose nodes denote table entries and links connect pairs of nodes where given keys can be held.  State when a new key can be inserted successfully based on the Cuckoo graph.
+	\end{itemize}
+	
+	\index{Hash!F16 \#S9}
+	\index{Hash!Cuckoo Hash!F16 \#S9}
+	
+	% F16 #S10
+	\item The recurrence of Procedure CUT-ROD$(p,n)$ is given by 
+	$$T(n) = 1 + \sum_{j=1}^{n-1} T(j), \ T(0) = 1$$
+	Solve $T(n)$.  
+	
+	\index{Recurrence!F16 \#10}
+	\index{Follow-the-Bouncing-Ball!F16 \#S10}
+	
+\end{enumerate}
+
+\subsection{Notes}
+
+	\#5.  According to Long Problem \#1, ``3-p sat'' means ``three-proposition satisfiability.'' There is a field of Boolean satisfiability problems called 3-sat.  It's an NP-complete problem.  
+	
+	\#7.  Strongly connected components in Cormen \S 22.5
+	
+	\#8.  ``Heuristic'' not in Cormen.
+	
+	\#9.  ``Cuckoo hashing'' not in Cormen.
+	
+	\#10.  $T(n) = 2^n$.  
+	
+\subsection{Long Questions.  (Answer three of four.)}
+
+\begin{enumerate}
+	% F16 #L1
+	\item \begin{enumerate}
+		\item Briefly describe NP-class, P-class, NP-complete, and NP-hard.
+		\item Show the conjectured relationship among the classes NP-class, P-class, NP-complete, and NP-hard.
+		\item Show that counting $n$ objects with integer key values belongs to NP-class.  
+		\item Provide the steps involved in showing whether a problem belongs to NP-complete or not.
+		\item Illustrate the steps in step d by showing 3 proposition satisfiability (3-p sat) problem belongs to NP-complete.
+		\item Provide a pseudo code that attempt to solve 3-p sat problem heuristically.
+	\end{enumerate}
+	
+	\index{NP!F16 \#L1}
+	\index{NP!3-p sat!F16 \#L1}
+
+	% F16 #L2
+	\item 	\begin{enumerate}
+		\item 	Explain what do you understand by ``principle of optimality'' in the context of dynamic programming.
+		\item Characterize 0-1 knapsack problem in terms of objective function, constraints, and the time and space complexity.  (Assume there are $n$ objects.  Suppose an object $i$ has weight $w_i$ and profit $p_i$.  The overall capacity of the container is $W$).
+		\item Show the 0-1 knapsack problem belong to NP-class.
+		\item Does it belong to P-class?  (Provide an explanation accordingly.)
+		\item Write down the basic rule that satisfy the principle of optimality and domain related constraints to the following problems:
+		\begin{enumerate}
+			\item 0-1 knapsack problem
+			\item Pairwise shortest path problem
+		\end{enumerate}
+	\end{enumerate}
+	
+	\index{Dynamic Programming!Principle of Optimality!F16 \#L2}
+	\index{Knapsack Problem!F16 \#L2}
+	
+	% F16 #L3
+	\item Given an initial B-tree with the minimum node degree of $t=2$ below, show the results 
+	\begin{enumerate}
+		\item after inserting the key of $H$, and 
+		\item then followed by deleting two keys in order:  $X$ then $P$.  (show the result after insertion and the result after each deletion.)
+	\end{enumerate}
+	
+	\index{Balanced Search Tree!F16 \#L3}
+	
+\
+	
+\hfil	\begin{tikzpicture}[x=12mm, y=15mm]
+		\node [rectangle, draw] (0) at (0,0) {$P$};
+		\node [rectangle, draw] (1) at (-4,-1) {$C G M$};
+		\node [rectangle, draw] (2) at (3,-1) {$T X$};
+		\node [rectangle, draw] (3) at (-7,-2) {$A B$};
+		\node [rectangle, draw] (4) at (-5,-2) {$D E F$};
+		\node [rectangle, draw] (5) at (-3,-2) {$J K L$};
+		\node [rectangle, draw] (6) at (-1,-2) {$N O$};
+		\node [rectangle, draw] (7) at (1,-2) {$Q R S$};
+		\node [rectangle, draw] (8) at (3,-2) {$U V$};
+		\node [rectangle, draw] (9) at (5,-2) {$Y Z$};
+		\draw [-triangle 60] (0) -- (1); 
+		\draw [-triangle 60] (0) -- (2); 
+		\draw [-triangle 60] (1) -- (3); 
+		\draw [-triangle 60] (1) -- (4); 
+		\draw [-triangle 60] (1) -- (5); 
+		\draw [-triangle 60] (1) -- (6); 
+		\draw [-triangle 60] (2) -- (7); 
+		\draw [-triangle 60] (2) -- (8); 
+		\draw [-triangle 60] (2) -- (9); 
+	\end{tikzpicture}
+
+	% F16 #L4
+	\item (Same as S15 \#L4 and S17 \#L4)  
+	Given a set of 4 keys, with the following probabilities, determine the cost and the structure of an optimal binary search tree, following the tabular, bottom-up method realized in the procedure of \verb|OPTIMAL-BST| below to construct and fill tables $e[1..5, 0..4]$, $w[1..5, 0..4]$, and $root[1..4, 1..4]$.  
+	
+	\index{Binary Search Tree!Optimal!F16 \#L4}
+	
+	\hfil \begin{tabular}{c|ccccc}
+		$i$ & 0 & 1 & 2 & 3 & 4 \cr\hline
+		$p_i$ & & & & \cr
+		$q_i$ & & & & \cr
+	\end{tabular}
+	
+	\begin{lstlisting}[mathescape=true]
+let $e[1..n + 1, 0..n ]$, $w[1..n+1, 0..n]$, and $root[1..n, 1..n]$ be new tables.
+for $i=1$ to $n+1$
+	$e[i, i-1] = q_{i-1}$
+	$w[i, i-1] = q_{i-1}$
+for $l=1$ to $n$
+	for $i=1$ to $n-l+1$
+		$j = i+l-1$
+		$e[i,j] = \infty$
+		$w[i,j] = w[,i,j-1] + p_j + q_j$
+		for $r=i$ to $j$
+			$t = e[i, r-1] + e[r+1,j] + w[i,j]$
+			if $i<e[i,j]$
+				$e[i,j] = t$
+				$root[i,j] = r$
+return $e$ and $root$
+	\end{lstlisting}
+
+\end{enumerate}
+
+\subsection{Notes}
+
+\#4 is the same as Cormen 15.5-2
+
+	\begin{enumerate}
+		\item 
+	\end{enumerate}
+	
+

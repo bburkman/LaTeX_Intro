@@ -1,0 +1,7 @@
+import math
+
+for t in range (2,8):
+    for h in range (2,100):
+        for n in range (2,1000):
+            if (n+1)/2 == math.pow(t,h) and n+1 == pow(2*t,h+1):
+                print t, h, n

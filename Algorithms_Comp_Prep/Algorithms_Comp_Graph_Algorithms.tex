@@ -1,0 +1,7 @@
+\section{Graph Algorithms Summary}
+
+\begin{tabular}{>{$}l<{$} l p{4in} }
+	O(V+E) & BFS & Breadth First Search, finds distance from source to each node in an unweighted graph, directed or undirected.  Each vertex has a color, a distance, and a parent.  \cr
+	O(V+E) & DFS & Depth First Search on an unweighted graph.  Each vertex has a color, a discovery time, a finishing time, and a parent.  Depth First Tree has tree edges, forward edges, back edges, and cross edges.  Used for topological sort.  \cr
+	O(V^2), O(E \lg V) & Dijkstra & Finds shortest distance from the source in a weighted graph (directed or undirected).  Time complexity depends on the data structure we use for the queue.  \cr
+\end{tabular}

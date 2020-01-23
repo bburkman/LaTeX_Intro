@@ -1,0 +1,140 @@
+\section{Minimum Spanning Trees}
+
+%%%%%%%%%%
+\subsection{Definitions}
+
+Given a connected, weighted, undirected graph $G = (V,E)\dots$
+
+\begin{description}
+	\item [Spanning Tree] An acyclic subset $T \subseteq E$ that connects all vertices.  Since it is acyclic and connects all vertices, it must be a tree.  
+	\item [Minimum Spanning Tree] A spanning tree $T$ such that the total weight of the edges is minimized.  
+	$$w(T) = \sum_{(u,v) \in T} w(u,v)$$
+\end{description}
+
+We have greedy algorithms that run in $O(E \lg V)$ time if we use binary heaps to store the list of edges.  
+
+%%%%%%%%%%
+\subsection{Kruskal's Algorithm}
+
+Create empty set of edges $A$.
+
+Loop over the edges $(u,v)$ in nondecreasing order:
+
+\qquad If $u$ and $v$ are not connected in $A$:
+
+\qquad \qquad Add $(u,v)$ to the set $A$.
+
+\
+
+Saying that $u$ and $v$ are not connected is the same as saying that adding $(u,v)$ would not create a cycle.  
+
+%%%%%%%%%%
+\subsection{Prim's Algorithm}
+
+Pick any starting vertex.  At each step, choose the cheapest edge from the set of visited vertices to the set of unvisited vertices.  Add that edge to the tree.  
+
+%%%%%%%%%%
+\subsection{Old Exam Questions}
+
+%%%%%
+\subsubsection{Spring 2019 \#S6}
+	% S19 S6
+Many problem have been proved to be NP-complete.  To prove NP-completeness, it is necessary in general to demonstrate two proof components.  What are the two proof components to show a problem being NP-complete?
+	
+	Being NP-complete, the traveling-salesman problem (TSP) has a 2-approximation solution in polynomial time based on establishing a minimum spanning tree (MST) rooted at the start/end vertex (in polynomial time following MST-PRIM), if the graph edge weights observe the triangle inequality.  Sketch a brief proof to demonstrate that that such a proof satisfies 2-approximation.  
+
+%%%%%
+\subsubsection{Spring 2017 \#S6}
+	% S17 #S6
+Briefly describe the minimum spanning tree.  Sketch an algorithm to obtain a minimum spanning tree.
+
+\subsubsection{Solution}
+
+Given an undirected, weighted, connected graph $G(V,E)$, a spanning tree $T$ is a connected acyclic graph that includes all of the vertices $V$.  A minimum spanning tree is a spanning tree with minimum total weight, $$w(T) = \sum_{(u,v) \in T} w(u,v)$$
+
+We have greedy algorithms for growing a minimum spanning tree.  
+
+\begin{description}
+	\item [Kruskal]  Sort the edges in nonincreasing order.  Consider each edge in order.  If adding that edge to the tree does not create a cycle, add it.  
+	\item [Prim] Choose any starting vertex.  At each step, choose the cheapest edge from the set of visited vertices to the set of unvisited vertices.  	
+\end{description}
+
+%%%%%
+\subsubsection{Fall 2015 \#S4}
+	% #F15 S4
+Define minimum spanning tree.  What are the salient features of a minimum spanning tree?  Name a couple of [two] algorithms that will help to find the minimum spanning tree from a graph.  Out of the two, which one would you prefer and specify why.  
+
+\subsubsection{Solution}
+
+A minimum spanning tree of a connected, undirected, weighted graph $G(V,E)$ is a subset of the edges that connect all of the vertices with minimum total weight.  
+
+We have two greedy algorithms for growing a minimal spanning tree, Kruskal's and Prim's.  
+
+I prefer Prim's because I find it easier to implement and it has other applications, as in finding a 2-approximation for the Traveling Salesman Problem in the case where the weights satisfy the Triangle Inequality, which is to say that the weights form a metric on the vertices.  
+
+\subsubsection{Spring 2015 \#S4}
+	% S15 \#S4
+Mark true/false (T/F) against the following statements:
+	\begin{enumerate}
+		\item Connecting any pair of nodes in a minimum spanning tree will always form a cycle.
+		\item Building strongly connected component graph of a directed graph of $N$ nodes takes $O(N^2)$ time.  
+		\item A graph formed by strongly connected component nodes, a strongly connected component graph (SCC) is always a minimum spanning tree.
+		\item SCC graph will be useful in determining articulation node in a graph.
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item True.
+	\item True.  Building a strongly connected component graph requires DFS, which takes $O(V+E)$ time.  If the directed graph is complete, then $E = V^2$, but if the graph is a tree then $E = V-1$, so the best-possible case is $\Omega(V)$, but the worst case is $O(V^2)$.  
+	\item False for several reasons.  
+	\begin{enumerate}[label=\alph*.]
+		\item An SCC is directed and unweighted while an MST is undirected and weighted.
+		\item An SCC, if it were undirected, could contain cycles, meaning that it is not a tree.
+	\end{enumerate}
+	\item True.  
+\end{enumerate}
+
+%%%%%
+\subsubsection{Spring 2015 \#L1}
+	% S15 #L1
+\begin{enumerate}
+		\item Suppose you have to find a solution to a problem that belongs to NP-complete class.  Clearly summarize the steps that will help you to find the solution of the problem.  
+		\item John, an undergraduate student, recently took data structure course, states that heuristics algorithms always solve NP-complete problems.  He cites simplex methods as an example.  If you agree with John, justify why or why not.  
+		\item What is the strategy behind a greedy algorithm?  Will it always provide an optimal solution?  If yes explain why, otherwise say why not.  
+		\item Consider the following pseudo code for Kruskal's algorithm for solving minimal spanning tree (MST).
+
+Algorithm MST.  Let $N$ be the number of nodes in graph $G$.  
+
+\begin{lstlisting}[numbers=left, mathescape=True]
+Sort the edges in non-decreasing order of cost.
+$T$ is an empty graph
+while $T$ has fewer than $N-1$ edges do:
+	let $e$ denote the next edge of $G$ (in the order of cost)
+	if $T \cup \{e\}$ does not contain a cycle, then $T = T \cup \{e\}$
+\end{lstlisting}
+
+Clearly mentioning the data structure you have to employ to reduce the time complexity to access and to maintain the necessary information, show the exact time taken to obtain the MST.  Also show the tight bound of the algorithm.  (Pay attention in detecting a cycle.)
+		
+	\end{enumerate}
+
+
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item It is not at all certain, nor even likely, that you can find the solution.  If the problem size is small, you may be able to run it directly in a short enough time.  If the problem is a special case of an NP-complete problem that can be solved in polynomial time, then you didn't really have an NP-complete problem.  If there is an algorithm for an approximate solution, that may work.  If there is no approximate algorithm, then you have to convince the person who assigned you this problem that nobody can solve the problem; see the cartoons at the beginning of Garey and Johnson (1979).
+	\item I disagree.  Proof by contradiction.  If heuristic algorithms, or any algorithms, can always solve NP-complete problems [in finite time], then P = NP, which is generally conjectured to not be true.  
+	
+	\item The strategy behind greedy algorithms is to find optimal solutions to subproblems, then find optimal solutions to combinations of those subproblems until you have solved the original problem.  It works if the problem has optimal substructure and the greedy choice property.  A problem has the greedy choice property iff a greedy algorithm gives the optimal solution.  If the problem does not have the greedy choice property, a greedy algorithm is not guaranteed to give an optimal solution.  
+	
+	For example, set covering.  I have a set $X$ and a set of $n$ subsets $S_i$ such that the union covers $X$,  $\displaystyle\underset{1 \le i \le n}{\cup}S_i = X$.  To choose a, perhaps, smaller set that covers $X$, I could use this greedy algorithm.  Let $Y=X$ and $T = \emptyset$.  Loop through the list of subsets.  If a subset $S_i$ contains an element in Y, add the set $S_i$ to $T$ and delete from $Y$ all of the elements in $Y \cap S_i$.  Continue until $Y$ is empty.  This algorithm gives a covering set, but not a minimal covering set.  
+	
+	\item (The answer to this part is on page 633.  It's really complicated.)
+\end{enumerate}
+
+
+
+
+
+
+

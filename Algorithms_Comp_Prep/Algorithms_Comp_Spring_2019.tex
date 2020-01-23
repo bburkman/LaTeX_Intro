@@ -1,0 +1,228 @@
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Spring 2019}
+% Finished copying questions
+% Finished indexing
+
+\subsection{Short Questions (Answer all six questions.)}  
+
+\begin{enumerate}
+	% S19 S1
+	\item Give a big-O (upper bound) estimate for $f(n) = n \log(n!) + 3n^2 + 2n - 10000$, where $n$ is a positive integer.
+	\index{Time Complexity!Big-O!S19 \#S1}  
+
+	% S19 S2
+	\item The hash table is a widely adopted data structure.  Explain briefly how perfect hashing works.  Separately, what is the situation when a new key cannot be inserted in a Cuckoo hash table separately?
+	\index{Hash!Cuckoo Hash!S19 \#S2}
+	\index{Hash!Perfect Hashing!S19 \#S2}
+	
+	% S19 S3
+	\item Show your construction of an optimal Huffman code for the set of 10 frequencies:  {\bf a}:2 {\bf b}:6 {\bf c}:5 {\bf d}:8 {\bf e}:13 {\bf f}:34 {\bf g}:34 {\bf h}:15 {\bf i}:27 {\bf j}:9
+	
+	\index{Huffman Code!Optimal!S19 \#S3}
+		
+	% S19 S4
+	\item Given a weighted directed graph $G = (V,E,w)$ and a shortest path $P$ from $s$ to $t$, if the weight of every edge is doubled to produce $G^* = (V,E,w^*)$, is $P$ still a shortest path in $G^*$?  Explain your reasoning behind your answer. 
+	\index{Shortest Path!S19 \#S4}
+	
+	% S19 S5
+	\item BFS (breadth-first search) and DFS (depth-first search):  Give the visited node order for each type of graph search, starting with $S$ below.  
+	\index{Breadth First Search!Visited Node Order!S19 \#S5}
+	\index{Depth First Search!Visited Node Order!S19 \#S5}
+\
+	
+\hfil	\begin{tikzpicture}[x=20mm, y=10mm]
+		\node [circle, draw] (S) at (0,0) {$S$};
+		\node [circle, draw] (A) at (2,0) {$A$};
+		\node [circle, draw] (B) at (3,-1) {$B$};
+		\node [circle, draw] (C) at (2,-2) {$C$};
+		\node [circle, draw] (D) at (0,-2) {$D$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+	\end{tikzpicture}
+	
+	% S19 S6
+	\item Many problem have been proved to be NP-complete.  To prove NP-completeness, it is necessary in general to demonstrate two proof components.  What are the two proof components to show a problem being NP-complete?
+	
+	Being NP-complete, the traveling-salesman problem (TSP) has a 2-approximation solution in polynomial time based on establishing a minimum spanning tree (MST) rooted at the start/end vertex (in polynomial time following MST-PRIM), if the graph edge weights observe the triangle inequality.  Sketch a brief proof to demonstrate that that such a proof satisfies 2-approximation.  
+
+\index{NP!NP-Complete!S19 \#S6}
+\index{Traveling Salesman Problem!S19 \#S6}
+\index{Minimum Spanning Tree!S19 \#S6}
+\index{Two@2-Approximation!S19 \#S6}
+	 
+\end{enumerate}	
+
+\subsection{Long Questions (Answer all four questions.)}
+
+\begin{enumerate}
+	% S19 #L1
+	\item Given a B-tree with the minimum degree of $t=3$ below, show the results after (i) deleting $B$, (ii) followed by inserting $M$, (iii) then followed by deleting $T$, and then inserting $M_t$ for $M<M_t<N$
+	
+\
+	
+\hfil	\begin{tikzpicture}[x=12mm, y=15mm]
+		\node [rectangle, draw, fill=gray] (0) at (0,0) {$P$};
+		\node [rectangle, draw, fill=gray] (1) at (-3,-1) {$C G$};
+		\node [rectangle, draw, fill=gray] (2) at (3,-1) {$T X$};
+		\node [rectangle, draw, fill=gray] (3) at (-5,-2) {$A B$};
+		\node [rectangle, draw, fill=white] (4) at (-3,-2) {$D E$};
+		\node [rectangle, draw, fill=gray] (5) at (-1,-2) {$JKL NO$};
+		\node [rectangle, draw, fill=gray] (6) at (1,-2) {$QRS$};
+		\node [rectangle, draw, fill=gray] (7) at (3,-2) {$UV$};
+		\node [rectangle, draw, fill=gray] (8) at (5,-2) {$YZ$};
+		\draw [-triangle 60] (0) -- (1); 
+		\draw [-triangle 60] (0) -- (2); 
+		\draw [-triangle 60] (1) -- (3); 
+		\draw [-triangle 60] (1) -- (4); 
+		\draw [-triangle 60] (1) -- (5); 
+		\draw [-triangle 60] (2) -- (6); 
+		\draw [-triangle 60] (2) -- (7); 
+		\draw [-triangle 60] (2) -- (8); 
+	\end{tikzpicture}
+	
+	\
+	
+	% S19 #L2
+	\item Knapsack problem:  Suppose you want to pack a knapsack with weight limit $W$.  Item $i$ has an integer weight $w_i$ and real value $v_i$.  Your goal is to choose a subset of items with a maximum total value subject to the total weight $\le \ W$.  
+	\index{Knapsack Problem!S19 \#L2}
+
+	Let $M[n,W]$ denote the maximum value that a set of items $\in \{1,2,\dots,n\}$ can have such that the weight is no more than $W$.  We have the following recursive formula.  
+	
+	$$M[n,W] = 
+	\begin{cases}
+		0 & \text{if $n=0$ or $W=0$} \cr
+		M[n-1,W] & \text{if $w_n>W$} \cr
+		\max( M[n-1,W-w_n] + v_n, M[n-1,W]) & \text{otherwise} \cr
+	\end{cases}
+	$$
+	
+	The time complexity of a simple recursive procedure as given below is exponential.  
+\lstset{mathescape}
+\begin{lstlisting}
+$M(n,W)$
+{
+	if ($n$==0 or $W$==0) 
+		return 0;
+	if ($w_n>W$)
+		result = $M(n-1,W)$;
+	else
+		result = $\max\{ v_n + M(n-1,W-w_n), M(n-1,W)\}$;
+	return result;
+}
+\end{lstlisting}
+
+Provide a dynamic programming solution of the Knapsack problem after adding two lines of code to the above procedure.  (Hint:  Use a table to memorize the results.)
+
+	% S19 #L3
+	\item Follow the Ford-Fulkerson Algorithm to compute the max flow of the flow network illustrated below.  Show each step to compute the max flow and also show the min cut of the flow network.  
+	\index{Max Flow!S19 \#L3}
+	\index{Min Cut!S19 \#L3}
+	\index{Ford-Fulkerson Algorithm!S19 \#L3}
+	
+\	
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (1,1) {$A$};
+	\node [circle, draw] (B) at (3,1) {$B$};
+	\node [circle, draw] (C) at (1,-1) {$C$};
+	\node [circle, draw] (D) at (3,-1) {$D$};
+	\node [circle, draw] (T) at (4,0) {$T$};
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {10} (A);
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {10} (C);
+	\draw [-triangle 60] (A) -- node [midway, circle, fill=white] {12} (B);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6} (D);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {5} (A);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {5} (B);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {6} (D);
+	\draw [-triangle 60] (D) -- node [midway, circle, fill=white] {14} (T);
+\end{tikzpicture}	
+
+	% S19 #L4
+	\item The Dijkstra's algorithm (DIJ) solves the single-source shortest-path problem in a weighted directed graph $G=(V,E)$.  Given the graph $G$ below, follow DIJ to find shortest paths from vertex $s$ to all other vertices, with all predecessor edges shaded and estimated distance values from $s$ to all vertices provided at the end of each iteration.  
+	
+	What is the time complexity of DIJ for a general graph $G=(V,E)$, if the candidate vertices are kept in a binary min-heap?
+		
+	\index{Dijkstra's Algorithm!S19 \#L4}
+	\index{Heaps!Binary Min-Heap!S19 \#L4}
+	\index{Time Complexity!S19 \#L4}
+	
+\
+
+\hfil \begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (s) [label=left:{s}] at (0,0) {$0$};
+	\node [circle, draw] (t) [label=above:{t}] at (1,1) {$\infty$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$\infty$};
+	\node [circle, draw] (y) [label=below:{y}] at (1,-1) {$\infty$};
+	\node [circle, draw] (z) [label=below:{z}] at (3,-1) {$\infty$};
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[-triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+\end{tikzpicture}
+
+\end{enumerate}
+
+%%%%%%%%%%
+\subsection{Solutions}
+
+\begin{description}
+	\item [Short problem \#1] 
+	
+	\begin{align*}
+		\log(n!) &= \log(n \cdot (n-1) \cdot (n-2) \cdots 2 \cdot 1) \cr
+			&= \log(n) + \log(n-1) + \log(n-2) + \cdots + \log(2) + \log 1 \cr
+			&\le \log(n) + \log(n) + \log(n) + \cdots + \log(n) + \log (n) \cr
+			&= n \log n \cr
+		n \log(n!) &\le n \cdot n\log(n) = n^2 \log n \cr
+	\end{align*}
+	
+	Since the $n\log(n!) = O(n^2 \log n)$ is the term of largest asymptotic growth, $f(n) = O(n^2\log n)$.  
+
+	\item [Short problem \#4]  To be the ``shortest path $P$ from $s$ to $t$'' means that it is the path of shortest length, and the length means the sum of the weights of the edges that $P$ traverses.  Consider any path from $v_0$ to $v_k$, $\langle v_0, v_1, v_2,\dots,v_k\rangle$.  The length of this path is $w(v_0) + w(v_1) + \cdots + w(v_k)$.  If all of the edge weights are doubled, the length of each path is doubled, so the path of shortest length under $w$ will still be the shortest under $w^*$
+	
+	\item [Short problem \#5]  So many answers to this problem.  
+	
+	BFS:  $S, A, D, C, B$ or $S, D, A, B, C$
+	
+	DFS:  $S, A, B, C, D$ or $S, D, C, A, B$
+	
+	\item [Short problem \#6a]
+	
+	The two proof components to show that a problem $B$ is NP-complete are 
+	\begin{enumerate}
+		\item An NP-complete decision problem $A$, and 
+		\item A polynomial-time transformation that maps instance of $A$ to instances of $B$.  
+	\end{enumerate}
+	
+	The decision problem $B$ is therefore at least as hard as $A$, because if $B$ were easier, one could solve any instance of $A$ by transforming it into an instance of $B$ and using the solution method for $B$.  
+	
+	\item [Short problem \#6b]  Prove that there is a 2-approximation solution in polynomial time to the Traveling Salesman Problem if the weights satisfy the triangle inequality. 
+	 
+	Let an actual solution to TSP be the tour $H*$.  
+
+	Let the approximate solution be $H$.  
+	
+	To make $H$:
+	\begin{enumerate}
+		\item Grow a minimal spanning tree $T$ with some root $a$, which either Kruskal or Prim can do in polynomial time.  Since it is a minimal spanning tree and has no cycles, its cost cannot be greater than the tour of least cost, so $c(T) \le c(H*)$.  
+		\item From the tour, create a walk $W$ starting at, and returning to, $a$.  Since it traverses each edge twice, $c(W) = 2c(T)$.  
+		\item Delete from the walk the second appearance of any vertex except $a$ to create the Hamiltonian walk $H$ of a preorder tree walk of $T$.  Because the edge weights satisfy the Triangle Inequality, deleting a vertex does not increase the cost, so $c(H) \le c(W)$.  
+		\item Since $c(H) \le c(W) = 2 c(T) \le 2 c(H*)$, the Hamiltonian walk we have created in polynomial time has total cost no more than twice the cost of a perfect solution to the TSP, and thus we have a 2-approximation solution in polynomial time.  
+	\end{enumerate}
+		
+	
+\end{description}
+

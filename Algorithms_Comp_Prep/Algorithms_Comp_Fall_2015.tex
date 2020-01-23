@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%%%%
+\section{Fall 2015}
+
+\subsection{Short Questions (Answer all eight.)}
+
+\begin{enumerate}
+	% #F15 S1
+	\item Show that for arbitrary real constants $a$ and $b$ with $b>0$, we have $(n+a)^b = \Theta(n^b)$.
+	\index{Time Complexity!Big-$\Theta$!F15 \#S1}
+	
+	% #F15 S2
+	\item Use the recursion-tree technique to derive the tight lower and upper bounds of the recursion $T(n) = T(n/3) + T(2n/3) + cn$.
+	\index{Recursion!F15 \#S2}
+	\index{Time Complexity!Big-$\Theta$!F15 \#S2}
+
+	% #F15 S3
+	\item What is the time complexity of insertion sort algorithm?  Suppose you already know the total number of keys and range of the key values.  What would be the best and worst results you will get when sorting $n$ items?  In addition to the previous information, if you already know that the key values are uniformly distributed, what would be your best and worst results?  (Make sure you sketch the algorithm and provide rationale of your expected results.  Do NOT derive the result.)
+	\index{Insertion Sort!F15 \#S3}
+
+	% #F15 S4
+	\item Define minimum spanning tree.  What are the salient features of a minimum spanning tree?  Name a couple of [two] algorithms that will help to find the minimum spanning tree from a graph.  Out of the two, which one would you prefer and specify why.  
+	\index{Minimum Spanning Tree!F15 \#S4}
+	
+	% #F15 S5
+	\item Mark True or False for each of the following statements.  
+	\begin{enumerate}[label=\alph*.]
+		\item Greedy strategy sometimes finds the best or the optimal solution.
+		\item Dynamic programming will always find the optimal solution even when the principal of optimality condition is not satisfied.
+		\item (Same as S5 \#S9b) Breadth first search is a special case of heuristic search algorithm.
+		\item Some problems that belong to NP-class can be solved polynomially.  
+		\item Satisfiability problem of propositional calculus is NP-complete.
+	\end{enumerate}
+	\index{Greedy Algorithms!F15 \#S5}
+	\index{Dynamic Programming!Principle of Optimality!F15 \#S5}
+	\index{Breadth First Search!F15 \#S5}
+	\index{Heuristic!F15 \#S5}
+	\index{NP!F15 \#S5}
+	\index{NP!NP-Complete!F15 \#S5}
+	\index{NP!Propositional Calculus!F15 \#S5}
+		
+	% #F15 S6
+	\item Obtain the optimal parenthesize for a chain multiplication given the $S$ matrix as has been explained in the textbook or in class.  (Show the working details.)
+	
+	\
+	
+\hfil	\begin{tabular}{cc|ccccccc}
+	
+		\multicolumn{7}{c}{[some letter] $\to$} \cr
+		&& 1 & 2 & 3 & 4 & 5 & 6 \cr\hline
+		&7 & 4 & 4 & 4 & 3 & 5 & 6 \cr
+	\multirow{ 2}{*}{$d \uparrow$} &6 & 4 & 4 & 4 & 3 & 5 \cr
+		&5 & 3 & 3 & 4 & 4 \cr
+		&4 & 1 & 2 & 3 \cr
+		&3 & 1 & 2 \cr
+		&2 & 1 \cr
+	\end{tabular}
+	\index{Dynamic Programming!Chain Matrix Multiplication!F15 \#S6}
+
+	% F15 #S7
+	\item Mark True or False against the following statements.
+	\begin{enumerate}[label=\alph*.]
+		\item  (Same as S15 \#9a) A binary search tree of size $N$ will always find a key in at most $O(\log N)$ time.
+		\item An optimal binary search is not necessary a balanced tree.
+		\item A binary heap always maintains a balanced tree as practical as it can be.
+		\item To implement a priority queue binomial heap is preferred over binary heap.
+		\item A graph formed by strongly connected components, a strongly connected components graph (SCC) is always a minimum spanning tree.  
+	\end{enumerate}
+	\index{Binary Search Tree!Optimal!F15 \#S7}
+	\index{Heaps!Binary Min-Heap!F15 \#S7}
+	\index{Heaps!Binary Min-Heap!Priority Queue!F15 \#S7}
+	\index{Priority Queue!F15 \#S7}
+	\index{Strongly Connected Components!F15 \#S7}
+	
+	% F15 #S8
+	\item For any $n$-key B-tree of height $h$ and with minimum node degree of $t \ge 2$, prove that $h$ is no larger than $\log_t \frac{n+1}{2}$.  (Hint:  Consider the number of keys stored in each tree level.)
+	\index{Balanced Search Tree!F15 \#S8}
+\end{enumerate}
+	
+\subsection{Long Questions (Answer three of four.)}
+
+\begin{enumerate}
+	% F15 # L1
+	\item The utilization efficiency of a hash table depends on its hashing function(s) employed.  Describe with a diagram to illustrate how a multiplication method of hashing works on a machine with word size of $w$ bits for a hash table with $2^p$ entries, $p<w$.  Explain briefly how Cuckoo hashing works under two hash functions of $h_1$ and $h_2$.
+	\index{Hash!Cuckoo Hash!F15 \#L1}
+	\index{Hash!Multiplication Method!F15 \#L1}
+	
+	% F15 # L2
+	\item Given the initial B-tree with the minimum node degree of $t-3$ below, show the results (a) after inserting two keys in order:  $Q$ then $W$, and (b) followed by deleting two keys in order:  $Y$ then $T$.  (Show the aggregate result after insertion and another result after deletion.)
+	
+	\
+	
+\hfil	\begin{tikzpicture}[x=15mm, y=15mm]
+		\node [rectangle, draw] (GMPX) at (0,0) {$G \ M \ P \ X$};
+		\node [rectangle, draw] (ACDE) at (-4,-1) {$A \ C \ D \ E$};
+		\node [rectangle, draw] (JK) at (-2,-1) {$J \ K$};
+		\node [rectangle, draw] (NO) at (0,-1) {$N \ O$};
+		\node [rectangle, draw] (RSTUV) at (2,-1) {$R \ S \ T \ U \ V$};
+		\node [rectangle, draw] (YZ) at (4,-1) {$Y \ Z$};
+		\foreach \from/\to in {GMPX/ACDE, GMPX/JK, GMPX/NO, GMPX/RSTUV, GMPX/YZ}
+			\draw [-triangle 60] (\from) -- (\to);
+	\end{tikzpicture}
+	\index{Balanced Search Tree!F15 \#L2}
+	
+	% F15 # L3
+	\item In the following pseudo code, 
+	\begin{enumerate}[label=\alph*.]
+		\item Write the formula to determine the number of add operations at line 5 when the algorithm terminates.  
+		\item What is the space complexity?
+		\item Find the following time bounds of this algorithm:  Upper, lower, and tight. (Must show all the details of your work.)
+	\end{enumerate}
+	
+	\
+	
+	\verb|Algorithm Count|
+	
+	\begin{lstlisting}[numbers=left, mathescape=true]
+$Cnt = 0$
+for $i=1$ to $n$ do {
+	for $j = 1$ to $i^2$ do {
+		for $k=1$ to $j$ do {
+			$Cnt = Cnt + 1$
+		}
+	}
+}
+	\end{lstlisting}
+	
+	Note that I have corrected line 3 from \ \verb|for j=i^2 to i do{|
+	
+	\index{Space Complexity!F15 \#L3}
+	\index{Time Complexity!F15 \#L3}
+	\index{Follow-the-Bouncing-Ball!F15 \#L3} 
+	
+	% F15 #L4
+	\item\begin{enumerate}[label=\alph*.]
+		\item Describe maximum clique problem.
+		\item Write a pseudo code to obtain the maximum clique of a graph with $N$ nodes and $E$ edges using generate and test strategy.  That is, generate all possible subsets of vertices and test whether the subset is a clique.  (Make any assumptions explicitly.)
+		\item Find the time and space complexity of your algorithm.
+		\item Describe the 0-1 knapsack problem.
+		\item Show that the 0-1 knapsack problem belongs to NP-class.
+		\item Briefly describe a practical way of solving a 0-1 knapsack problem and its time complexity assuming that the knapsack capacity is $K$ and there are $M$ objects.  The weight and profit of an object $i$ are denoted by $w_i$ and $p_i$ respectively.  
+	\end{enumerate}
+	
+	\index{Maximum Clique!F15 \#L4}
+	\index{Knapsack Problem!F15 \#L4}
+	
+\end{enumerate}
+

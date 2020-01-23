@@ -1,0 +1,97 @@
+\section{Strongly Connected Components}
+
+\subsection{Definition}
+A {\bf strongly connected component} of a directed graph $G = (V,E)$ is a maximal set of vertices $C \subseteq V$ such that for every pair of vertices $u$ and $v$ in $C$, we have both $u \sinline[] v$ and $v \sinline[] u$; that is, vertices $u$ and $v$ are reachable from each other, that there are both a path from $u$ to $v$ and a path from $v$ to $u$.  
+
+\subsection{Algorithm}
+
+Strongly-Connected-Components (G)
+\begin{enumerate}
+	\item Run DFS($G$) to compute finishing times $u.f$ for $u \in V$.  
+	\item Sort $V$ in decreasing order by $u.f$.  
+	\item Run DFS($V^T$) 
+	\item Output the vertices of each depth-search tree as a separate strongly connected component.  
+\end{enumerate}
+
+\subsection{Old Exam Questions}
+
+\subsubsection{Spring 2017 \#S3}
+	% S17 #S3
+\begin{enumerate}[label=\alph*.]
+		\item Define strongly connected components as applied to directed graphs.
+		\item Some potential application of strongly connected components.
+		\item Provide a pseudo code for obtaining strongly components of a directed graph.  (Hint:  Use depth first search on appropriately transformed graphs.)
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}[label=\alph*.]
+	\item A strongly connected component of a graph $G(V,E)$ is a maximal subset $C \subseteq V$ such that, for each pair $(u,v)$ of vertices in $C$, there is a path from $u$ to $v$ and a path from $v$ to $u$.  To find the strongly connected components (plural) of a graph is to partition it into strongly connected components.  
+	\item An application is in determining boolean 2-satisfiability.  Another is finding groups in a social network.  
+	\item Strongly-Connected-Components
+	\begin{enumerate}[label=\arabic*.]
+		\item Run DFS on $G$.
+		\item Sort the vertices of $G$ in decreasing order by their finishing time.
+		\item Create $G^T$, in which all of the edges are reversed.  
+		\item Run DFS on $G^T$ using the vertices sorted as above. 
+		\item The trees in the depth-first forest are separate strongly connected components.  
+	\end{enumerate}
+\end{enumerate}
+	
+	
+\subsubsection{Fall 2016 \#S7}
+
+	% F16 #S7
+\begin{enumerate}
+		\item Define strongly connected components.
+		\item Does a strongly connected component graph cyclic or acyclic?  Justify your answer.  
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item The strongly connected components of a graph $G=(V,E)$ is a partition of the graph into maximal subsets $C_i \subseteq V$ such that, for each $C_i$, for each pair of vertices $(u,v)$ in $C_i$, there is a path from $u$ to $v$ and a path from $v$ to $u$.  
+	\item A strongly connected component graph is cyclic.  A directed graph is cyclic iff it contains a cycle.  A cycle is a path from a vertex to itself.  A strongly connected component graph has, by definition, for each vertex $u$, a path to another (actually, each other) vertex $v$ and a path back.  Connecting these two paths, you get a cycle.  Thus, a strongly connected graph has a cycle, and is therefore cyclic.  
+\end{enumerate}
+
+\subsubsection{Fall 2015 \#S7}
+
+	% F15 #S7
+Mark True or False against the following statements.
+	\begin{enumerate}[label=\alph*.]
+		\item  (Same as S15 \#9a) A binary search tree of size $N$ will always find a key in at most $O(\log N)$ time.
+		\item An optimal binary search is not necessary a balanced tree.
+		\item A binary heap always maintains a balanced tree as practical as it can be.
+		\item To implement a priority queue binomial heap is preferred over binary heap.
+		\item A graph formed by strongly connected components, a strongly connected components graph (SCC) is always a minimum spanning tree.  
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}[label=\alph*.]
+	\item False.  It will find a key in at most $O(h)$ time, where $h$ is the height of the tree.  If the tree is balanced, then $h = \lg N$, but the tree does not need to be balanced.  In the worst case, the tree is a single branch, and $h = N$.  
+	\item True.
+	\item True.  The definition of a binary heap says that it is a balanced tree.  
+	\item True. (?)
+	\item False.  It is a spanning tree, but not necessarily minimal.  
+\end{enumerate}
+
+\subsubsection{Spring 2015  \#S4}
+
+	% S15 \#S4
+Mark true/false (T/F) against the following statements:
+	\begin{enumerate}
+		\item Connecting any pair of nodes in a minimum spanning tree will always form a cycle.
+		\item Building strongly connected component graph of a directed graph of $N$ nodes takes $O(N^2)$ time.  
+		\item A graph formed by strongly connected component nodes, a strongly connected component graph (SCC) is always a minimum spanning tree.
+		\item SCC graph will be useful in determining articulation node in a graph.
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item True.
+	\item False.  Building a strongly connected component graph uses DFS twice.  DFS takes $O(V+E)$.  If the graph is complete, then $E = V^2$ and the operation takes $O(V^2)$ time, but if the graph is sparse, it runs in faster time.  
+	\item False.  It is a spanning tree, but not necessarily minimal.  
+	\item True.  	
+\end{enumerate}

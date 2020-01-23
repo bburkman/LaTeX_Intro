@@ -1,0 +1,32 @@
+\section{Quicksort}
+
+\subsection{Code and Example}
+
+\lstinputlisting[language=python, showstringspaces=false]{Quicksort.py}
+
+\verbatiminput{Quicksort.txt}
+
+\subsection{Time Complexity}
+
+The algorithm recursively divides the array in two pieces, so it looks at $\Theta(\lg n)$ subarrays.  On each subarray, it reads through left to right, so the partitioning on the subarray of length $k<n$ is $\Theta(k)$.  
+
+\subsubsection{Worst-Case Partitioning}
+
+The worst-case partitoning happens, ironically, in an array that's already sorted in increasing order.  The partitioning routine produces one subproblem with $n-1$ elements and one problem with zero elements.  If it happens in every recursive call, the recurrence for the running time is 
+
+\begin{align*}
+	T(n) &= T(n-1) + T(0) + \Theta(n) \cr
+		&= T(n-1) + \Theta(n) \cr
+\end{align*}
+
+which evaluates to $\Theta(n^2)$.  
+
+\subsubsection{Best-Case Partitioning}
+
+Each partitioning splits the array of length $n$ into subarrays of lengths $n/2$ and $n/2 - 1$, with recurrence $T(n) = 2T(n/2) + \Theta(n)$ that evaluates to $\Theta(n \lg n)$.  
+
+\subsubsection{Average-Case Partitioning}
+
+Much closer to best case than worst case.  
+
+

@@ -1,0 +1,14 @@
+\section{Insertion Sort}
+
+\subsection{Algorithm}
+
+\lstinputlisting[language=python,showstringspaces=false]{Insertion_Sort.py}
+
+\subsection{Time Complexity}
+
+In the worst case, the \verb|while| loop has to go the way to the bottom for every value of $j$.  This case happens when the array is sorted in decreasing order.  In that case, the recurrence is
+
+$$T(n) = T(n-1) + cn = \Theta(n^2)$$
+
+In the best case, for every value of $j$, $A[i] = A[j-1] \le key$, so we never engage the \verb|while| loop.  This happens when the array is already sorted in increasing order, so the time complexity is linear, $\Theta (n)$.  
+

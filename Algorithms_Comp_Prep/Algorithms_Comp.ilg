@@ -1,0 +1,12 @@
+This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
+Scanning input file Algorithms_Comp.idx....
+!! Input index error (file = Algorithms_Comp.idx, line = 113):
+   -- Extra `!' at position 23 of first argument.
+
+!! Input index error (file = Algorithms_Comp.idx, line = 147):
+   -- Extra `!' at position 37 of first argument.
+done (189 entries accepted, 2 rejected).
+Sorting entries.....done (1683 comparisons).
+Generating output file Algorithms_Comp.ind....done (318 lines written, 0 warnings).
+Output written in Algorithms_Comp.ind.
+Transcript written in Algorithms_Comp.ilg.

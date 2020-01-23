@@ -1,0 +1,203 @@
+% !TEX TS-program = pdflatexmk
+
+
+\documentclass[11pt]{report}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing}
+%\usetikzlibrary{patterns,positioning,decorations.pathmorphing,arrows,shapes
+\usetikzlibrary{fit}
+
+\usepackage{pgfmath}
+\usepackage[edges]{forest}
+
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsthm}
+	\newtheorem*{theorem}{Theorem}
+	\newtheorem*{lemma}{Lemma}
+	\newtheorem*{definition}{Definition}
+\usepackage{amssymb}
+
+\usepackage{array}
+\usepackage{multirow}
+
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+\usepackage{listings}
+\lstset{language=C}
+
+\usepackage{makeidx}
+\usepackage{verbatim}
+\usepackage{datetime}
+
+\setcounter{tocdepth}{2}
+
+\setlength{\pdfpageheight}{11in}
+\setlength{\textheight}{9in}
+\setlength{\voffset}{-1in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\marginparsep}{0pt}
+\setlength{\marginparwidth}{0pt}
+\setlength{\marginparpush}{0pt}
+\setlength{\textwidth}{6.5in}
+
+
+\def\sinline[#1]{ \ \tikz\draw[decorate,decoration={snake,amplitude=0.6mm, segment length=14pt},->] (0,0) -- (.6,0) node [midway, above] {#1}; \ }
+
+\pagestyle{plain}
+\makeindex
+
+\title{Prep for Comprehensive Exam in Algorithms}
+\author{Brad Burkman}
+\newdateformat{vardate}{\THEDAY\ \monthname[\THEMONTH]\ \THEYEAR}
+\vardate
+\date{\today}
+
+\begin{document}
+\setlength{\parindent}{20pt}
+\begin{spacing}{1.2}
+\maketitle
+\tableofcontents
+\addcontentsline{toc}{section}{Index}
+\printindex
+
+\section{Topics Remaining}
+
+\begin{itemize}
+	\item Fibonacci Heaps (S18 \#L2)
+	\item What is the preferred data structure of implementing binary heap, also justify your answer.  (S17 \#S5)
+	\item Spring 2015 \#L1.d
+
+Consider the following pseudo code for Kruskal's algorithm for solving minimal spanning tree (MST).
+
+Algorithm MST.  Let $N$ be the number of nodes in graph $G$.  
+
+\begin{lstlisting}[numbers=left, mathescape=True]
+Sort the edges in non-decreasing order of cost.
+$T$ is an empty graph
+while $T$ has fewer than $N-1$ edges do:
+	let $e$ denote the next edge of $G$ (in the order of cost)
+	if $T \cup \{e\}$ does not contain a cycle, then $T = T \cup \{e\}$
+\end{lstlisting}
+
+Clearly mentioning the data structure you have to employ to reduce the time complexity to access and to maintain the necessary information, show the exact time taken to obtain the MST.  Also show the tight bound of the algorithm.  (Pay attention in detecting a cycle.)
+		
+\end{itemize}
+
+\section{Take to Exam}
+
+\begin{itemize}
+	\item Ruler
+	\item Calculators
+	\item Water
+	\item Good eraser
+	\item 
+\end{itemize}
+
+
+\input{Algorithms_Comp_Definitions}
+
+%%%%% Topics
+%\part{Topics}
+
+%\begin{comment}
+\chapter{Time Complexity}
+\input{Algorithms_Comp_Time_Complexity}
+
+% Search
+\chapter{Data Structures and Search Algorithms}
+\input{Algorithms_Comp_Balanced_Search_Tree}
+\input{Algorithms_Comp_Binary_Search_Tree}
+\input{Algorithms_Comp_Heap}
+
+% Sorting
+\chapter{Sorting}
+\input{Algorithms_Comp_Insertion_Sort}
+\input{Algorithms_Comp_Quick_Sort}
+%\input{Algorithms_Comp_Merge_Sort}
+\input{Algorithms_Comp_Heap_Sort}
+\input{Algorithms_Comp_Sorting_Old_Exam_Questions}
+%\input{Algorithms_Comp_}
+
+\chapter{NP-Complete}
+
+% NP-Complete Algorithms
+\input{Algorithms_Comp_NP}
+\input{Algorithms_Comp_TSP}
+
+% Graph Algorithms
+\chapter{Graph Algorithms}
+\input{Algorithms_Comp_Graph_Algorithms}
+\input{Algorithms_Comp_BFS_DFS}
+\input{Algorithms_Comp_Strongly_Connected_Components}
+\input{Algorithms_Comp_Minimum_Spanning_Tree}
+\input{Algorithms_Comp_Single_Source_Shortest_Paths}
+\input{Algorithms_Comp_Dijkstra}
+
+\input{Algorithms_Comp_Ford-Fulkerson}
+\input{Algorithms_Comp_Max_Flow}
+%\input{Algorithms_Comp_}
+
+% Dynamic Programming
+\chapter{Dynamic Programming}
+%\input{Algorithms_Comp_Dynamic_Programming}
+\input{Algorithms_Comp_Knapsack}
+
+
+% Greedy Algorithms
+\chapter{Greedy Algorithms}
+%\input{Algorithms_Comp_Greedy_Algorithms}
+\input{Algorithms_Comp_Huffman_Codes}
+\input{Algorithms_Comp_Matrix_Chain_Multiplication}
+%\end{comment}
+
+% Hash
+\chapter{Hashing}
+\input{Algorithms_Comp_Hashing}
+
+
+
+
+
+%\part{Old Exams}
+\chapter{Old Exams}
+\input{Algorithms_Comp_Spring_2019}
+\input{Algorithms_Comp_Fall_2018}
+\input{Algorithms_Comp_Spring_2018}
+\input{Algorithms_Comp_Spring_2017}
+\input{Algorithms_Comp_Fall_2016}
+\input{Algorithms_Comp_Fall_2015}
+\input{Algorithms_Comp_Spring_2015}
+
+
+
+
+%%%%%%%%%%%%%%%%%%
+% Index
+%\clearpage
+%\addcontentsline{toc}{section}{Index}
+%\printindex
+
+%%%%%%%%%%%%%%%%
+\end{spacing}
+\end{document}
+
+%%%%%%%%%%%%
+% Useful tools
+%%%%%%%%%
+
+\begin{lstlisting}
+Put your code here.
+\end{lstlisting}
+
+\lstinputlisting[language=python]{source_filename.py}
+
+

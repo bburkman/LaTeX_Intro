@@ -1,0 +1,205 @@
+%%%%%%%%%%%%%%%%%%%%
+\section{Spring 2018}
+% Copying Completed
+% Index Completed
+
+\subsection{Short Questions (Answer six of seven.)}
+
+\begin{enumerate}
+	% S18 #S1
+	\item A problem with size $n$ follows a typical divide-and-conquer approach to have its time complexity of
+	$$T(n) = T\left(\frac{n}{4} \right) + T \left( \frac{3n}{4} \right) + c \cdot n$$
+	Solve $T(n)$.  (Show your work.)
+	
+	\index{Time Complexity!S18 \#S1}
+	\index{Divide and Conquer!S18 \#S1}
+	\index{Recurrence!S18 \#S1}
+	
+	% S18 #S2
+	\item Given that for an open-address hash table with load factor $\displaystyle \alpha = \frac{n}{m} < 1$, the expected number of probes in unsuccessful search under uniform hashing is at most $\displaystyle \frac{1}{1-\alpha}$, how do you prove the expected number of probes in a successful probe under uniform hashing being at most $\displaystyle \frac{1}{\alpha} \ln \left( \frac{1}{1-\alpha}\right)$?  (Just give a proof sketch, explaining how many probes are needed to locate existing keys.)
+	\index{Hash!Open Address!S18 \#S2}
+	\index{Hash!Load Factor!S18 \#S2}
+	\index{Hash!Probes!S18 \#S2}
+	\index{Hash!Uniform Hashing!S18 \#S2}
+
+	% S18 #S3
+	\item (Lemma 16.2, \S 16.3, page 433) Sketch a proof of the Lemma below, using the tree provided.  
+	
+	Let $C$ be an alphabet in which each character $c \in C$ has frequency $c.freq$.  Let $x$ and $y$ be two characters in $C$ having the lowest frequencies.  Then there exists an optimal prefix code for $C$ in which the codewords for $x$ and $y$ have the same length and differ only in the last bit. 
+	
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw] (T) {$T$};
+		\node [rectangle, draw, below right=of T] (x) {$x$}; 
+		\node [circle, draw, below left=of T] (p) { \ };
+		\node [circle, draw, below right=of p] (q) { \ };
+		\node [rectangle, draw, below left=of 	p] (y) {$y$};
+		\node [rectangle, draw, below left=of q] (a) {$a$};
+		\node [rectangle, draw, below right=of q] (b) {$b$};
+		\foreach \from/\to in {T/x, T/p, p/q, p/y, q/a, q/b}{
+			\draw (\from) -- (\to);
+		}
+	\end{tikzpicture}
+	
+	\index{Huffman Code!Optimal Prefix Code!S18 \#S3}
+	\index{Huffman Code!Codewords!S18 \#S3}
+
+	% S18 #S4
+	\item The Dijkstra's algorithm (DS) solves the single-source shortest-path problem in a weighted graph $G = (V,E)$ without negative weighted edges or cycles, by edge relaxation at one vertex at a time until all vertices are examined.  Given the graph $G$ below, follow DS to find the shortest paths from vertex $v_1$ to all other vertices, with all predecessor edges shaded and estimated distance values from $v_1$ to all vertices provided at the end.  Also list the sequence of vertices at which relaxation takes place.  
+	
+	What is the time complexity of DS for a general graph $G = (V,E)$ when candidate vertices are kept in an array?
+	
+\hfil	\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$] (v1) {};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {};
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}{
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}{
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2}{
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		}
+		\foreach \from/\to/\label in {v2/v6/5}{
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+ 	\end{tikzpicture}
+	
+	\index{Dijkstra's Algorithm!S18 \#S4}
+	\index{Time Complexity!S18 \#S4}
+	
+	% S18 #S5
+	\item \begin{enumerate}[label=\alph*.]
+		\item Define height balanced binary tree
+		\item Write a pseudo code to determine whether a tree is height balanced?
+		\item Obtain a tight bound of your algorithm.
+	\end{enumerate}
+	
+	\index{Binary Search Tree!Height Balanced!S18 \#S5}
+
+\end{enumerate}
+
+\subsection{Long Questions (Answer three of four.)}
+
+\begin{enumerate}
+
+	% S18 #L1
+	\item Given the initial B-tree with the minimum node degree of $t=3$ below, show the results 
+	
+	\begin{enumerate}[label=\alph*.]
+		\item After deleting the key of $M_2$, 
+		\item Followed by inserting the key of $L$, 
+		\item Then by deleting the key of $J_2$, 
+		\item Then by inserting the key of $O_1$ with $O < O_1 < O_2$, and 
+		\item Then by deleting $K$.  
+	\end{enumerate}
+	
+	(Show the result after every deletion and after every insertion.)
+	
+\
+	
+\hfil	\begin{tikzpicture}[node distance=8 mm and 8 mm]
+		\node [rectangle, draw] (a) at (0,0) {$M$};
+		\node [rectangle, draw] (b) at (-3,-1) {$J K$};
+		\node [rectangle, draw] (c) at (3,-1) {$N O$};
+		\node [rectangle, draw, below left=of b] (d) {$A B$};
+		\node [rectangle, draw, below=of b] (e) {$J_2 J_3$};
+		\node [rectangle, draw, below right=of b] (f) {$K_4 K_6$};
+		\node [rectangle, draw, below left=of c] (g) {$M_2 M_4$};
+		\node [rectangle, draw, below=of c] (h) {$N_1 N_2 N_3$};
+		\node [rectangle, draw, below right=of c] (i) {$O_2 O_3$};
+		\foreach \from/\to in {a/b, a/c, b/d, b/e, b/f, c/g, c/h, c/i}
+			\draw (\from) -- (\to);
+	\end{tikzpicture}
+	
+	\index{Balanced Search Tree!S18 \#L1}
+
+\
+
+	% S18 #L2
+	\item A Fibonacci min-heap relies on the procedure of CONSOLIDATE to merge min-heaps in the root list upon the operation of extracting the minimum node.  Given the following Fibonacci min-heap, show every consolidation step and the final heap result after $H.min$ is extracted, with the aid of $A$.  
+	
+	\index{Heaps!Fibonacci Min Heap!S18 \#L2}
+	
+\hfil \begin{tikzpicture}[x=13mm, y=13mm]
+	\node [circle, draw] (7) at (0,0) {7};
+	\node [circle, draw] (24) at (-1,-1) {24};
+	\node [circle, draw] (17) at (0,-1) {17};
+	\node [circle, draw] (26) at (-2,-2) {26};
+	\node [circle, draw] (46) at (-1,-2) {46};
+	\node [circle, draw] (30) at (0,-2) {30};
+	\node [circle, draw] (35) at (-2,-3) {35};
+	\node [circle, draw] (21) at (2,0) {21};
+	\node [circle, draw] (18) at (3,0) {18};
+	\node [circle, draw] (52) at (4,0) {52};
+	\node [circle, draw] (39) at (3,-1) {39};
+	\foreach \from/\to in {7/17, 7/24, 7/21, 24/26, 24/46, 17/30, 26/35, 21/18, 18/52, 18/39}
+		\draw (\from) -- (\to);
+	\node (a) at (-1,1) {$H.min$};
+	\draw [-triangle 60] (a) -- (7);
+	\node (b) at (2,1) {A};
+	\node (c0) at (2.4,1.4) {0};
+	\node (c1) at (2.8,1.4) {1};
+	\node (c2) at (3.2,1.4) {2};
+	\node (c3) at (3.6,1.4) {3};
+	\draw (2.2,0.8) rectangle (3.8,1.2);
+	\draw (2.6,0.8) -- (2.6,1.2);
+	\draw (3.0,0.8) -- (3.0,1.2);
+	\draw (3.4,0.8) -- (3.4,1.2);
+\end{tikzpicture}	
+
+	% S18 #L3
+	\item \begin{enumerate}[label=\alph*.]
+		\item To what extent the asymptotic upper bound and lower bound provide insight on running time of an algorithm.
+		\item Compare and contrast asymptotic tight bound to the average running time of an algorithm.
+		\item Consider the pseudo code of an algorithm given below.  
+		\begin{enumerate}
+			\item What the value $K$ in line 4 denote?
+			\item What the value $m$ in line 8 denote?
+			\item When the algorithm terminates, what does the value $m+K$ in line 9 denote?
+			\item Find the asymptotic tight bound of Algorithm Test below.
+		\end{enumerate}
+	\end{enumerate}
+	
+	\verb|AlgorithmTest(n)|
+	
+	\begin{lstlisting}[label=Algorithm Test, mathescape=True, numbers=left]
+$K=0$
+for $i=1$ to $n$
+	for $j=1$ to $i$
+		$K = K+1$
+$m=0$
+for $i=1$ to $n-1$
+	for $j=i+1$ to $n$
+		$m = m+1$
+return $(m+K)$
+	\end{lstlisting}
+	
+	\index{Time Complexity!S18 \#L3}
+	\index{Time Complexity!Big-$\Theta$!S18 \#L3}
+	\index{Follow-the-Bouncing-Ball!S18 \#L3}
+	
+	% S18 #L4
+	
+	\item \begin{enumerate}[label=\alph*.]
+		\item Define the following classes of a decision problem:  P, NP, and NP-completeness.
+		\item Consider the 0-1 knapsack problem with $n$ objects each with its respective pre-defined profit.  The objective is to maximize the total profit that can be accommodated into a container of capacity $W$.  Define appropriate notations for weight and profit of objects, formulate the problem.
+		\item Convert of the problem that you have defined in (b) into a decision problem.
+		\item Show the problem that you have defined in (c) belongs to NP-class.
+		\item Does the problem in (d) belong to the P-class or NP-completeness. (Justify your answer.)
+		\item If principle of optimality be applicable to solve the problem defined in (c), formulate it.  Otherwise, explain why not.  
+		\item What would be your explanation, if 0-1 knapsack problem is solved by dynamic programming in polynomial time?
+	\end{enumerate}
+	
+	\index{NP!NP-Complete!S18 \#L4}
+	\index{Knapsack Problem!S18 \#L4}
+	\index{Decision Problem!S18 \#L4}
+	\index{Principle of Optimality!S18 \#L4}
+	\index{Dynamic Programming!S18 \#L4}
+	
+\end{enumerate}
+

@@ -1,0 +1,318 @@
+\begin{theindex}
+
+  \item Articulation Node
+    \subitem Definition, \hyperpage{9}
+    \subitem S15 \#S4, \hyperpage{164}
+
+  \indexspace
+
+  \item Balanced Search Tree
+    \subitem Definition
+      \subsubitem \S 18.0 - 18.3, \hyperpage{28}
+    \subitem F15 \#L2, \hyperpage{163}
+    \subitem F15 \#S8, \hyperpage{162}
+    \subitem F16 \#L3, \hyperpage{160}
+    \subitem F18 \#L2, \hyperpage{151}
+    \subitem S15 \#S9, \hyperpage{165}
+    \subitem S18 \#L1, \hyperpage{154}
+    \subitem S19 \#L1, \hyperpage{29}
+  \item Binary Search Tree
+    \subitem Definition \S 12, \hyperpage{42}
+    \subitem F18 \#L1, \hyperpage{151}
+    \subitem Height Balanced
+      \subsubitem Definition, Problem 13-3, \hyperpage{59}
+      \subsubitem S17 \#S1, \hyperpage{156}
+      \subsubitem S18 \#S5, \hyperpage{154}
+    \subitem Optimal
+      \subsubitem Definition, \S 15.5, \hyperpage{44}
+      \subsubitem F15 \#S7, \hyperpage{162}
+      \subsubitem F16 \#L4, \hyperpage{160}
+      \subsubitem F16 \#S8, \hyperpage{159}
+      \subsubitem S15 \#L4, \hyperpage{167}
+      \subsubitem S15 \#S9, \hyperpage{165}
+      \subsubitem S17 \#L4, \hyperpage{158}
+      \subsubitem see {Dynamic Programming, Chain Matrix Multiplication}, 
+		\hyperpage{44}
+    \subitem S15 \#S9, \hyperpage{165}
+  \item Breadth First Search
+    \subitem F15 \#S5, \hyperpage{162}
+    \subitem F16 \#S8, \hyperpage{159}
+    \subitem F18 \#L3, \hyperpage{152}
+    \subitem S15 \#S9, \hyperpage{165}
+    \subitem Visited Node Order
+      \subsubitem S19 \#S5, \hyperpage{147}
+
+  \indexspace
+
+  \item Decision Problem
+    \subitem S18 \#L4, \hyperpage{156}
+  \item Depth First Search
+    \subitem F18 \#L3, \hyperpage{152}
+    \subitem Visited Node Order
+      \subsubitem S19 \#S5, \hyperpage{147}
+  \item Dijkstra's Algorithm
+    \subitem F18 \#L4, \hyperpage{152}
+    \subitem S18 \#S4, \hyperpage{154}
+    \subitem S19 \#L4, \hyperpage{111}, \hyperpage{149}
+  \item Divide and Conquer
+    \subitem F18 \#S1, \hyperpage{151}
+    \subitem S18 \#S1, \hyperpage{153}
+  \item Dynamic Programming
+    \subitem Chain Matrix Multiplication
+      \subsubitem F15 \#S6, \hyperpage{162}
+      \subsubitem S15 \#L2, \hyperpage{166}
+      \subsubitem S17 \#L1, \hyperpage{157}
+      \subsubitem see {Binary Search Tree, Optimal}, \hyperpage{44}
+    \subitem Combinations
+      \subsubitem S17 \#L1, \hyperpage{157}
+    \subitem F16 \#S8, \hyperpage{159}
+    \subitem F18 \#L1, \hyperpage{151}
+    \subitem F18 \#S4, \hyperpage{151}
+    \subitem Longest Common Subsequence
+      \subsubitem S17 \#L1, \hyperpage{157}
+    \subitem Optimal Substructure
+      \subsubitem S17 \#L1, \hyperpage{157}
+    \subitem Principle of Optimality
+      \subsubitem F15 \#S5, \hyperpage{162}
+      \subsubitem F16 \#L2, \hyperpage{160}
+      \subsubitem S17 \#L1, \hyperpage{157}
+    \subitem S15 \#S9, \hyperpage{165}
+    \subitem S18 \#L4, \hyperpage{156}
+
+  \indexspace
+
+  \item Follow-the-Bouncing-Ball
+    \subitem F15 \#L3, \hyperpage{163}
+    \subitem F16 \#S10, \hyperpage{159}
+    \subitem F18 \#L5, \hyperpage{153}
+    \subitem S18 \#L3, \hyperpage{155}
+  \item Ford-Fulkerson Algorithm
+    \subitem S19 \#L3, \hyperpage{114}, \hyperpage{149}
+
+  \indexspace
+
+  \item Greedy Algorithms
+    \subitem F15 \#S5, \hyperpage{162}
+    \subitem F16 \#S6, \hyperpage{159}
+    \subitem F18 \#S2, \hyperpage{151}
+    \subitem S15 \#L1, \hyperpage{165}
+
+  \indexspace
+
+  \item Hash
+    \subitem Cuckoo Hash
+      \subsubitem F15 \#L1, \hyperpage{162}
+      \subsubitem F16 \#S9, \hyperpage{159}
+      \subsubitem S19 \#S2, \hyperpage{147}
+    \subitem F16 \#S9, \hyperpage{159}
+    \subitem Load Factor
+      \subsubitem S18 \#S2, \hyperpage{153}
+    \subitem Multiplication Method
+      \subsubitem F15 \#L1, \hyperpage{162}
+      \subsubitem F18 \#S5, \hyperpage{151}
+    \subitem Open Address
+      \subsubitem S18 \#S2, \hyperpage{153}
+    \subitem Perfect Hashing
+      \subsubitem S19 \#S2, \hyperpage{147}
+    \subitem Probes
+      \subsubitem S18 \#S2, \hyperpage{153}
+    \subitem Uniform Hashing
+      \subsubitem S18 \#S2, \hyperpage{153}
+    \subitem Utilization Efficiency
+      \subsubitem F18 \#S5, \hyperpage{151}
+    \subitem Word Size
+      \subsubitem F18 \#S5, \hyperpage{151}
+  \item Heaps
+    \subitem {\tt MIN HEAPSORT}
+      \subsubitem S15 \#S5, \hyperpage{164}
+    \subitem Binary Heap
+      \subsubitem F16 \#S4, \hyperpage{159}
+    \subitem Binary Min-Heap
+      \subsubitem F15 \#S7, \hyperpage{162}
+      \subsubitem S19 \#L4, \hyperpage{111}, \hyperpage{149}
+    \subitem Fibonacci Min Heap
+      \subsubitem S18 \#L2, \hyperpage{154}
+    \subitem Max Heap
+      \subsubitem F16 \#S4, \hyperpage{159}
+    \subitem Merging
+      \subsubitem S17 \#S5, \hyperpage{156}
+    \subitem Min Heap
+      \subsubitem F16 \#S4, \hyperpage{159}
+    \subitem Preferred Data Structure
+      \subsubitem S17 \#S5, \hyperpage{156}
+    \subitem Properties
+      \subsubitem S17 \#S5, \hyperpage{156}
+  \item Heuristic
+    \subitem F15 \#S5, \hyperpage{162}
+  \item Heuristic 
+    \subitem S15 \#S9, \hyperpage{165}
+  \item Huffman Code
+    \subitem Codewords
+      \subsubitem S18 \#S3, \hyperpage{153}
+    \subitem Optimal
+      \subsubitem F18 \#S6, \hyperpage{151}
+      \subsubitem S15 \#S6, \hyperpage{164}
+      \subsubitem S19 \#S3, \hyperpage{147}
+    \subitem Optimal Prefix Code
+      \subsubitem S18 \#S3, \hyperpage{153}
+
+  \indexspace
+
+  \item Insertion Sort
+    \subitem F15 \#S3, \hyperpage{161}
+
+  \indexspace
+
+  \item Key Array
+    \subitem Duplicate Entry
+      \subsubitem S17 \#S2, \hyperpage{156}
+    \subitem S17 \#S2, \hyperpage{156}
+    \subitem Search Algorithm
+      \subsubitem S17 \#S2, \hyperpage{156}
+  \item Knapsack Problem
+    \subitem F15 \#L4, \hyperpage{163}
+    \subitem F16 \#L2, \hyperpage{160}
+    \subitem S15 \#L2, \hyperpage{166}
+    \subitem S18 \#L4, \hyperpage{156}
+    \subitem S19 \#L2, \hyperpage{125}, \hyperpage{148}
+
+  \indexspace
+
+  \item Master Theorem
+    \subitem F16 \#S3, \hyperpage{159}
+  \item Max Flow
+    \subitem Augmenting Path
+      \subsubitem S15 \#S7, \hyperpage{164}
+      \subsubitem S17 \#L3, \hyperpage{157}
+    \subitem S19 \#L3, \hyperpage{114}, \hyperpage{149}
+  \item Maximum Clique
+    \subitem F15 \#L4, \hyperpage{163}
+  \item Merge Sort
+    \subitem S15 \#S2, \hyperpage{164}
+  \item Min Cut
+    \subitem S19 \#L3, \hyperpage{114}, \hyperpage{149}
+  \item Minimum Spanning Tree
+    \subitem F15 \#S4, \hyperpage{161}
+    \subitem Kruskal's Algorithm
+      \subsubitem S15 \#L1, \hyperpage{165}
+    \subitem S15 \#S4, \hyperpage{164}
+    \subitem S17 \#S6, \hyperpage{156}
+    \subitem S19 \#S6, \hyperpage{148}
+
+  \indexspace
+
+  \item NP
+    \subitem 3-p sat
+      \subsubitem F16 \#L1, \hyperpage{160}
+      \subsubitem F16 \#S5, \hyperpage{159}
+      \subsubitem S15 \#L3, \hyperpage{166}
+      \subsubitem S17 \#L2, \hyperpage{157}
+    \subitem F15 \#S5, \hyperpage{162}
+    \subitem F16 \#L1, \hyperpage{160}
+    \subitem Heuristics
+      \subsubitem S15 \#L1, \hyperpage{165}
+      \subsubitem S15 \#L3, \hyperpage{166}
+      \subsubitem S17 \#L2, \hyperpage{157}
+    \subitem NP-Complete
+      \subsubitem F15 \#S5, \hyperpage{162}
+      \subsubitem S15 \#L1, \hyperpage{165}
+      \subsubitem S18 \#L4, \hyperpage{156}
+      \subsubitem S19 \#S6, \hyperpage{148}
+    \subitem Propositional Calculus
+      \subsubitem F15 \#S5, \hyperpage{162}
+    \subitem Randomly Generated Propositions and Clauses
+      \subsubitem S15 \#L3, \hyperpage{166}
+      \subsubitem S17 \#L2, \hyperpage{157}
+    \subitem Relationship of P, NP, NP-complete, and NP-hard
+      \subsubitem S15 \#L3, \hyperpage{166}
+      \subsubitem S17 \#L2, \hyperpage{157}
+    \subitem Simplex Method
+      \subsubitem S15 \#L1, \hyperpage{165}
+
+  \indexspace
+
+  \item Principle of Optimality
+    \subitem S15 \#L2, \hyperpage{166}
+    \subitem S18 \#L4, \hyperpage{156}
+  \item Priority Queue
+    \subitem F15 \#S7, \hyperpage{162}
+    \subitem S15 \#S8, \hyperpage{165}
+
+  \indexspace
+
+  \item Quick Sort
+    \subitem S15 \#S2, \hyperpage{164}
+  \item Quick Sort Algorithm
+    \subitem F16 \#S2, \hyperpage{158}
+
+  \indexspace
+
+  \item Recurrence
+    \subitem F16 \#10, \hyperpage{159}
+    \subitem F16 \#S3, \hyperpage{159}
+    \subitem F18 \#S1, \hyperpage{151}
+    \subitem F18 \#S3, \hyperpage{151}
+    \subitem S17 \#S4, \hyperpage{156}
+    \subitem S18 \#S1, \hyperpage{153}
+  \item Recursion
+    \subitem F15 \#S2, \hyperpage{161}
+
+  \indexspace
+
+  \item Shortest Path
+    \subitem S15 \#L2, \hyperpage{166}
+    \subitem S19 \#S4, \hyperpage{147}
+  \item Sorting Algorithms
+    \subitem Comparison Based
+      \subsubitem F18 \#S2, \hyperpage{151}
+  \item Space Complexity
+    \subitem F15 \#L3, \hyperpage{163}
+  \item Strongly Connected Components
+    \subitem Applications
+      \subsubitem S17 \#S3, \hyperpage{156}
+    \subitem Building the Graph
+      \subsubitem S15 \#S4, \hyperpage{164}
+    \subitem Code for Obtaining
+      \subsubitem S17 \#S3, \hyperpage{156}
+    \subitem F15 \#S7, \hyperpage{162}
+    \subitem F16 \#S7, \hyperpage{159}
+    \subitem S17 \#S3, \hyperpage{156}
+
+  \indexspace
+
+  \item Time Complexity
+    \subitem Big-$\Omega$
+      \subsubitem F18 \#S2, \hyperpage{151}
+    \subitem Big-$\Theta$
+      \subsubitem F15 \#S1, \hyperpage{161}
+      \subsubitem F15 \#S2, \hyperpage{161}
+      \subsubitem F16 \#S1, \hyperpage{158}
+      \subsubitem F16 \#S3, \hyperpage{159}
+      \subsubitem F16 \#S5, \hyperpage{159}
+      \subsubitem F18 \#S1, \hyperpage{151}
+      \subsubitem F18 \#S3, \hyperpage{151}
+      \subsubitem S15 \#S3, \hyperpage{164}
+      \subsubitem S17 \#S1, \hyperpage{156}
+      \subsubitem S17 \#S4, \hyperpage{156}
+      \subsubitem S18 \#L3, \hyperpage{155}
+    \subitem Big-O
+      \subsubitem F16 \#S1, \hyperpage{158}
+      \subsubitem S17 \#S2, \hyperpage{156}
+      \subsubitem S19 \#S1, \hyperpage{147}
+    \subitem F15 \#L3, \hyperpage{163}
+    \subitem F16 \#S2, \hyperpage{158}
+    \subitem F18 \#L4, \hyperpage{152}
+    \subitem S15 \#S1, \hyperpage{164}
+    \subitem S15 \#S2, \hyperpage{164}
+    \subitem S18 \#L3, \hyperpage{155}
+    \subitem S18 \#S1, \hyperpage{153}
+    \subitem S18 \#S4, \hyperpage{154}
+    \subitem S19 \#L4, \hyperpage{111}, \hyperpage{149}
+  \item Top-Down
+    \subitem F16 \#S8, \hyperpage{159}
+  \item Traveling Salesman Problem
+    \subitem S19 \#S6, \hyperpage{148}
+  \item 2-Approximation
+    \subitem S19 \#S6, \hyperpage{148}
+
+\end{theindex}

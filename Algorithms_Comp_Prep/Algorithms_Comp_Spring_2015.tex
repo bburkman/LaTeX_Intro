@@ -1,0 +1,181 @@
+%%%%%%%%%%%%%%%%%%%
+\section{Spring 2015}
+
+\subsection{Short Questions}
+
+Answer all of the questions.  All short questions, but Q3, carry 2 points each.  Question 3 will be evaluated for 4 points.
+
+\begin{enumerate}
+	% S15 #S1
+	\item Briefly define upper, lower, and tight time bound of an algorithm.  How does an average time complexity related to any of these bounds?
+	\index{Time Complexity!S15 \#S1}
+	
+	% S15 \#S2
+	\item In terms of run time efficiency, compare and contrast quick sort and merge sort.  What is the best and the worst case time complexity of the quick sort algorithm?  Also state under what conditions one may expect these two extreme cases.
+	\index{Quick Sort!S15 \#S2}
+	\index{Merge Sort!S15 \#S2}
+	\index{Time Complexity!S15 \#S2}
+	
+	% S15 #S3
+	\item Find the tight bounds of the following sums.  
+	\begin{enumerate}
+		\item $\displaystyle \sum_{i=1}^n i^3 a^i$ where $a$ is a constant greater than 1
+		\item $\displaystyle \sum_{i=1}^n \log (i^3)$ 
+	\end{enumerate}
+	\index{Time Complexity!Big-$\Theta$!S15 \#S3}
+	
+	% S15 \#S4
+	\item Mark true/false (T/F) against the following statements:
+	\begin{enumerate}
+		\item Connecting any pair of nodes in a minimum spanning tree will always form a cycle.
+		\item Building strongly connected component graph of a directed graph of $N$ nodes takes $O(N^2)$ time.  
+		\item A graph formed by strongly connected component nodes, a strongly connected component graph (SCC) is always a minimum spanning tree.
+		\item SCC graph will be useful in determining articulation node in a graph.
+	\end{enumerate}
+	\index{Minimum Spanning Tree!S15 \#S4}
+	\index{Strongly Connected Components!Building the Graph!S15 \#S4}
+	\index{Minimum Spanning Tree!S15 \#S4}
+	\index{Articulation Node!S15 \#S4}
+	
+	% S15 #S5
+	\item Use a binary tree representation to illustrate every operation of \verb|MIN HEAPSORT| involved when sorting array $A = \{5,13,2,25,7\}$ without auxiliary storage.
+	\index{Heaps!{\tt MIN HEAPSORT}!S15 \#S5}
+	
+	% S15 #S6
+	\item Show your construction of an optimal Huffman code for the set of 7 frequencies:  $\mathbf{a}:2 \ \  \mathbf{b}:3 \ \ \mathbf{c}:5 \ \ \mathbf{d}:8 \ \ \mathbf{e}:13 \ \ \mathbf{f}:21 \ \ \mathbf{g}:34$
+	\index{Huffman Code!Optimal!S15 \#S6}
+
+	% S15 #S7	
+	% S17 #L3
+	\item (Same instructions, different graph, as S17 \#L3)
+	The Edmonds-Karp Algorithm (EK) follows the basic Ford-Fulkerson method with breadth-first search to choose the shortest augmenting path (in terms of the number of edges involved) for computing the maximum flow iteratively from vertex $s$ to vertex $t$ in a weighted directed graph.  Illustrate the maximum flow computation process (including the augmenting path chosen for each iteration and its resulting residual network) via EK for the graph depicted below.  
+	
+\
+	
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (2,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (v4) at (4,-1) {$v_4$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight in {s/v1/16, s/v2/13, v1/v3/12, v2/v1/4, v2/v4/14, v3/v2/9, v3/t/20, v4/v3/7, v4/t/4}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\weight}; 
+\end{tikzpicture}
+		\index{Max Flow!Augmenting Path!S15 \#S7}	
+
+	% S15 \#S8
+	\item Briefly describe priority queue that maintains the highest key value.  What is the preferred data structure for implementing priority queue?  If the following keys with values 33, 22, 35, 40, 36, and 41 were added in the given order to an empty priority queue that maintains highest key value at the root, draw the priority queue at the end of all the given set of keys.  (Show all the key values and their indices.)
+	\index{Priority Queue!S15 \#S8}
+	
+	% S15 \#S9
+	\item Mark true/false against the following statements. 
+	\begin{enumerate}
+		\item (Same as F15 \#S7a) A binary search tree of size $N$ will always find a key in at most $O(\log N)$ time.
+		\item (Same as F15 \#S5c) A breadth first search algorithm can be considered as a special case of heuristic search algorithm.
+		\item An optimal binary search tree is not necessarily a balanced tree.
+		\item A dynamic programming approach uses top-down problem solving strategy to solve optimization problem.
+	\end{enumerate}
+	\index{Binary Search Tree!S15 \#S9}
+	\index{Breadth First Search!S15 \#S9}
+	\index{Heuristic !S15 \#S9}
+	\index{Binary Search Tree!Optimal!S15 \#S9}
+	\index{Balanced Search Tree!S15 \#S9}
+	\index{Dynamic Programming!S15 \#S9}
+
+\end{enumerate}
+
+\subsection{Long Questions (Answer three of four.)}
+
+\begin{enumerate}
+	% S15 #L1
+	\item \begin{enumerate}
+		\item Suppose you have to find a solution to a problem that belongs to NP-complete class.  Clearly summarize the steps that will help you to find the solution of the problem.  
+		\item John, an undergraduate student, recently took data structure course, states that heuristics algorithms always solve NP-complete problems.  He cites simplex methods as an example.  If you agree with John, justify why or why not.  
+		\item What is the strategy behind a greedy algorithm?  Will it always provide an optimal solution?  If yes explain why, otherwise say why not.  
+		\item Consider the following pseudo code for Kruskal's algorithm for solving minimal spanning tree (MST).
+
+Algorithm MST.  Let $N$ be the number of nodes in graph $G$.  
+
+\begin{lstlisting}[numbers=left, mathescape=True]
+Sort the edges in non-decreasing order of cost.
+$T$ is an empty graph
+while $T$ has fewer than $N-1$ edges do:
+	let $e$ denote the next edge of $G$ (in the order of cost)
+	if $T \cup \{e\}$ does not contain a cycle, then $T = T \cup \{e\}$
+\end{lstlisting}
+
+Clearly mentioning the data structure you have to employ to reduce the time complexity to access and to maintain the necessary information, show the exact time taken to obtain the MST.  Also show the tight bound of the algorithm.  (Pay attention in detecting a cycle.)
+		
+	\end{enumerate}
+	\index{NP!NP-Complete!S15 \#L1}
+	\index{NP!Heuristics!S15 \#L1}
+	\index{NP!Simplex Method!S15 \#L1}
+	\index{Greedy Algorithms!S15 \#L1}
+	\index{Minimum Spanning Tree!Kruskal's Algorithm!S15 \#L1}
+
+	% S15 \#L2
+	\item \begin{enumerate}
+		\item Explain what you understand by ``principle of optimality.''
+		\item Write down the basic rule that satisfies the principle of optimality and domain related constraints to the following problems.
+		\begin{enumerate}
+			\item Knapsack Problem
+			\item Pairwise Shortest Path Problem
+			\item Chain Matrix Multiplication Problem
+		\end{enumerate}
+		\item The optimal solution to the 0-1 knapsack problem belongs to NP-class.  John says dynamic program formulation optimally solves the 0-1 knapsack problem.  If you agree with John, explain why; otherwise, explain why not.
+	\end{enumerate}
+	
+	\index{Principle of Optimality!S15 \#L2}
+	\index{Knapsack Problem!S15 \#L2}
+	\index{Shortest Path!S15 \#L2}
+	\index{Dynamic Programming!Chain Matrix Multiplication!S15 \#L2}
+	
+	% S15 \#L3
+	\item (Similar to S17 \#L2)
+	\begin{enumerate}
+		\item Compare and contrast P, NP, NP-Complete, and NP-Hard.
+		\item Based on current conjecture, draw a Venn diagram to show the relationship among these classes of problem.
+		\item Clearly state what is understood by propositional satisfiability problem. 
+		\item Suppose there are $m$ clauses and $k$ propositions in a given 3-p sat problem.  How many possible interpretations are there?  What is the time complexity of testing the satisfiability of a given interpretation?  What is the time and space complexity of testing the satisfiability of the clauses?
+		\item Suppose you came across a research paper that highlights a clever heuristic strategy that the authors have used to solve an instance of 3-p sat which has 10,000 propositions and 10,000 clauses with 3 propositions.  They have generated several instances of the similar compositions of variables and clauses.  The authors, in their point of view, have demonstrated the power of their heuristic to solve an instance of NP-complete problem in polynomial time (empirically shown).  What would be your insight of their findings?
+	\end{enumerate}
+	
+	\index{NP!Relationship of P, NP, NP-complete, and NP-hard!S15 \#L3}
+	\index{NP!3-p sat!S15 \#L3}
+	\index{NP!Heuristics!S15 \#L3}
+	\index{NP!Randomly Generated Propositions and Clauses!S15 \#L3}
+
+	% S15 #L4
+	\item (Same as F16 \#L4 and S17 \#L4)
+	\begin{enumerate}
+		\item An object $r$ is accessed by its key $k_r$.  If all the objects have an equal chance of being accessed, what data structure will help you to have a better tight bound?  (State your assumptions and provide the bound you have obtained for the proposed structure.)
+		\item An optimal binary search tree (\verb|OPTIMAL-BST|) for a given set of keys with known access probabilities ensures the minimum expected search cost for key accesses, with its pseudo code listed below.  Given the set of three keys with their access probabilities $k_1 = 0.25$, $k_2 = 0.15$, $k_3 = 0.3$, respectively, and four non-existing probabilities of $d_0 = 0.1$, $d_1 = 0.05$, $d_2 = 0.08$, $d_3 = 0.07$, construct optimal BST following dynamic programming with memorization for the given three keys and demonstrate the constructed optimal BST, which contains all three keys $(k_1, k_2, k_3)$ and four non-exististing dummies $(d_0, d_1, d_2, d_3)$.  (Show your work using the three tables for expected costs, $e[i,j]$, for access weights, $w[i,j]$, and for $root[i,j]$, with $i$ in $e[i,j]$ and $w[i,j]$ ranging from 1 to 4, $j$ in $e[i,j]$ and $w[i,j]$ ranging from 0 to 3, and both $i$ and $j$ in $root[i,j]$ ranging from 1 to 3.)
+\
+
+\verb|OPTIMAL-BST(p,q,n)|
+
+\begin{lstlisting}[mathescape=true, numbers=left]
+let $e[1..n+1, 0..n]$, $w[1..n+1, 0..n]$, and $root[1..n, 1..n]$ be new tables.
+for $i=1$ to $n+1$
+	$e[i, i-1] = q_{i-1}$
+	$w[i, i-1] = q_{i-1}$
+for $l=1$ to $n$
+	for $i=1$ to $n-l+1$
+		$j = i+l-1$
+		$e[i,j] = \infty$
+		$w[i,j] = w[i,j-1] + p_j + q_j$
+		for $r=i$ to $j$
+			$t = e[i,r-1] + e[r+1,j] + w[i,j]$
+			if $t < e[i,j]$
+				$e[i,j] = t$
+				$root[i,j] = r$
+return $e$ and $root$
+\end{lstlisting}
+
+	\index{Binary Search Tree!Optimal!S15 \#L4}	
+	\end{enumerate}
+	
+	
+\end{enumerate}
+

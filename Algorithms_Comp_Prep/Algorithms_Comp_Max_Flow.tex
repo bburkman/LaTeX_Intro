@@ -1,0 +1,286 @@
+\section{Max Flow}
+
+%%%%%%%%%%
+\subsection{Old Exam Problems}
+
+%%%%%
+\subsubsection{Spring 2017 \#L3}
+
+	% S17 #L3
+(Same instructions, different graph, as S15 \#S7)
+
+	The Edmonds-Karp Algorithm (EK) follows the basic Ford-Fulkerson method with breadth-first search to choose the shortest augmenting path (in terms of the number of edges involved) for computing the maximum flow iteratively from vertex $s$ to vertex $t$ in a weighted directed graph.  Illustrate the maximum flow computation process (including the augmenting path chosen for each iteration and its resulting residual network) via EK for the graph depicted below.  
+	
+\
+	
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight in {s/v1/16, s/v2/13, v1/v2/4, v1/v3/12, v3/v2/9, v3/t/20}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\weight};
+	\path [-triangle 60] (v2) edge [bend left=10] node [midway, rectangle, fill=white] {17} (t);
+	\path [triangle 60-triangle 60] (t) edge [bend left=10] node [midway, rectangle, fill=white] {8} (v2);
+\end{tikzpicture}
+
+	SHOULD THE EDGE WITH WEIGHT 8 BE BIDIRECTIONAL?  [I'm going to assume not.]
+	
+\subsubsection{Solution}
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/0, s/v2/13/0, v1/v2/4/0, v1/v3/12/0, v3/v2/9/0, v3/t/20/0}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/0, t/v2/8/0}
+		\path [-triangle 60] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+		
+	\foreach \from/\to/\weight/\residual in {}
+		\draw [-triangle 60, ultra thick] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {}
+		\path [-triangle 60, ultra thick] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+\end{tikzpicture}
+
+\
+
+First DFS run.
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/0, s/v2/13/13, v1/v2/4/0, v1/v3/12/0, v3/v2/9/0, v3/t/20/0}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/13, t/v2/8/0}
+		\path [-triangle 60] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+		
+	\foreach \from/\to/\weight/\residual in {s/v2/13/13}
+		\draw [-triangle 60, ultra thick] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/13}
+		\path [-triangle 60, ultra thick] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+\end{tikzpicture}
+
+\
+
+Second run of BFS.  Whether you go through $v2$ or $v3$ depends on the order in which the vertices are listed.  
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/4, s/v2/13/13, v1/v2/4/4, v1/v3/12/0, v3/v2/9/0, v3/t/20/0}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/17, t/v2/8/0}
+		\path [-triangle 60] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+		
+	\foreach \from/\to/\weight/\residual in {s/v1/16/4, v1/v2/4/4}
+		\draw [-triangle 60, ultra thick] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/17}
+		\path [-triangle 60, ultra thick] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+\end{tikzpicture}
+
+\
+
+Third run of BFS.
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/16, s/v2/13/13, v1/v2/4/4, v1/v3/12/12, v3/v2/9/0, v3/t/20/12}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/17, t/v2/8/0}
+		\path [-triangle 60] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+		
+	\foreach \from/\to/\weight/\residual in {s/v1/16/16, v1/v3/12/12, v3/t/20/12}
+		\draw [-triangle 60, ultra thick] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {}
+		\path [-triangle 60, ultra thick] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+\end{tikzpicture}
+
+\
+
+Solution.  $|f| = 29$, Min-cuts illustrated.  
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw, fill=white!80!black] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/16, s/v2/13/13, v1/v2/4/4, v1/v3/12/12, v3/v2/9/0, v3/t/20/12}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/17, t/v2/8/0}
+		\path [-triangle 60] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+		
+\end{tikzpicture}
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw, fill=white!80!black] (s) at (0,0) {$s$};
+	\node [circle, draw, fill=white!80!black] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/16, s/v2/13/13, v1/v2/4/4, v1/v3/12/12, v3/v2/9/0, v3/t/20/12}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/17, t/v2/8/0}
+		\path [-triangle 60] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+		
+\end{tikzpicture}
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw, fill=white!80!black] (s) at (0,0) {$s$};
+	\node [circle, draw, fill=white!80!black] (v1) at (2,1) {$v_1$};
+	\node [circle, draw, fill=white!80!black] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/16, s/v2/13/13, v1/v2/4/4, v1/v3/12/12, v3/v2/9/0, v3/t/20/12}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight};
+	\foreach \from/\to/\weight/\residual in {v2/t/17/17, t/v2/8/0}
+		\path [-triangle 60] (\from) edge [bend left=15] node [midway, rectangle, fill=white] {\residual/\weight} (\to);
+		
+\end{tikzpicture}
+
+
+
+\subsubsection{Solution}
+
+%%%%%
+\subsubsection{Spring 2015 \#S7}
+
+	% S15 #S7	
+	% S17 #L3
+(Same instructions, different graph, as S17 \#L3)
+
+	The Edmonds-Karp Algorithm (EK) follows the basic Ford-Fulkerson method with breadth-first search to choose the shortest augmenting path (in terms of the number of edges involved) for computing the maximum flow iteratively from vertex $s$ to vertex $t$ in a weighted directed graph.  Illustrate the maximum flow computation process (including the augmenting path chosen for each iteration and its resulting residual network) via EK for the graph depicted below.  
+	
+\
+	
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (2,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (v4) at (4,-1) {$v_4$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight in {s/v1/16, s/v2/13, v1/v3/12, v2/v1/4, v2/v4/14, v3/v2/9, v3/t/20, v4/v3/7, v4/t/4}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\weight}; 
+\end{tikzpicture}
+
+
+\subsubsection{Solution}
+
+Assume vertices are listed in this order: $\{s, v_1, v_2, v_3, v_4, t\}$
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (2,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (v4) at (4,-1) {$v_4$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/0, s/v2/13/0, v1/v3/12/0, v2/v1/4/0, v2/v4/14/0, v3/v2/9/0, v3/t/20/0, v4/v3/7/0, v4/t/4/0}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+\end{tikzpicture}
+
+\
+
+First BFS run.
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (2,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (v4) at (4,-1) {$v_4$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/12, s/v2/13/0, v1/v3/12/12, v2/v1/4/0, v2/v4/14/0, v3/v2/9/0, v3/t/20/12, v4/v3/7/0, v4/t/4/0}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+	\foreach \from/\to/\weight/\residual in {s/v1/16/12, v1/v3/12/12, v3/t/20/12}
+		\draw [-triangle 60, ultra thick] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+\end{tikzpicture}
+
+\
+
+Second BFS run.
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (2,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (v4) at (4,-1) {$v_4$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/12, s/v2/13/4, v1/v3/12/12, v2/v1/4/0, v2/v4/14/4, v3/v2/9/0, v3/t/20/12, v4/v3/7/0, v4/t/4/4}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+	\foreach \from/\to/\weight/\residual in {s/v2/13/4, v2/v4/14/4, v4/t/4/4}
+		\draw [-triangle 60, ultra thick] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+\end{tikzpicture}
+
+\
+
+Third BFS run.
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (2,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (v4) at (4,-1) {$v_4$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/12, s/v2/13/11, v1/v3/12/12, v2/v1/4/0, v2/v4/14/11, v3/v2/9/0, v3/t/20/19, v4/v3/7/7, v4/t/4/4}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+	\foreach \from/\to/\weight/\residual in {s/v2/13/11, v2/v4/14/11, v4/v3/7/7, v3/t/20/19}
+		\draw [-triangle 60, ultra thick] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+\end{tikzpicture}
+
+\
+
+Solution.  $|f| = 23$, min-cut as shown.  
+
+\
+
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw, fill=white!80!black] (s) at (0,0) {$s$};
+	\node [circle, draw, fill=white!80!black] (v1) at (2,1) {$v_1$};
+	\node [circle, draw, fill=white!80!black] (v2) at (2,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw, fill=white!80!black] (v4) at (4,-1) {$v_4$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight/\residual in {s/v1/16/12, s/v2/13/11, v1/v3/12/12, v2/v1/4/0, v2/v4/14/11, v3/v2/9/0, v3/t/20/19, v4/v3/7/7, v4/t/4/4}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\residual/\weight}; 
+\end{tikzpicture}
+
+
+

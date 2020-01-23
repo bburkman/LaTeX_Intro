@@ -1,0 +1,282 @@
+\section{Matrix Chain Multiplication}
+
+Matrix Chain Multiplication is almost identical to optimal binary search trees.  
+
+\
+
+Multiplying two matrices of dimensions $a \times b$ and $b \times c$ requires $abc$ number of multiplications (plus lots of addition), so it's an $O(abc)$ operation.  
+
+$$
+\underset{a\times b}{\mathrm{A}}
+\times
+\underset{b\times c}{\mathrm{B}}
+=
+\underset{a\times c}{\mathrm{C}}
+$$
+
+When multiplying three matrices, since matrix multiplication is associative (but not commutative), we have two options of how to multiply.  
+
+$$
+\underset{a\times b}{\mathrm{A}}
+\times
+\underset{b\times c}{\mathrm{B}}
+\times
+\underset{c\times d}{\mathrm{C}}
+=
+\underset{O(abc)}{
+\left(
+\underset{a\times b}{\mathrm{A}}
+\times
+\underset{b\times c}{\mathrm{B}}
+\right)
+}
+\times
+\underset{c\times d}{\mathrm{C}}
+=
+\underset{O(acd)}{
+\underset{a\times c}{\mathrm{AB}}
+\times
+\underset{c\times d}{\mathrm{C}}
+}
+\qquad abc + acd = (ac)(b+d)
+$$
+
+$$
+\underset{a\times b}{\mathrm{A}}
+\times
+\underset{b\times c}{\mathrm{B}}
+\times
+\underset{c\times d}{\mathrm{C}}
+=
+\underset{a\times b}{\mathrm{A}}
+\times
+\underset{O(bcd)}{
+\left(
+\underset{b\times c}{\mathrm{B}}
+\times
+\underset{c\times d}{\mathrm{C}}
+\right)
+}
+=
+\underset{O(abd)}{
+\underset{a\times b}{\mathrm{A}}
+\times
+\underset{b\times d}{\mathrm{BC}}
+}
+\qquad bcd + abd = (bd)(a+c)
+$$
+
+If for instance, $A$ were $10 \times 2$, $B$ were $2 \times 10$, and $C$ were $10 \times 2$, here's an illustration of the difference.  
+
+\
+
+$ABC = (AB)C$:  $(10 \cdot 10)(2 + 2) = 400$ multiplications.
+
+\
+
+\hskip -.2in \begin{tikzpicture}[x=8mm, y=8mm]
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=left:10, label=below:2] () at (0,0) {$A$};
+	\node [rectangle, draw, minimum width=40mm, minimum height = 8mm, label=left:2, label=below:10] () at (3.7,2) {$B$};
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=left:10, label=below:2] () at (7,0) {$C$};
+	\node () at (8,0) {$=$};
+	\node [rectangle, draw, minimum width=40mm, minimum height = 40mm, label=left:10, label=below:10] () at (11.5,0) {$AB$};
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=right:10, label=below:2] () at (14.7,0) {$C$};
+	\node () at (16.5,0) {$=$};
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=right:10, label=below:2] () at (17.9,0) {$ABC$};
+	
+\end{tikzpicture}
+
+\
+
+$ABC = A(BC)$:  $(2 \cdot 2)(10 + 10) = 80$ multiplications.
+
+\
+
+\hskip -.2in \begin{tikzpicture}[x=8mm, y=8mm]
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=left:10, label=below:2] () at (0,0) {$A$};
+	\node [rectangle, draw, minimum width=40mm, minimum height = 8mm, label=left:2, label=below:10] () at (3.7,2) {$B$};
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=left:10, label=below:2] () at (7,0) {$C$};
+	\node () at (8,0) {$=$};
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=left:10, label=below:2] () at (9.7,0) {$A$};
+	\node [rectangle, draw, minimum width=8mm, minimum height = 8mm, label=right:2, label=below:2] () at (11,0) {$BC$};
+	\node () at (13,0) {$=$};
+	\node [rectangle, draw, minimum width=8mm, minimum height = 40mm, label=right:10, label=below:2] () at (14.5,0) {$ABC$};
+	
+\end{tikzpicture}
+
+\subsection{Exercise 15.2-3} \
+
+Use the substitution method to show that the solution for the recurrence (15.6) is $\Omega(2^n)$.
+
+\
+
+Let $P(n)$ be the number of ways to parenthesize a sequence of $n$ matrices.  
+
+$$P(n) = 
+\begin{cases}
+	1 & \text{if } n=1 \cr
+	\displaystyle\sum_{k=1}^{n-1} P(k) P(n-k) & \text{if } n\ge 2 \cr
+\end{cases}
+$$
+
+\begin{tabular}{*6{@{\hspace{5pt}}>{$}l<{$\vrule width 0pt height 12pt depth 8pt}}}
+	P(1) &=& 1 & 2^1 = 2 \cr
+	P(2) &=& P(1)P(1) = 1 & 2^2 = 4 \cr
+	P(3) &=& P(1)P(2) + P(2)P(1) = 1 \cdot 1 + 1 \cdot 1 = 2 & 2^3 = 8 \cr
+	P(4) &=& P(1)P(3) + P(2)P(2) + P(3)P(1) = 1 \cdot 2 + 1 \cdot 1 + 2 \cdot 1 = 5 & 2^4 = 16 \cr
+	P(5) &=& P(1)P(4) + P(2)P(3) + P(3)P(2) + P(4)P(1) = 5 + 2 + 2 + 5 = 14 & 2^5 = 32 \cr
+	P(6) &=& 2 \cdot P(1)P(5) + 2 \cdot P(2)P(4) + P(3)P(3) = 2 \cdot 14 + 2 \cdot 5 + 4 =  42 & 2^6 = 64 \cr
+	P(7) &=& 2 \cdot P(1)P(6) + 2 \cdot P(2)P(5) + 2 \cdot P(3)P(4) = 132 & 2^7 = 128 \cr
+	P(8) &=& 2 \cdot P(1)P(7) + 2 \cdot P(2)P(6) + 2 \cdot P(3)P(5) + P(4)P(4) = 429 & 2^8 = 256 \cr
+\end{tabular}
+
+\
+
+We have $2^n < P(n)$ for $n=7$.  Prove that, for all $k\ge 7$, if $2^k < P(k)$, then $2^{k+1} < P(k+1)$.  
+
+\begin{align*}
+	2^k &< P(k) \cr
+	2 \cdot 2^k &< 2 \cdot P(k) \cr
+	& \quad =  2 \cdot P(1)P(k) \cr
+	& \quad = P(1)P(k) + P(k)P(1) \cr
+	2 \cdot 2^k &< P(1) P(k) + P(2) P(k-1) + \cdots + P(k-1)P(2) + P(k)P(1)  \cr
+	2^{k+1} &< P(k+1) \cr
+\end{align*}
+
+Therefore, $2^n < P(n)$ for all $n \ge 7$, so $2^n$ is a lower asymptotic bound on $P(n)$, so $P(n) = \Omega(2^n)$.
+
+\
+
+We don't know exactly how computationally expensive it would be to exhaustively search all options for parenthesizing a product of $n$ matrices, but it's at least exponentially expensive, so we should try to find another way.  
+
+\
+
+\subsection{Optimal Substructure}
+
+For any $i$ and $j$ such that $1 \le i < j \le n$, 
+$$A_1 \times A_2 \times \cdots \times A_i \times A_{i+1} \times \cdots \times A_j \times \cdots \times A_n$$
+there is a $k$ such that $i \le k < j$ where the parenthesization breaks, 
+$$A_i \times \cdots \times A_k \times A_{k+1} \times \cdots A_j = 
+(A_i \times \cdots \times A_k) \times (A_{k+1} \times \cdots A_j)
+$$
+The cost of this multiplication is the cost of the multiplication $A_i \times \cdots \times A_k$, plus the cost of the multiplication $A_{k+1} \times \cdots \times A_j$, plus the cost of multiplying the two product matrices.  
+
+\
+
+If the product $A_i \times \cdots \times A_j$ is optimally parenthesized, then both $A_i \times \cdots \times A_k$ and $A_{k+1} \times \cdots \times A_j$ are optimally parenthesized.  Proof:   If either subsequences's parenthesization could be improved, then improving it would improve the parenthesization of the larger sequence would improve, but we've assumed that it's optimal.  
+
+\subsection{Python Code}
+
+This code is from the text and incorporates the example on page 376.
+
+\lstinputlisting[language=python]{MATRIX-CHAIN-ORDER_tex.py}
+
+Output
+
+\verbatiminput{MATRIX-CHAIN-ORDER.txt}
+
+\subsection{Textbook Example (page 376)}
+
+The textbook gives this example of multiplying six matrices.  
+
+\
+
+\begin{tabular}{c | *7{>{$}c<{$}} }
+Matrix & A_1 & A_2 & A_3 & A_4 & A_5 & A_6 \cr\hline
+Dimension &  30 \times 35 & 35 \times 15 &  15 \times 5 &  5 \times 10 & 10 \times 20 &  20 \times 25 \cr
+\end{tabular}
+
+\
+
+Note that all of the dimensions are multiples of 5.  Especially if we're doing this by hand on an exam, or even punching it into a calculator, we can make things go much faster with less chance of error if we divide all of the dimensions by 5.  The resulting parenthesization will be the same, the matrix $s$ will be the same, and to get from the number of multiplication operations in $m$ with the simplification to the original, multiply by $5^3 = 125$.  
+
+Here's the problem we'll work with, and the corresponding solutions.  
+
+\
+
+\begin{tabular}{c | *7{>{$}c<{$}} }
+Matrix & A_1 & A_2 & A_3 & A_4 & A_5 & A_6 \cr\hline
+Dimension &  6 \times 7 & 7 \times 3 &  3 \times 1 &  1 \times 2 & 2 \times 4 &  4 \times 5 \cr
+\end{tabular}
+
+\
+
+\verbatiminput{MATRIX-CHAIN-ORDER_2.txt}
+
+The value $m[i,j]$ indicates, ``If we multiply $A_i \times A_{i+1} \times \cdots \times A_j$ in the optimal order, that matrix multiplication requires $m[i,j]$ scalar multiplications.''  The value $s[i,j]$ indicates, ``If we are multiplying $A_i \times A_{i+1} \times \cdots \times A_j$ in the optimal order, then we split the parentheses after $A_{s[i,j]}$.
+
+\
+
+For instance, when multiplying
+$\displaystyle\underset{6 \times 7}{A_1} \times \underset{7 \times 3}{A_2}\vrule width 0pt height 12pt depth 12pt$
+we have $6 \times 7 \times 3 = 126 = m[1,2]$ scalar multiplications, and if we multiply 
+$\displaystyle\underset{7 \times 3}{A_2} \times \underset{3 \times 1}{A_3}\vrule width 0pt height 12pt depth 12pt$, 
+we have $7 \times 3 \times 1 = 21 = m[2,3]$ scalar multiplications.  
+
+If we want to multiply
+$\displaystyle \underset{6 \times 7}{A_1} \times\underset{7 \times 3}{A_2} \times \underset{3 \times 1}{A_3}\vrule width 0pt height 12pt depth 12pt$, 
+we have two options, 
+$\displaystyle \underset{6 \times 7}{A_1} \times \left(\underset{7 \times 3}{A_2} \times \underset{3 \times 1}{A_3}\right)\vrule width 0pt height 12pt depth 12pt$,
+and
+$\displaystyle \left(\underset{6 \times 7}{A_1} \times\underset{7 \times 3}{A_2}\right) \times \underset{3 \times 1}{A_3}\vrule width 0pt height 12pt depth 12pt$. 
+If the first were optimal, then $s[1,3]$ would be 1, indicating that the parentheses split after $A_1$.  If the second were optimal, then $s[1,3]$ would be 2, indicating that the parentheses split after $A_2$.  
+
+The first option, splitting after $A_1$, requires $7 \times 3 \times 1 = m[2,3] = 21$ scalar multiplications for the first product, then $6 \times 7 \times 1 = p_0 \cdot p_1 \cdot p_3 = 42$, for a total of  $63$.  
+
+The second option, splitting after $A_2$, requires $6 \times 7 \times 3 = 126 = m[1,2]$, then $6 \times 3 \times 1 = p_0 \cdot p_2 \cdot p_3 = 18$, for a total of 144.  
+
+We get this from the algorithm by:
+
+$$m[1,3] = \min 
+\begin{cases}
+	m[1,1] + m[2,3] + p_0 \cdot p_1 \cdot p_3 = 0 + 21 + 42 = 63 \cr
+	m[1,2] + m[3,3] + p_0 \cdot p_2 \cdot p_3 = 126 + 0 + 18 = 144 \cr
+\end{cases}
+$$
+
+If the first option is the min, then $s[1,3] = 1$.  If the other, then $s[1,3] = 2$.  
+
+\
+
+Continue in like fashion down the diagonal to find $m[2,4]$, s[2,4], $m[3,5]$, s[3,5], $m[4,6], and s[4,6]$.  
+
+\
+
+When multiplying 
+$\displaystyle 
+\underset{6 \times 7}{A_1} \times
+\underset{7 \times 3}{A_2} \times
+\underset{3 \times 1}{A_3} \times
+\underset{1 \times 2}{A_4}
+\vrule width 0pt height 12pt depth 12pt
+$, 
+there are three ways to split it, after $A_1$, after $A_2$, and after $A_3$.  
+
+If we split it after $A_1$, then we use the previously-calculated optimal way to calculate $A_2 \times A_3 \times A_4$, giving $m[1,1] + m[2,4] + p_0 \cdot p_1 \cdot p_4 = 0 + 35 + 84 = 119$ operations.  
+
+If we split it after $A_2$, then we use the previously-calculated number of operations for $A_1 \times A_2$ and $A_3 \times A_4$ to give $m[1,2] + m[3,4] + p_0 \cdot p_2 \cdot p_4 = 126 + 6 + 36 = 168$ operations . 
+
+If we split it after $A_3$, then we use the previously-calculated optimal way to calculate $A_1 \times A_2 \times A_3$, giving $m[1,3] + m[4,4] + p_0 \times p_3 \times p_4 = 63 + 0 + 12 = 75$ operations.  
+
+Since the last option gives the min, $m[1,4] = 75$ and $s[1,4] = 3$.
+
+\
+
+Continue in like fashion.  
+
+\
+
+To read the parenthesization from $s$, start with $s[1,n] = s[1,6] = 3$, which tell us to split first after $A_3$.  
+
+$$\left( A_1 \times A_2 \times A_3 \right) \left( A_4 \times A_5 \times A_6\right) $$
+
+Then $s[1,3] = 1$ tells us to split $A_1 \times A_2 \times A_3$ after $A_1$.
+$$\left( A_1  \left( A_2 \times A_3 \right) \right) \left( A_4 \times A_5 \times A_6\right) $$
+
+Then $s[4,6] = 5$ tells us to split $A_4 \times A_5 \times A_6$ after $A_5$.  
+$$\left( A_1  \left( A_2 \times A_3 \right) \right) \left( \left( A_4 \times A_5 \right) A_6\right) $$
+
+Voila!
+
+
+

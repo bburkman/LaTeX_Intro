@@ -1,0 +1,1223 @@
+\section{Breadth First Search and Depth First Search (BFS and DFS)}
+
+
+\subsection{Old Exam Questions}
+
+\subsubsection{Spring 2015 \#S9}	
+	% S15 \#S9
+	Mark true/false against the following statements. 
+	\begin{enumerate}
+		\item (Same as F15 \#S7a) A binary search tree of size $N$ will always find a key in at most $O(\log N)$ time.
+		\item (Same as F15 \#S5c) A breadth first search algorithm can be considered as a special case of heuristic search algorithm.
+		\item An optimal binary search tree is not necessarily a balanced tree.
+		\item A dynamic programming approach uses top-down problem solving strategy to solve optimization problem.
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item Yes.  $\log N = h$, the height of the tree.  
+	\item No. (?  The textbook doesn't talk about heuristics.)
+	\item An {\it optimal binary search tree} is a tree whose expected cost is least.  We compute the expected cost using the (probability of searching for each node) $\times$ (depth of that node).  
+	
+	A {\it balanced tree} is one such that no two leaves differ in height by more than one.  
+	
+	I think the answer is ``No,"  because an optimal binary search tree has to be weight-balanced, not height-balanced.  
+	\item No.  Dynamic programming uses bottom-up.  
+\end{enumerate}
+
+\subsubsection{Spring 2019 \#S5}
+	% S19 S5
+	BFS (breadth-first search) and DFS (depth-first search):  Give the visited node order for each type of graph search, starting with $S$ below.  
+
+\
+	
+\hfil	\begin{tikzpicture}[x=20mm, y=10mm]
+		\node [circle, draw] (S) at (0,0) {$S$};
+		\node [circle, draw] (A) at (2,0) {$A$};
+		\node [circle, draw] (B) at (3,-1) {$B$};
+		\node [circle, draw] (C) at (2,-2) {$C$};
+		\node [circle, draw] (D) at (0,-2) {$D$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+	\end{tikzpicture}
+	
+\subsubsection{Solution} \
+
+BFS:  $SADBC$ or $SDACB$, depending on the order in which the vertices are listed in $V$.  
+
+\
+
+Method for $V = \{S, A, B, C, D\}$, giving visited node order $SADBC$.
+
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {$0$};
+		\node [circle, draw, label=above:$A$] (A) at (2,0) {$\infty$};
+		\node [circle, draw, label=right:$B$] (B) at (3,-1) {$\infty$};
+		\node [circle, draw, label=below:$C$] (C) at (2,-2) {$\infty$};
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) {$\infty$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {$Q = \{S\}$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & White & White & White & White \cr
+				 u.d & 0 & \infty & \infty & \infty & \infty \cr
+				 u.\pi & NIL & NIL & NIL & NIL & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=black] (S) at (0,0) {\color{white}$0$};
+		\node [circle, draw, label=above:$A$, fill=gray] (A) at (2,0) {$1$};
+		\node [circle, draw, label=right:$B$] (B) at (3,-1) {$\infty$};
+		\node [circle, draw, label=below:$C$] (C) at (2,-2) {$\infty$};
+		\node [circle, draw, label=below:$D$, fill=gray] (D) at (0,-2) {$1$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {$Q = \{A, D\}$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Black & Gray & White & White & Gray \cr
+				 u.d & 0 & 1 & \infty & \infty & 1 \cr
+				 u.\pi & NIL & S & NIL & NIL & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=black] (S) at (0,0) {\color{white}$0$};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}$1$};
+		\node [circle, draw, label=right:$B$, fill=gray] (B) at (3,-1) {$2$};
+		\node [circle, draw, label=below:$C$] (C) at (2,-2) {$\infty$};
+		\node [circle, draw, label=below:$D$, fill=gray] (D) at (0,-2) {$1$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {$Q = \{D, B\}$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Black & Black & Gray & White & Gray \cr
+				 u.d & 0 & 1 & 2 & \infty & 1 \cr
+				 u.\pi & NIL & S & A & NIL & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=black] (S) at (0,0) {\color{white}$0$};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}$1$};
+		\node [circle, draw, label=right:$B$, fill=gray] (B) at (3,-1) {$2$};
+		\node [circle, draw, label=below:$C$, fill=gray] (C) at (2,-2) {$2$};
+		\node [circle, draw, label=below:$D$, fill=black] (D) at (0,-2) {$\color{white}1$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {$Q = \{B, C\}$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Black & Black & Gray & Gray & Black \cr
+				 u.d & 0 & 1 & 2 & 2 & 1 \cr
+				 u.\pi & NIL & S & A & D & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=black] (S) at (0,0) {\color{white}$0$};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}$1$};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}$2$};
+		\node [circle, draw, label=below:$C$, fill=gray] (C) at (2,-2) {$2$};
+		\node [circle, draw, label=below:$D$, fill=black] (D) at (0,-2) {$\color{white}1$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {$Q = \{C\}$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Black & Black & Gray & Gray & Black \cr
+				 u.d & 0 & 1 & 2 & 2 & 1 \cr
+				 u.\pi & NIL & S & A & D & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=black] (S) at (0,0) {\color{white}$0$};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}$1$};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}$2$};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}$2$};
+		\node [circle, draw, label=below:$D$, fill=black] (D) at (0,-2) {$\color{white}1$};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {$Q = \{\}$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Black & Black & Gray & Gray & Black \cr
+				 u.d & 0 & 1 & 2 & 2 & 1 \cr
+				 u.\pi & NIL & S & A & D & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\
+
+DFS:  $SABCD$ or $SDCAB$, depending on the order of $V$.  
+
+\
+
+$V = \{S, A, B, C, D\}$
+
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {$1$};
+		\node [circle, draw, label=above:$A$] (A) at (2,0) { \ };
+		\node [circle, draw, label=right:$B$] (B) at (3,-1) { \ };
+		\node [circle, draw, label=below:$C$] (C) at (2,-2) { \ };
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {DFS-Visit ($G,S$),   $time = 1$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & White & White & White & White \cr
+				 u.d & 1 &  \cr
+				 u.f & \cr
+				 u.\pi & NIL & S & NIL & NIL & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=gray] (A) at (2,0) {2};
+		\node [circle, draw, label=right:$B$] (B) at (3,-1) { \ };
+		\node [circle, draw, label=below:$C$] (C) at (2,-2) { \ };
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {DFS-Visit ($G,A$),   $time = 2$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Gray & White & White & White \cr
+				 u.d & 1 & 2 \cr
+				 u.f & \cr
+				 u.\pi & NIL & S & A & NIL & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=gray] (A) at (2,0) {2};
+		\node [circle, draw, label=right:$B$, fill=gray] (B) at (3,-1) {3};
+		\node [circle, draw, label=below:$C$] (C) at (2,-2) { \ };
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {DFS-Visit ($G,B$),   $time = 3$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Gray & Gray & White & White \cr
+				 u.d & 1 & 2 & 3 \cr
+				 u.f & \cr
+				 u.\pi & NIL & S & A & B & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=gray] (A) at (2,0) {2};
+		\node [circle, draw, label=right:$B$, fill=gray] (B) at (3,-1) {3};
+		\node [circle, draw, label=below:$C$, fill=gray] (C) at (2,-2) {4};
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {First part of DFS-Visit ($G,C$),   $time = 4$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Gray & Gray & Gray & White \cr
+				 u.d & 1 & 2 & 3 & 4 \cr
+				 u.f & \cr
+				 u.\pi & NIL & S & A & B & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=gray] (A) at (2,0) {2};
+		\node [circle, draw, label=right:$B$, fill=gray] (B) at (3,-1) {3};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}4/5};
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {Second part of DFS-Visit ($G,C$),   $time = 5$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Gray & Gray & Black & White \cr
+				 u.d & 1 & 2 & 3 & 4 \cr
+				 u.f & & & & 5\cr
+				 u.\pi & NIL & S & A & B & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=gray] (A) at (2,0) {2};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}3/6};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}4/5};
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {Back to second part of DFS-Visit ($G,B$),   $time = 6$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Gray & Black & Black & White \cr
+				 u.d & 1 & 2 & 3 & 4 \cr
+				 u.f & & & 6 & 5\cr
+				 u.\pi & NIL & S & A & B & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}2/7};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}3/6};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}4/5};
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {Back to second part of DFS-Visit ($G,A$),   $time = 7$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Black & Black & Black & White \cr
+				 u.d & 1 & 2 & 3 & 4 \cr
+				 u.f & & 7 & 6 & 5\cr
+				 u.\pi & NIL & S & A & B & NIL \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}2/7};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}3/6};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}4/5};
+		\node [circle, draw, label=below:$D$] (D) at (0,-2) { \ };
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {Back to {\tt for} loop in DFS-Visit ($G,S$),   $time = 7$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Black & Black & Black & White \cr
+				 u.d & 1 & 2 & 3 & 4 & \cr
+				 u.f & & 7 & 6 & 5\cr
+				 u.\pi & NIL & S & A & B & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}2/7};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}3/6};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}4/5};
+		\node [circle, draw, label=below:$D$, fill=gray] (D) at (0,-2) {8};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {First part of DFS-Visit ($G,D$),   $time = 8$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Black & Black & Black & Gray \cr
+				 u.d & 1 & 2 & 3 & 4 & 8 \cr
+				 u.f & & 7 & 6 & 5\cr
+				 u.\pi & NIL & S & A & B & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=gray] (S) at (0,0) {1};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}2/7};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}3/6};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}4/5};
+		\node [circle, draw, label=below:$D$, fill=black] (D) at (0,-2) {\color{white}8/9};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {Second part of DFS-Visit ($G,D$),   $time = 9$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Black & Black & Black & Black \cr
+				 u.d & 1 & 2 & 3 & 4 & 8 \cr
+				 u.f & & 7 & 6 & 5 & 9 \cr
+				 u.\pi & NIL & S & A & B & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+\
+
+\hfil	\begin{tikzpicture}[x=15mm, y=10mm]
+		\node [circle, draw, label=above:$S$, fill=black] (S) at (0,0) {\color{white}1/10};
+		\node [circle, draw, label=above:$A$, fill=black] (A) at (2,0) {\color{white}2/7};
+		\node [circle, draw, label=right:$B$, fill=black] (B) at (3,-1) {\color{white}3/6};
+		\node [circle, draw, label=below:$C$, fill=black] (C) at (2,-2) {\color{white}4/5};
+		\node [circle, draw, label=below:$D$, fill=black] (D) at (0,-2) {\color{white}8/9};
+		\draw [-triangle 60] (S) -- (A);
+		\draw [-triangle 60] (S) -- (D);
+		\draw [-triangle 60] (A) -- (B);
+		\draw [-triangle 60] (B) -- (C);
+		\draw [-triangle 60] (C) -- (S);
+		\draw [-triangle 60] (C) -- (A);
+		\draw [-triangle 60] (D) -- (C);
+		\node [below right] () at (4,1) {Second part of DFS-Visit ($G,S$),   $time = 10$};
+		\node [below right] () at (4,0) {
+			\begin{tabular}{>{$}c<{$}|*6{>{$}c<{$}}}
+				 u & S & A & B & C & D \cr\hline
+				 u.color & Gray & Black & Black & Black & Black \cr
+				 u.d & 1 & 2 & 3 & 4 & 8 \cr
+				 u.f & 10 & 7 & 6 & 5 & 9 \cr
+				 u.\pi & NIL & S & A & B & S \cr
+			\end{tabular}
+		};
+	\end{tikzpicture}
+	
+
+
+
+
+
+\subsubsection{Fall 2015 \#S5}
+
+
+	% #F15 S5
+	Mark True or False for each of the following statements.  
+	
+	\begin{enumerate}[label=\alph*.]
+		\item Greedy strategy sometimes finds the best or the optimal solution.
+		\item Dynamic programming will always find the optimal solution even when the principal of optimality condition is not satisfied.
+		\item (Same as S5 \#S9b) Breadth first search is a special case of heuristic search algorithm.
+		\item Some problems that belong to NP-class can be solved polynomially.  
+		\item Satisfiability problem of propositional calculus is NP-complete.
+	\end{enumerate}
+
+\subsubsection{Solutions}
+
+\begin{enumerate}[label=\alph*.]
+	\item True.
+	\item False.
+	\item Don't know.  
+	\item True.
+	\item True.
+\end{enumerate}
+
+\subsubsection{Fall 2016 \#S8}
+
+	% F16 #S8
+	Mark true/false (T/F) against the following statements.  
+	
+	\begin{enumerate}
+		\item A binary search tree of size $N$ will always find a key at most $O(\lg N)$ time
+		\item A breadth first search can be considered as a special case of heuristic search algorithm.
+		\item An optimal binary search tree is not necessarily being a balanced tree.
+		\item A dynamic programming approach uses top-down problem solving strategy to solve optimization problem.
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item True
+	\item Don't know.
+	\item True.
+	\item False.  
+\end{enumerate}
+
+\subsubsection{Fall 2018 \#L3}
+
+	% F18 #L3
+	Follow depth-first search (DFS), starting from Node $s$, to traverse the graph shown below, with its edge weights all ignored and the start time equal to 1.  Mark (1) the type of every edge and (2) the discovery and finish times of each node.
+	
+	Follow breadth-first search (BFS), starting from Node $s$, to traverse the graph shown below, with its edge weights all ignored.  Show the predecessor tree rooted at Node $s$ after BFS, with the number of links (i.e. distance) from Node $s$ to every other node indicated.  
+	
+	\
+	
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$] (s) at (0,0) {};
+		\node [circle, draw, label=above:$t$] (t) at (1,1) {};
+		\node [circle, draw, label=above:$x$] (x) at (3,1) {};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {};
+		\foreach \from/\to/\weight in {s/t/10, s/y/-8, t/x/1, y/x/9, y/z/2}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/7}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {t/y/2, y/t/3, x/z/-4, z/x/6}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+	\end{tikzpicture}
+	
+\
+
+[Note: If the edge weights aren't relevant, why did they leave them in the diagram?]
+
+\subsubsection{DFS Solution}
+
+There are four types of edges.  
+
+\begin{description}
+	\item [Tree edges] are edges in the depth-first forest $G_\pi$.  Edge $(u,v)$ is a tree edge if $v$ was first discovered by exploring edge $(u,v)$.  The tree edges below are in bold.  
+	\item [Back edges] connect a vertex to an ancestor.  
+	\item [Forward edges] are non-tree edges that connect a vertex to a descendent.
+	\item [Cross edges] are everything else.  
+\end{description}
+
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$] (t) at (1,1) {\color{white}1};
+		\node [circle, draw, label=above:$x$] (x) at (3,1) {\color{white}1};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {\color{white}1};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & White & White & White & White \cr
+				c.d  & 1 \cr
+				c.f \cr
+				c.\pi & NIL & NIL & NIL & NIL & NIL  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=gray] (t) at (1,1) {\color{white}2};
+		\node [circle, draw, label=above:$x$] (x) at (3,1) {\color{white}1};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {\color{white}1};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Gray & White & White & White \cr
+				c.d  & 1 & 2 \cr
+				c.f \cr
+				c.\pi & NIL & S & NIL & NIL & NIL  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=gray] (t) at (1,1) {\color{white}2};
+		\node [circle, draw, label=above:$x$, fill=gray] (x) at (3,1) {\color{white}3};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {\color{white}1};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Gray & Gray & White & White \cr
+				c.d  & 1 & 2 & 3 \cr
+				c.f \cr
+				c.\pi & NIL & s & t & NIL & NIL  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=gray] (t) at (1,1) {\color{white}2};
+		\node [circle, draw, label=above:$x$, fill=gray] (x) at (3,1) {\color{white}3};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$, fill=gray] (z) at (3,-1) {\color{white}4};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Gray & Gray & White & Gray \cr
+				c.d  & 1 & 2 & 3 & & 4 \cr
+				c.f \cr
+				c.\pi & NIL & s & t & NIL & x  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=gray] (t) at (1,1) {\color{white}2};
+		\node [circle, draw, label=above:$x$, fill=gray] (x) at (3,1) {\color{white}3};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (3,-1) {\color{white}4/5};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/back}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {z/x/back}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Gray & Gray & White & Black \cr
+				c.d  & 1 & 2 & 3 & & 4 \cr
+				c.f  & & & & & 5 \cr
+				c.\pi & NIL & s & t & NIL & x  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=gray] (t) at (1,1) {\color{white}2};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (3,1) {\color{white}3/6};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (3,-1) {\color{white}4/5};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/back}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+
+		\foreach \from/\to in {t/y, y/t, x/z}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {z/x/back}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Gray & Black & White & Black \cr
+				c.d  & 1 & 2 & 3 & & 4 \cr
+				c.f  &  & & 6 & & 5 \cr
+				c.\pi & NIL & s & t & NIL & x  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=gray] (t) at (1,1) {\color{white}2};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (3,1) {\color{white}3/6};
+		\node [circle, draw, label=below:$y$, fill=gray] (y) at (1,-1) {\color{white}7};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (3,-1) {\color{white}4/5};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/back}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+
+		\foreach \from/\to in {t/y, y/t, x/z}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z, t/y}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {z/x/back}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Gray & Black & Gray & Black \cr
+				c.d  & 1 & 2 & 3 & 7 & 4 \cr
+				c.f  & &  & 6 & & 5 \cr
+				c.\pi & NIL & s & t & t & x  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=gray] (t) at (1,1) {\color{white}2};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (3,1) {\color{white}3/6};
+		\node [circle, draw, label=below:$y$, fill=black] (y) at (1,-1) {\color{white}7/8};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (3,-1) {\color{white}4/5};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {y/x/cross, y/z/cross}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/back}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+
+		\foreach \from/\to in {t/y, y/t, x/z}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z, t/y}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {z/x/back, y/t/back}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Gray & Black & Black & Black \cr
+				c.d  & 1 & 2 & 3 & 7 & 4 \cr
+				c.f  & &  & 6 & 8 & 5 \cr
+				c.\pi & NIL & s & t & t & x  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}1};
+		\node [circle, draw, label=above:$t$, fill=black] (t) at (1,1) {\color{white}2/9};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (3,1) {\color{white}3/6};
+		\node [circle, draw, label=below:$y$, fill=black] (y) at (1,-1) {\color{white}7/8};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (3,-1) {\color{white}4/5};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {y/x/cross, y/z/cross}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/back}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+
+		\foreach \from/\to in {t/y, y/t, x/z}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z, t/y}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {z/x/back, y/t/back}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & Black & Black & Black & Black \cr
+				c.d  & 1 & 2 & 3 & 7 & 4 \cr
+				c.f  & & 9 & 6 & 8 & 5 \cr
+				c.\pi & NIL & s & t & t & x  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=black] (s) at (-1,0) {\color{white}1/10};
+		\node [circle, draw, label=above:$t$, fill=black] (t) at (1,1) {\color{white}2/9};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (3,1) {\color{white}3/6};
+		\node [circle, draw, label=below:$y$, fill=black] (y) at (1,-1) {\color{white}7/8};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (3,-1) {\color{white}4/5};
+		\foreach \from/\to in {s/t, t/x, y/x, y/z}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {y/x/cross, y/z/cross, s/y/forward}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/back}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+
+		\foreach \from/\to in {t/y, y/t, x/z}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z, t/y}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {z/x/back, y/t/back}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Black & Black & Black & Black & Black \cr
+				c.d  & 1 & 2 & 3 & 7 & 4 \cr
+				c.f  & 10 & 9 & 6 & 8 & 5 \cr
+				c.\pi & NIL & s & t & t & x  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+Depth First Tree
+
+\
+
+	\hfil \begin{tikzpicture}[x=25mm, y=25mm]
+		\node [circle, draw, label=left:$s$, fill=black] (s) at (0,0) {\color{white}1/10};
+		\node [circle, draw, label=below:$t$, fill=black] (t) at (0,-1) {\color{white}2/9};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (1.5,-2) {\color{white}3/6};
+		\node [circle, draw, label=below:$y$, fill=black] (y) at (-1,-2) {\color{white}7/8};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (1,-3) {\color{white}4/5};
+		\foreach \from/\to in {s/t, t/x, y/x, y/z}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, t/x}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {y/x/cross, y/z/cross, s/y/forward}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/back}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, right, rectangle, fill=white] {\weight};
+
+		\foreach \from/\to in {t/y, y/t, x/z}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to in {x/z, t/y}
+			\draw [ultra thick, bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {z/x/back, y/t/back}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+	\end{tikzpicture}
+	
+\
+
+%%%%%%%%%%%%
+\subsubsection{BFS Solution}
+
+$V = \{s, t, x, y, z\}$
+
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=gray] (s) at (0,0) {\color{white}0};
+		\node [circle, draw, label=above:$t$] (t) at (1,1) {\color{white}1};
+		\node [circle, draw, label=above:$x$] (x) at (3,1) {\color{white}1};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {\color{white}1};
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+				
+		
+		\node [below right] () at (4,1.5) {	$Q = \{s\}$};
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Gray & White & White & White & White \cr
+				c.d  & 0 \cr
+				c.\pi & NIL & NIL & NIL & NIL & NIL  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=black] (s) at (0,0) {\color{white}0};
+		\node [circle, draw, label=above:$t$, fill = gray] (t) at (1,1) {\color{white}1};
+		\node [circle, draw, label=above:$x$] (x) at (3,1) {\color{white}1};
+		\node [circle, draw, label=below:$y$, fill=gray] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {\color{white}1};
+
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, s/y}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+				
+		
+		\node [below right] () at (4,1.5) {	$Q = \{t,y\}$};
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Black & Gray & White & Gray & White \cr
+				c.d  & 0 & 1 & & 1 &  \cr
+				c.\pi & NIL & s & NIL & s & NIL  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=black] (s) at (0,0) {\color{white}0};
+		\node [circle, draw, label=above:$t$, fill = black] (t) at (1,1) {\color{white}1};
+		\node [circle, draw, label=above:$x$, fill=gray] (x) at (3,1) {\color{white}2};
+		\node [circle, draw, label=below:$y$, fill=gray] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {\color{white}1};
+
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, s/y, t/x}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+				
+		
+		\node [below right] () at (4,1.5) {	$Q = \{y, x\}$};
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Black & Black & Gray & Gray & White \cr
+				c.d  & 0 & 1 &2 & 1 &  \cr
+				c.\pi & NIL & s & t & s & NIL  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=black] (s) at (0,0) {\color{white}0};
+		\node [circle, draw, label=above:$t$, fill = black] (t) at (1,1) {\color{white}1};
+		\node [circle, draw, label=above:$x$, fill=gray] (x) at (3,1) {\color{white}2};
+		\node [circle, draw, label=below:$y$, fill=black] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$, fill=gray] (z) at (3,-1) {\color{white}3};
+
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, s/y, t/x, y/z}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+				
+		
+		\node [below right] () at (4,1.5) {	$Q = \{x, z\}$};
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Black & Black & Gray & Black & Gray \cr
+				c.d  & 0 & 1 &2 & 1 & 3 \cr
+				c.\pi & NIL & s & t & s & y  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=black] (s) at (0,0) {\color{white}0};
+		\node [circle, draw, label=above:$t$, fill = black] (t) at (1,1) {\color{white}1};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (3,1) {\color{white}2};
+		\node [circle, draw, label=below:$y$, fill=black] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$, fill=gray] (z) at (3,-1) {\color{white}3};
+
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, s/y, t/x, y/z}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+				
+		
+		\node [below right] () at (4,1.5) {	$Q = \{z\}$};
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Black & Black & Black & Black & Gray \cr
+				c.d  & 0 & 1 &2 & 1 & 3 \cr
+				c.\pi & NIL & s & t & s & y  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$, fill=black] (s) at (0,0) {\color{white}0};
+		\node [circle, draw, label=above:$t$, fill = black] (t) at (1,1) {\color{white}1};
+		\node [circle, draw, label=above:$x$, fill=black] (x) at (3,1) {\color{white}2};
+		\node [circle, draw, label=below:$y$, fill=black] (y) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=below:$z$, fill=black] (z) at (3,-1) {\color{white}3};
+
+		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, s/y, t/x, y/z}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+				
+		
+		\node [below right] () at (4,1.5) {	$Q = \{\}$};
+			
+		\node [below right] () at (4,1) {
+			\begin{tabular}{ >{$}l<{$} | *5{>{$}c<{$}} }
+				c & s & t & x & y & z \cr\hline
+				c.color & Black & Black & Black & Black & Black \cr
+				c.d  & 0 & 1 &2 & 1 & 3 \cr
+				c.\pi & NIL & s & t & s & y  \cr				
+			\end{tabular}
+		}; 
+	\end{tikzpicture}
+	
+\
+
+Predecessor Tree
+
+\
+
+	\hfil \begin{tikzpicture}[x=20mm, y=20mm]
+		\node [circle, draw, label=above:$s$, fill=black] (s) at (0,0) {\color{white}0};
+		\node [circle, draw, label=right:$t$, fill = black] (t) at (1,-1) {\color{white}1};
+		\node [circle, draw, label=right:$x$, fill=black] (x) at (1,-2) {\color{white}2};
+		\node [circle, draw, label=left:$y$, fill=black] (y) at (-1,-1) {\color{white}1};
+		\node [circle, draw, label=left:$z$, fill=black] (z) at (-1,-2) {\color{white}3};
+
+%		\foreach \from/\to in {s/t, s/y, t/x, y/x, y/z, z/s}
+%			\draw [-triangle 60] (\from) -- (\to);
+		\foreach \from/\to in {s/t, s/y, t/x, y/z}
+			\draw [ultra thick,-triangle 60] (\from) -- (\to);
+
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+%		\foreach \from/\to in {t/y, y/t, x/z, z/x}
+%			\draw [bend right=20, -triangle 60] (\from) to (\to);
+		\foreach \from/\to/\weight in {}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+				
+	\end{tikzpicture}
+	
+\
+
+
+
+
+

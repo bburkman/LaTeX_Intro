@@ -1,0 +1,176 @@
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Spring 2017}
+
+\subsection{Short Questions (Answer all six.)}
+
+\begin{enumerate}
+	% S17 #S1
+	\item \begin{enumerate}[label=\alph*.]
+		\item Define height balanced binary tree.
+		\item Write a pseudo code to determine whether a tree is height balanced?
+		\item Obtain the tight bound of your algorithm.
+	\end{enumerate}
+	
+	\index{Binary Search Tree!Height Balanced!S17 \#S1}
+	\index{Time Complexity!Big-$\Theta$!S17 \#S1}
+	
+	% S17 #S2
+	\item Suppose you have keys of $N$ objects stored in an array in the ascending order of key values.  Also assume that there is duplicate entry in the key.  
+	\begin{enumerate}[label=\alph*.]
+		\item Describe an efficient algorithm with the pseudo code that helps you to search for the object given the key. (The algorithm must return null value if the key is not in the array.) 
+		\item Obtain the tight upper bound for your algorithm.
+	\end{enumerate}
+	
+	\index{Key Array!S17 \#S2}
+	\index{Key Array!Duplicate Entry!S17 \#S2}
+	\index{Key Array!Search Algorithm!S17 \#S2}
+	\index{Time Complexity!Big-O!S17 \#S2}
+
+	% S17 #S3
+	\item	\begin{enumerate}[label=\alph*.]
+		\item Define strongly connected components as applied to directed graphs.
+		\item Some potential application of strongly connected components.
+		\item Provide a pseudo code for obtaining strongly components of a directed graph.  (Hint:  Use depth first search on appropriately transformed graphs.)
+	\end{enumerate}
+	
+	\index{Strongly Connected Components!S17 \#S3}
+	\index{Strongly Connected Components!Applications!S17 \#S3}
+	\index{Strongly Connected Components!Code for Obtaining!S17 \#S3}
+	
+	% S17 #S4
+	\item Find the tight for the recurrence relation below without using the master theorem (show all the steps):
+	$$T(n) = T(n/2) + n$$
+	
+	\index{Recurrence!S17 \#S4}
+	\index{Time Complexity!Big-$\Theta$!S17 \#S4}
+	
+	% S17 #S5
+	\item	\begin{enumerate}[label=\alph*.]
+		\item What are the properties of min heap and max heaps.
+		\item What is the preferred data structure of implementing binary heap, also justify your answer.
+		\item What is the time complexity of merging two different min heaps each of size $n$ and $m$.
+	\end{enumerate}
+	
+	\index{Heaps!Preferred Data Structure!S17 \#S5}
+	\index{Heaps!Properties!S17 \#S5}
+	\index{Heaps!Merging!S17 \#S5}
+
+	% S17 #S6
+	\item Briefly describe the minimum spanning tree.  Sketch an algorithm to obtain a minimum spanning tree.
+	
+	\index{Minimum Spanning Tree!S17 \#S6}
+
+	\begin{enumerate}[label=\alph*.]
+		\item
+	\end{enumerate}
+
+\end{enumerate}
+
+\subsection{Long Questions (Answer three of four.)}
+
+\begin{enumerate}
+	% S17 #L1
+	\item (Problem is related to dynamic programming formulation and optimal sub structure)
+	\begin{enumerate}[label=\alph*.]
+		\item Explain what do you understand by ``principle of optimality.''
+		\item Consider the problem of finding the longest common subsequences (LCS) in a pair of sequences, namely $X(x_1, x_2,\dots, x_m)$ and $Y(y_1, y_2, \dots, y_n)$
+		\begin{enumerate}
+			\item A brute force approach is to generate all possible subsequences of $X$ and see whether it is also a subsequence of $Y$.  What is the number of possible subsequence of $X$?
+			\item Obtain the optimal substructure of an LCS.  
+		\end{enumerate}
+		
+		\item Consider a chain matrix multiplication problem, $m_1 \times m_2 \times \cdots \times m_n$.  It associative, but not commutative.  
+		\begin{enumerate}
+			\item  A brute force approach is to generate all possible ways of parenthsizing the matrix chain and compute the total number of operations.  What is the number of possible grouping of the matrix chain?
+			\item Obtain the structure of the optimal parenthesization and then the recursive definition of the minimal cost of parenthesizing the product $m_i, m_{i+1}, m_j$.  
+		\end{enumerate}
+		
+	\end{enumerate}
+	
+	\index{Dynamic Programming!Principle of Optimality!S17 \#L1}
+	\index{Dynamic Programming!Longest Common Subsequence!S17 \#L1}
+	\index{Dynamic Programming!Optimal Substructure!S17 \#L1}
+	\index{Dynamic Programming!Chain Matrix Multiplication!S17 \#L1}
+	\index{Dynamic Programming!Combinations!S17 \#L1}
+
+	% S17 #L2
+	% Similar to S15 #L3
+	\item	(Similar to S15 \#L3)
+	\begin{enumerate}[label=\alph*.]
+		\item Compare and contrast P, NP, NP-complete, and NP-hard.
+		\item Based on current conjecture, draw a Venn diagram to show the relationship among these classes of problem.
+		\item Suppose there $n$ clauses and $m$ propositions in a given 3p-sat problem.  How many possible interpretations are there?  What is the time complexity of testing the satisfiability of a given interpretation?  What is the time and space complexity of testing the satisfiability of the clauses?
+		\item 3-p sat problem is NP-complete, but people still have published papers by applying heuristics strategy and showing that they were able to solve it with large number of distinct propositions (say 100) and large number of clauses (say 200).  To avoid any bias, they have generated the clauses and the set of propositions randomly.  How would you start investigating their results?  Can their results be generalized?
+		\item Suppose a single NP-complete problem is solved in polynomial algorithm, what can you state about the entire NP-complete class as well as the NP-hard class.
+		
+	\end{enumerate}
+
+	\index{NP!Relationship of P, NP, NP-complete, and NP-hard!S17 \#L2}
+	\index{NP!3-p sat!S17 \#L2}
+	\index{NP!Heuristics!S17 \#L2}
+	\index{NP!Randomly Generated Propositions and Clauses!S17 \#L2}
+	
+	% S17 #L3
+	\item (Same instructions, different graph, as S15 \#S7)
+	The Edmonds-Karp Algorithm (EK) follows the basic Ford-Fulkerson method with breadth-first search to choose the shortest augmenting path (in terms of the number of edges involved) for computing the maximum flow iteratively from vertex $s$ to vertex $t$ in a weighted directed graph.  Illustrate the maximum flow computation process (including the augmenting path chosen for each iteration and its resulting residual network) via EK for the graph depicted below.  
+	
+\hfil\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw] (s) at (0,0) {$s$};
+	\node [circle, draw] (v1) at (2,1) {$v_1$};
+	\node [circle, draw] (v2) at (3,-1) {$v_2$};
+	\node [circle, draw] (v3) at (4,1) {$v_3$};
+	\node [circle, draw] (t) at (6,0) {$t$};
+	\foreach \from/\to/\weight in {s/v1/16, s/v2/13, v1/v2/4, v1/v3/12, v3/v2/9, v3/t/20}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, circle, fill=white] {\weight};
+	\path [-triangle 60] (v2) edge [bend left=10] node [midway, rectangle, fill=white] {17} (t);
+	\path [triangle 60-triangle 60] (t) edge [bend left=10] node [midway, rectangle, fill=white] {8} (v2);
+\end{tikzpicture}
+
+	SHOULD THE EDGE WITH WEIGHT 8 BE BIDIRECTIONAL?
+
+	\index{Max Flow!Augmenting Path!S17 \#L3}	
+	
+	% S17 #L4
+	\item  (Same as Fall 2016 \#L4 and S15 \#L4)
+	
+	 Given a set of 4 keys, with the following probabilities, determine the cost and the structure of an optimal BST (binary search tree), following the tabular, bottom-up method realized in the procedure of \verb|OPTIMAL-BST| below to construct and fill $e[1..5, 0..4], w[1..5,0..4]$ and $root[1..4,1..4]$.
+	
+\hfil	\begin{tabular}{>{$}r<{$}|ccccc}
+		i & 0 & 1 & 2 & 3 & 4 \cr\hline
+		p_i & & 0.10 & 0.08 & 0.22 & 0.21 \cr
+		q_i & 0.06 & 0.12 & 0.07 & 0.05 & 0.09 \cr
+	\end{tabular}
+	
+\
+
+Construct and fill the three tables, and show the optimal BST obtained.  
+
+\
+
+\verb|OPTIMAL-BST(p,q,n)|
+
+\begin{lstlisting}[mathescape=true, numbers=left]
+let $e[1..n+1, 0..n]$, $w[1..n+1, 0..n]$, and $root[1..n, 1..n]$ be new tables.
+for $i=1$ to $n+1$
+	$e[i, i-1] = q_{i-1}$
+	$w[i, i-1] = q_{i-1}$
+for $l=1$ to $n$
+	for $i=1$ to $n-l+1$
+		$j = i+l-1$
+		$e[i,j] = \infty$
+		$w[i,j] = w[i,j-1] + p_j + q_j$
+		for $r=i$ to $j$
+			$t = e[i,r-1] + e[r+1,j] + w[i,j]$
+			if $t < e[i,j]$
+				$e[i,j] = t$
+				$root[i,j] = r$
+return $e$ and $root$
+\end{lstlisting}
+
+	\index{Binary Search Tree!Optimal!S17 \#L4}	
+
+
+\end{enumerate}
+
+

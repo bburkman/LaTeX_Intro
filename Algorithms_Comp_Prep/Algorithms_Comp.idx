@@ -1,0 +1,191 @@
+\indexentry{Articulation Node!Definition|hyperpage}{9}
+\indexentry{Balanced Search Tree!Definition!\S 18.0 - 18.3|hyperpage}{28}
+\indexentry{Balanced Search Tree!S19 \#L1|hyperpage}{29}
+\indexentry{Binary Search Tree!Definition \S 12|hyperpage}{42}
+\indexentry{Binary Search Tree!Optimal!Definition, \S 15.5|hyperpage}{44}
+\indexentry{Dynamic Programming!Chain Matrix Multiplication!see {Binary Search Tree, Optimal}|hyperpage}{44}
+\indexentry{Binary Search Tree!Optimal!see {Dynamic Programming, Chain Matrix Multiplication}|hyperpage}{44}
+\indexentry{Binary Search Tree!Height Balanced!Definition, Problem 13-3|hyperpage}{59}
+\indexentry{Dijkstra's Algorithm!S19 \#L4|hyperpage}{111}
+\indexentry{Heaps!Binary Min-Heap!S19 \#L4|hyperpage}{111}
+\indexentry{Time Complexity!S19 \#L4|hyperpage}{111}
+\indexentry{Max Flow!S19 \#L3|hyperpage}{114}
+\indexentry{Min Cut!S19 \#L3|hyperpage}{114}
+\indexentry{Ford-Fulkerson Algorithm!S19 \#L3|hyperpage}{114}
+\indexentry{Knapsack Problem!S19 \#L2|hyperpage}{125}
+\indexentry{Time Complexity!Big-O!S19 \#S1|hyperpage}{147}
+\indexentry{Hash!Cuckoo Hash!S19 \#S2|hyperpage}{147}
+\indexentry{Hash!Perfect Hashing!S19 \#S2|hyperpage}{147}
+\indexentry{Huffman Code!Optimal!S19 \#S3|hyperpage}{147}
+\indexentry{Shortest Path!S19 \#S4|hyperpage}{147}
+\indexentry{Breadth First Search!Visited Node Order!S19 \#S5|hyperpage}{147}
+\indexentry{Depth First Search!Visited Node Order!S19 \#S5|hyperpage}{147}
+\indexentry{NP!NP-Complete!S19 \#S6|hyperpage}{148}
+\indexentry{Traveling Salesman Problem!S19 \#S6|hyperpage}{148}
+\indexentry{Minimum Spanning Tree!S19 \#S6|hyperpage}{148}
+\indexentry{Two@2-Approximation!S19 \#S6|hyperpage}{148}
+\indexentry{Knapsack Problem!S19 \#L2|hyperpage}{148}
+\indexentry{Max Flow!S19 \#L3|hyperpage}{149}
+\indexentry{Min Cut!S19 \#L3|hyperpage}{149}
+\indexentry{Ford-Fulkerson Algorithm!S19 \#L3|hyperpage}{149}
+\indexentry{Dijkstra's Algorithm!S19 \#L4|hyperpage}{149}
+\indexentry{Heaps!Binary Min-Heap!S19 \#L4|hyperpage}{149}
+\indexentry{Time Complexity!S19 \#L4|hyperpage}{149}
+\indexentry{Divide and Conquer!F18 \#S1|hyperpage}{151}
+\indexentry{Recurrence!F18 \#S1|hyperpage}{151}
+\indexentry{Time Complexity!Big-$\Theta$!F18 \#S1|hyperpage}{151}
+\indexentry{Sorting Algorithms!Comparison Based!F18 \#S2|hyperpage}{151}
+\indexentry{Time Complexity!Big-$\Omega$!F18 \#S2|hyperpage}{151}
+\indexentry{Greedy Algorithms!F18 \#S2|hyperpage}{151}
+\indexentry{Time Complexity!Big-$\Theta$!F18 \#S3|hyperpage}{151}
+\indexentry{Recurrence!F18 \#S3|hyperpage}{151}
+\indexentry{Dynamic Programming!F18 \#S4|hyperpage}{151}
+\indexentry{Hash!Utilization Efficiency!F18 \#S5|hyperpage}{151}
+\indexentry{Hash!Multiplication Method!F18 \#S5|hyperpage}{151}
+\indexentry{Hash!Word Size!F18 \#S5|hyperpage}{151}
+\indexentry{Huffman Code!Optimal!F18 \#S6|hyperpage}{151}
+\indexentry{Binary Search Tree!F18 \#L1|hyperpage}{151}
+\indexentry{Dynamic Programming!F18 \#L1|hyperpage}{151}
+\indexentry{Balanced Search Tree!F18 \#L2|hyperpage}{151}
+\indexentry{Depth First Search!F18 \#L3|hyperpage}{152}
+\indexentry{Breadth First Search!F18 \#L3|hyperpage}{152}
+\indexentry{Dijkstra's Algorithm!F18 \#L4|hyperpage}{152}
+\indexentry{Time Complexity!F18 \#L4|hyperpage}{152}
+\indexentry{Follow-the-Bouncing-Ball!F18 \#L5|hyperpage}{153}
+\indexentry{Time Complexity!S18 \#S1|hyperpage}{153}
+\indexentry{Divide and Conquer!S18 \#S1|hyperpage}{153}
+\indexentry{Recurrence!S18 \#S1|hyperpage}{153}
+\indexentry{Hash!Open Address!S18 \#S2|hyperpage}{153}
+\indexentry{Hash!Load Factor!S18 \#S2|hyperpage}{153}
+\indexentry{Hash!Probes!S18 \#S2|hyperpage}{153}
+\indexentry{Hash!Uniform Hashing!S18 \#S2|hyperpage}{153}
+\indexentry{Huffman Code!Optimal Prefix Code!S18 \#S3|hyperpage}{153}
+\indexentry{Huffman Code!Codewords!S18 \#S3|hyperpage}{153}
+\indexentry{Dijkstra's Algorithm!S18 \#S4|hyperpage}{154}
+\indexentry{Time Complexity!S18 \#S4|hyperpage}{154}
+\indexentry{Binary Search Tree!Height Balanced!S18 \#S5|hyperpage}{154}
+\indexentry{Balanced Search Tree!S18 \#L1|hyperpage}{154}
+\indexentry{Heaps!Fibonacci Min Heap!S18 \#L2|hyperpage}{154}
+\indexentry{Time Complexity!S18 \#L3|hyperpage}{155}
+\indexentry{Time Complexity!Big-$\Theta$!S18 \#L3|hyperpage}{155}
+\indexentry{Follow-the-Bouncing-Ball!S18 \#L3|hyperpage}{155}
+\indexentry{NP!NP-Complete!S18 \#L4|hyperpage}{156}
+\indexentry{Knapsack Problem!S18 \#L4|hyperpage}{156}
+\indexentry{Decision Problem!S18 \#L4|hyperpage}{156}
+\indexentry{Principle of Optimality!S18 \#L4|hyperpage}{156}
+\indexentry{Dynamic Programming!S18 \#L4|hyperpage}{156}
+\indexentry{Binary Search Tree!Height Balanced!S17 \#S1|hyperpage}{156}
+\indexentry{Time Complexity!Big-$\Theta$!S17 \#S1|hyperpage}{156}
+\indexentry{Key Array!S17 \#S2|hyperpage}{156}
+\indexentry{Key Array!Duplicate Entry!S17 \#S2|hyperpage}{156}
+\indexentry{Key Array!Search Algorithm!S17 \#S2|hyperpage}{156}
+\indexentry{Time Complexity!Big-O!S17 \#S2|hyperpage}{156}
+\indexentry{Strongly Connected Components!S17 \#S3|hyperpage}{156}
+\indexentry{Strongly Connected Components!Applications!S17 \#S3|hyperpage}{156}
+\indexentry{Strongly Connected Components!Code for Obtaining!S17 \#S3|hyperpage}{156}
+\indexentry{Recurrence!S17 \#S4|hyperpage}{156}
+\indexentry{Time Complexity!Big-$\Theta$!S17 \#S4|hyperpage}{156}
+\indexentry{Heaps!Preferred Data Structure!S17 \#S5|hyperpage}{156}
+\indexentry{Heaps!Properties!S17 \#S5|hyperpage}{156}
+\indexentry{Heaps!Merging!S17 \#S5|hyperpage}{156}
+\indexentry{Minimum Spanning Tree!S17 \#S6|hyperpage}{156}
+\indexentry{Dynamic Programming!Principle of Optimality!S17 \#L1|hyperpage}{157}
+\indexentry{Dynamic Programming!Longest Common Subsequence!S17 \#L1|hyperpage}{157}
+\indexentry{Dynamic Programming!Optimal Substructure!S17 \#L1|hyperpage}{157}
+\indexentry{Dynamic Programming!Chain Matrix Multiplication!S17 \#L1|hyperpage}{157}
+\indexentry{Dynamic Programming!Combinations!S17 \#L1|hyperpage}{157}
+\indexentry{NP!Relationship of P, NP, NP-complete, and NP-hard!S17 \#L2|hyperpage}{157}
+\indexentry{NP!3-p sat!S17 \#L2|hyperpage}{157}
+\indexentry{NP!Heuristics!S17 \#L2|hyperpage}{157}
+\indexentry{NP!Randomly Generated Propositions and Clauses!S17 \#L2|hyperpage}{157}
+\indexentry{Max Flow!Augmenting Path!S17 \#L3|hyperpage}{157}
+\indexentry{Binary Search Tree!Optimal!S17 \#L4|hyperpage}{158}
+\indexentry{Time Complexity!Big-O!F16 \#S1|hyperpage}{158}
+\indexentry{Time Complexity!Big-$\Theta$!F16 \#S1|hyperpage}{158}
+\indexentry{Quick Sort Algorithm!F16 \#S2|hyperpage}{158}
+\indexentry{Time Complexity!F16 \#S2|hyperpage}{158}
+\indexentry{Time Complexity!Big-$\Theta$!F16 \#S3|hyperpage}{159}
+\indexentry{Recurrence!F16 \#S3|hyperpage}{159}
+\indexentry{Master Theorem!F16 \#S3|hyperpage}{159}
+\indexentry{Heaps!Min Heap!F16 \#S4|hyperpage}{159}
+\indexentry{Heaps!Max Heap!F16 \#S4|hyperpage}{159}
+\indexentry{Heaps!Binary Heap!F16 \#S4|hyperpage}{159}
+\indexentry{Heaps!Min Heap!Merging!F16 \#S4|hyperpage}{159}
+\indexentry{NP!3-p sat!F16 \#S5|hyperpage}{159}
+\indexentry{Time Complexity!Big-$\Theta$!F16 \#S5|hyperpage}{159}
+\indexentry{Greedy Algorithms!F16 \#S6|hyperpage}{159}
+\indexentry{Strongly Connected Components!F16 \#S7|hyperpage}{159}
+\indexentry{Breadth First Search!F16 \#S8|hyperpage}{159}
+\indexentry{Binary Search Tree!Optimal!F16 \#S8|hyperpage}{159}
+\indexentry{Dynamic Programming!F16 \#S8|hyperpage}{159}
+\indexentry{Top-Down!F16 \#S8|hyperpage}{159}
+\indexentry{Hash!F16 \#S9|hyperpage}{159}
+\indexentry{Hash!Cuckoo Hash!F16 \#S9|hyperpage}{159}
+\indexentry{Recurrence!F16 \#10|hyperpage}{159}
+\indexentry{Follow-the-Bouncing-Ball!F16 \#S10|hyperpage}{159}
+\indexentry{NP!F16 \#L1|hyperpage}{160}
+\indexentry{NP!3-p sat!F16 \#L1|hyperpage}{160}
+\indexentry{Dynamic Programming!Principle of Optimality!F16 \#L2|hyperpage}{160}
+\indexentry{Knapsack Problem!F16 \#L2|hyperpage}{160}
+\indexentry{Balanced Search Tree!F16 \#L3|hyperpage}{160}
+\indexentry{Binary Search Tree!Optimal!F16 \#L4|hyperpage}{160}
+\indexentry{Time Complexity!Big-$\Theta$!F15 \#S1|hyperpage}{161}
+\indexentry{Recursion!F15 \#S2|hyperpage}{161}
+\indexentry{Time Complexity!Big-$\Theta$!F15 \#S2|hyperpage}{161}
+\indexentry{Insertion Sort!F15 \#S3|hyperpage}{161}
+\indexentry{Minimum Spanning Tree!F15 \#S4|hyperpage}{161}
+\indexentry{Greedy Algorithms!F15 \#S5|hyperpage}{162}
+\indexentry{Dynamic Programming!Principle of Optimality!F15 \#S5|hyperpage}{162}
+\indexentry{Breadth First Search!F15 \#S5|hyperpage}{162}
+\indexentry{Heuristic!F15 \#S5|hyperpage}{162}
+\indexentry{NP!F15 \#S5|hyperpage}{162}
+\indexentry{NP!NP-Complete!F15 \#S5|hyperpage}{162}
+\indexentry{NP!Propositional Calculus!F15 \#S5|hyperpage}{162}
+\indexentry{Dynamic Programming!Chain Matrix Multiplication!F15 \#S6|hyperpage}{162}
+\indexentry{Binary Search Tree!Optimal!F15 \#S7|hyperpage}{162}
+\indexentry{Heaps!Binary Min-Heap!F15 \#S7|hyperpage}{162}
+\indexentry{Heaps!Binary Min-Heap!Priority Queue!F15 \#S7|hyperpage}{162}
+\indexentry{Priority Queue!F15 \#S7|hyperpage}{162}
+\indexentry{Strongly Connected Components!F15 \#S7|hyperpage}{162}
+\indexentry{Balanced Search Tree!F15 \#S8|hyperpage}{162}
+\indexentry{Hash!Cuckoo Hash!F15 \#L1|hyperpage}{162}
+\indexentry{Hash!Multiplication Method!F15 \#L1|hyperpage}{162}
+\indexentry{Balanced Search Tree!F15 \#L2|hyperpage}{163}
+\indexentry{Space Complexity!F15 \#L3|hyperpage}{163}
+\indexentry{Time Complexity!F15 \#L3|hyperpage}{163}
+\indexentry{Follow-the-Bouncing-Ball!F15 \#L3|hyperpage}{163}
+\indexentry{Maximum Clique!F15 \#L4|hyperpage}{163}
+\indexentry{Knapsack Problem!F15 \#L4|hyperpage}{163}
+\indexentry{Time Complexity!S15 \#S1|hyperpage}{164}
+\indexentry{Quick Sort!S15 \#S2|hyperpage}{164}
+\indexentry{Merge Sort!S15 \#S2|hyperpage}{164}
+\indexentry{Time Complexity!S15 \#S2|hyperpage}{164}
+\indexentry{Time Complexity!Big-$\Theta$!S15 \#S3|hyperpage}{164}
+\indexentry{Minimum Spanning Tree!S15 \#S4|hyperpage}{164}
+\indexentry{Strongly Connected Components!Building the Graph!S15 \#S4|hyperpage}{164}
+\indexentry{Minimum Spanning Tree!S15 \#S4|hyperpage}{164}
+\indexentry{Articulation Node!S15 \#S4|hyperpage}{164}
+\indexentry{Heaps!{\tt MIN HEAPSORT}!S15 \#S5|hyperpage}{164}
+\indexentry{Huffman Code!Optimal!S15 \#S6|hyperpage}{164}
+\indexentry{Max Flow!Augmenting Path!S15 \#S7|hyperpage}{164}
+\indexentry{Priority Queue!S15 \#S8|hyperpage}{165}
+\indexentry{Binary Search Tree!S15 \#S9|hyperpage}{165}
+\indexentry{Breadth First Search!S15 \#S9|hyperpage}{165}
+\indexentry{Heuristic !S15 \#S9|hyperpage}{165}
+\indexentry{Binary Search Tree!Optimal!S15 \#S9|hyperpage}{165}
+\indexentry{Balanced Search Tree!S15 \#S9|hyperpage}{165}
+\indexentry{Dynamic Programming!S15 \#S9|hyperpage}{165}
+\indexentry{NP!NP-Complete!S15 \#L1|hyperpage}{165}
+\indexentry{NP!Heuristics!S15 \#L1|hyperpage}{165}
+\indexentry{NP!Simplex Method!S15 \#L1|hyperpage}{165}
+\indexentry{Greedy Algorithms!S15 \#L1|hyperpage}{165}
+\indexentry{Minimum Spanning Tree!Kruskal's Algorithm!S15 \#L1|hyperpage}{165}
+\indexentry{Principle of Optimality!S15 \#L2|hyperpage}{166}
+\indexentry{Knapsack Problem!S15 \#L2|hyperpage}{166}
+\indexentry{Shortest Path!S15 \#L2|hyperpage}{166}
+\indexentry{Dynamic Programming!Chain Matrix Multiplication!S15 \#L2|hyperpage}{166}
+\indexentry{NP!Relationship of P, NP, NP-complete, and NP-hard!S15 \#L3|hyperpage}{166}
+\indexentry{NP!3-p sat!S15 \#L3|hyperpage}{166}
+\indexentry{NP!Heuristics!S15 \#L3|hyperpage}{166}
+\indexentry{NP!Randomly Generated Propositions and Clauses!S15 \#L3|hyperpage}{166}
+\indexentry{Binary Search Tree!Optimal!S15 \#L4|hyperpage}{167}

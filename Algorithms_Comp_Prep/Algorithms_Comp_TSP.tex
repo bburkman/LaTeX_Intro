@@ -1,0 +1,31 @@
+% Algorithms_Comp_TSP
+
+\section{Traveling Salesman Problem}
+
+\subsection{With the Triangle Inequality}
+
+\begin{enumerate}
+	\item Use MST-Prim to find a minimal spanning tree, $T$.  
+	\item Make a list, $H$, of the vertices in the order in which they were first visited.
+	\item This Hamiltonian cycle has cost no more than twice the cost of the optimal cycle.
+	\item Since MST-Prim is $O(V^2)$, this method is a polynomial-time 2-approximation algorithm. 
+\end{enumerate}
+
+\subsection{Old Exam Problems}
+
+\subsubsection{Spring 2019, \#S6}
+
+Many problem have been proved to be NP-complete.  To prove NP-completeness, it is necessary in general to demonstrate two proof components.  What are the two proof components to show a problem being NP-complete?
+	
+	Being NP-complete, the traveling-salesman problem (TSP) has a 2-approximation solution in polynomial time based on establishing a minimum spanning tree (MST) rooted at the start/end vertex (in polynomial time following MST-PRIM), if the graph edge weights observe the triangle inequality.  Sketch a brief proof to demonstrate that that such a proof satisfies 2-approximation.  
+
+\subsubsection{Solution to Second Part}
+
+\begin{enumerate}
+	\item Let $H*$ denote an optimal tour, and $c(H*)$ be the total cost of the edges of $H*$.  
+	\item We obtained the spanning tree $T$ by deleting an edge from any tour, so $c(T) \le c(H*)$.  
+	\item A full walk, $W$, of $T$ traverses each edge of $T$ exactly twice, so $c(W) = 2 c(T)$, so $c(W) \le 2c(H*)$.  
+	\item The full walk, $W$, may not be a tour, because it may visit a vertex more than once.  Deleting a vertex from the walk does not increase its cost, because of the triangle inequality.  If we delete the second (or later) appearance of a vertex from the walk, we get the preorder walk of the tree $T$.  
+	\item Let $H$ be the cycle corresponding to the preorder walk. It is Hamiltonian, because the each vertex appears in the preorder walk exactly once.  Since $c(H) \le c(W)$, we get $c(H) \le 2 c(H*)$; therefore, the method satisfies 2-approximation.   
+\end{enumerate}
+

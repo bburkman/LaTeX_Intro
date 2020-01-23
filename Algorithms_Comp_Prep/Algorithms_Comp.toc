@@ -1,0 +1,293 @@
+\contentsline {section}{Index}{4}{chapter*.1}
+\contentsline {section}{\numberline {0.1}Topics Remaining}{9}{section.0.1}
+\contentsline {section}{\numberline {0.2}Take to Exam}{9}{section.0.2}
+\contentsline {section}{\numberline {0.3}Definitions}{9}{section.0.3}
+\contentsline {chapter}{\numberline {1}Time Complexity}{10}{chapter.1}
+\contentsline {section}{\numberline {1.1}Time Complexity}{10}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Definitions}{10}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Algorithms}{10}{subsection.1.1.2}
+\contentsline {subsubsection}{Sorting Algorithms}{10}{section*.2}
+\contentsline {subsubsection}{Graph Algorithms}{11}{section*.3}
+\contentsline {subsection}{\numberline {1.1.3}Old Exam Problems}{11}{subsection.1.1.3}
+\contentsline {subsubsection}{Spring 2019 \#S1}{11}{section*.4}
+\contentsline {subsubsection}{Solution}{11}{section*.5}
+\contentsline {subsubsection}{Spring 2019 \#L4}{12}{section*.6}
+\contentsline {subsubsection}{Solution to Time Complexity Part}{12}{section*.7}
+\contentsline {subsubsection}{Fall 2018 \#S1}{13}{section*.8}
+\contentsline {subsubsection}{Solution}{13}{section*.9}
+\contentsline {subsubsection}{Fall 2018 \$S2}{14}{section*.10}
+\contentsline {subsubsection}{Solution}{14}{section*.11}
+\contentsline {subsubsection}{Fall 2018 \#S3}{14}{section*.12}
+\contentsline {subsubsection}{Solutions}{14}{section*.13}
+\contentsline {subsubsection}{Fall 2018 \#L4}{15}{section*.14}
+\contentsline {subsubsection}{Solution to Time Complexity Part}{16}{section*.15}
+\contentsline {subsubsection}{Spring 2018 \#S1}{16}{section*.16}
+\contentsline {subsubsection}{Solution}{16}{section*.17}
+\contentsline {subsubsection}{Spring 2018 \#S4}{16}{section*.18}
+\contentsline {subsubsection}{Solution to the Time Complexity Part}{17}{section*.19}
+\contentsline {subsubsection}{Spring 2018 \#L3}{17}{section*.20}
+\contentsline {subsubsection}{Solution}{18}{section*.21}
+\contentsline {subsubsection}{Spring 2017 \#S1}{18}{section*.22}
+\contentsline {subsubsection}{Solutions}{18}{section*.23}
+\contentsline {subsubsection}{Spring 2017 \#S2}{19}{section*.24}
+\contentsline {subsubsection}{Solutions}{19}{section*.25}
+\contentsline {subsubsection}{Spring 2017 \#S4}{19}{section*.26}
+\contentsline {subsubsection}{Fall 2016 \#S1}{20}{section*.27}
+\contentsline {subsubsection}{Solutions}{20}{section*.28}
+\contentsline {subsubsection}{Fall 2016 \#S2}{20}{section*.29}
+\contentsline {subsubsection}{Solution}{20}{section*.30}
+\contentsline {subsubsection}{Fall 2016 \#S3}{21}{section*.31}
+\contentsline {subsubsection}{Solution}{21}{section*.32}
+\contentsline {subsubsection}{Fall 2016 \#S5}{23}{section*.33}
+\contentsline {subsubsection}{Fall 2015 \#S1}{23}{section*.34}
+\contentsline {subsubsection}{Solution}{23}{section*.35}
+\contentsline {subsubsection}{Fall 2015 \#S2}{24}{section*.36}
+\contentsline {subsubsection}{Solution}{25}{section*.37}
+\contentsline {subsubsection}{Fall 2015 \#L3}{25}{section*.38}
+\contentsline {subsubsection}{Solution?}{26}{section*.39}
+\contentsline {subsubsection}{Spring 2015 \#S1}{26}{section*.40}
+\contentsline {subsubsection}{Solution}{26}{section*.41}
+\contentsline {subsubsection}{Spring 2015 \#S2}{26}{section*.42}
+\contentsline {subsubsection}{Spring 2015 \#S3}{26}{section*.43}
+\contentsline {subsubsection}{Solution}{26}{section*.44}
+\contentsline {chapter}{\numberline {2}Data Structures and Search Algorithms}{28}{chapter.2}
+\contentsline {section}{\numberline {2.1}Balanced Search Tree}{28}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Method for Inserting and Deleting a Key}{29}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Old Exam Questions}{29}{subsection.2.1.2}
+\contentsline {subsubsection}{S19 \#L1}{29}{section*.45}
+\contentsline {subsubsection}{Solution}{29}{section*.46}
+\contentsline {subsubsection}{S18 \#L1}{32}{section*.47}
+\contentsline {subsubsection}{Solution}{32}{section*.48}
+\contentsline {subsubsection}{F18 \#L2}{35}{section*.49}
+\contentsline {subsubsection}{Solution}{35}{section*.50}
+\contentsline {subsubsection}{F16 \#L3}{36}{section*.51}
+\contentsline {subsubsection}{Solution}{37}{section*.52}
+\contentsline {subsubsection}{F15 \#S8}{38}{section*.53}
+\contentsline {subsubsection}{Solution}{38}{section*.54}
+\contentsline {subsubsection}{Related Question}{39}{section*.55}
+\contentsline {subsubsection}{F15 \#L2}{40}{section*.56}
+\contentsline {subsubsection}{Solution}{40}{section*.57}
+\contentsline {section}{\numberline {2.2}Binary Search Trees}{42}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Definition, Chapter 12}{42}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Old Exam Questions}{42}{subsection.2.2.2}
+\contentsline {subsubsection}{S15 \#S9}{42}{section*.58}
+\contentsline {subsubsection}{Solutions}{43}{section*.59}
+\contentsline {subsubsection}{F15 \#S7}{43}{section*.60}
+\contentsline {subsubsection}{Solutions}{43}{section*.61}
+\contentsline {subsubsection}{F16 \#S8, First part, Same as above}{43}{section*.62}
+\contentsline {subsubsection}{Solutions}{44}{section*.63}
+\contentsline {section}{\numberline {2.3}Optimal Binary Search Tree}{44}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Definition, \S 15.5}{44}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Brad's Example}{45}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Old Exam Questions}{52}{subsection.2.3.3}
+\contentsline {subsubsection}{S15 \#S9, Part (c)}{52}{section*.64}
+\contentsline {subsubsection}{Solution to Part (c)}{52}{section*.65}
+\contentsline {subsubsection}{F15 \#S7, Part (b), Same as above}{52}{section*.66}
+\contentsline {subsubsection}{F16 \#S8, Third part, Same as above}{53}{section*.67}
+\contentsline {subsubsection}{S15 \#L4}{53}{section*.68}
+\contentsline {subsubsection}{Solution to (a) TO DO}{54}{section*.69}
+\contentsline {subsubsection}{Solution to (b)}{54}{section*.70}
+\contentsline {subsection}{\numberline {2.3.4}F16 \#L4, Similar to above}{55}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}S17 \#L4, Similar to above}{55}{subsection.2.3.5}
+\contentsline {subsubsection}{Solution}{56}{section*.71}
+\contentsline {subsubsection}{F18 \#L1}{57}{section*.72}
+\contentsline {subsubsection}{Solution to the First Part}{58}{section*.73}
+\contentsline {subsubsection}{Solution to the Second Part}{58}{section*.74}
+\contentsline {section}{\numberline {2.4}Height Balanced Binary Search Tree (AVL Tree), \S 13, Problem 13-3}{59}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Old Exam Questions}{60}{subsection.2.4.1}
+\contentsline {subsubsection}{S17 \#S1}{60}{section*.75}
+\contentsline {subsubsection}{S18 \#S5, Same as above}{60}{section*.76}
+\contentsline {section}{\numberline {2.5}Heaps}{60}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Old Exam Questions}{61}{subsection.2.5.1}
+\contentsline {subsubsection}{Spring 2019 \#L4}{61}{section*.77}
+\contentsline {subsubsection}{Solution to second part}{61}{section*.78}
+\contentsline {subsubsection}{Spring 2018 \#L2}{61}{section*.79}
+\contentsline {subsubsection}{Spring 2017 \#S5}{62}{section*.80}
+\contentsline {subsubsection}{Solutions}{62}{section*.81}
+\contentsline {subsubsection}{Fall 2016 \#S4}{62}{section*.82}
+\contentsline {subsubsection}{Fall 2015 \#S7}{63}{section*.83}
+\contentsline {subsubsection}{Solutions}{63}{section*.84}
+\contentsline {subsubsection}{Spring 2015 \#S5}{63}{section*.85}
+\contentsline {chapter}{\numberline {3}Sorting}{67}{chapter.3}
+\contentsline {section}{\numberline {3.1}Insertion Sort}{67}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Algorithm}{67}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Time Complexity}{67}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Quicksort}{68}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Code and Example}{68}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Time Complexity}{70}{subsection.3.2.2}
+\contentsline {subsubsection}{Worst-Case Partitioning}{70}{section*.86}
+\contentsline {subsubsection}{Best-Case Partitioning}{70}{section*.87}
+\contentsline {subsubsection}{Average-Case Partitioning}{70}{section*.88}
+\contentsline {section}{\numberline {3.3}Heap Sort}{71}{section.3.3}
+\contentsline {section}{\numberline {3.4}Old Exam Questions: Sorting}{71}{section.3.4}
+\contentsline {subsubsection}{Fall 2018 \#S2}{71}{section*.89}
+\contentsline {subsubsection}{Fall 2016 \#S2}{71}{section*.90}
+\contentsline {subsubsection}{Solution}{72}{section*.91}
+\contentsline {subsubsection}{Fall 2015 \#S3}{72}{section*.92}
+\contentsline {subsubsection}{Solution}{72}{section*.93}
+\contentsline {subsubsection}{Spring 2015 \#S2}{72}{section*.94}
+\contentsline {subsubsection}{Solution}{72}{section*.95}
+\contentsline {chapter}{\numberline {4}NP-Complete}{74}{chapter.4}
+\contentsline {section}{\numberline {4.1}NP-Completeness \S 34}{74}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Polynomial-time Reduction Algorithm}{74}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Showing a Problem is NP-Complete}{75}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Circuit Satisfiability \S 34.4}{75}{subsection.4.1.3}
+\contentsline {subsubsection}{Example}{75}{section*.96}
+\contentsline {subsubsection}{3-CNF or 3-P SAT}{77}{section*.97}
+\contentsline {subsubsection}{Example on page 1082 of reduction algorithm from SAT to 3-CNF-SAT}{78}{section*.98}
+\contentsline {subsubsection}{2-CNF-SAT}{81}{section*.99}
+\contentsline {subsection}{\numberline {4.1.4}Traveling Salesman Problem}{82}{subsection.4.1.4}
+\contentsline {subsubsection}{TSP as a decision problem}{82}{section*.100}
+\contentsline {subsubsection}{Triangle Inequality}{82}{section*.101}
+\contentsline {subsubsection}{ S19 \#S6}{82}{section*.102}
+\contentsline {subsection}{\numberline {4.1.5}Knapsack Problem}{83}{subsection.4.1.5}
+\contentsline {subsubsection}{ S18 \#L4}{83}{section*.103}
+\contentsline {subsection}{\numberline {4.1.6}Old Exam Problems}{83}{subsection.4.1.6}
+\contentsline {subsubsection}{S15 \#L1}{83}{section*.104}
+\contentsline {subsubsection}{Solutions}{84}{section*.105}
+\contentsline {subsubsection}{S15 \#L3}{84}{section*.106}
+\contentsline {subsubsection}{Solutions}{84}{section*.107}
+\contentsline {subsubsection}{F15 \#S5}{85}{section*.108}
+\contentsline {subsubsection}{Solutions}{85}{section*.109}
+\contentsline {subsubsection}{F16 \#S5}{85}{section*.110}
+\contentsline {subsubsection}{F16 \#L1}{85}{section*.111}
+\contentsline {subsubsection}{S17 \#L2}{86}{section*.112}
+\contentsline {subsubsection}{Solutions}{86}{section*.113}
+\contentsline {subsubsection}{ S18 \#L4}{87}{section*.114}
+\contentsline {subsubsection}{Solutions}{88}{section*.115}
+\contentsline {subsubsection}{ S19 \#S6}{88}{section*.116}
+\contentsline {subsubsection}{Solution}{88}{section*.117}
+\contentsline {section}{\numberline {4.2}Traveling Salesman Problem}{88}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}With the Triangle Inequality}{88}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Old Exam Problems}{89}{subsection.4.2.2}
+\contentsline {subsubsection}{Spring 2019, \#S6}{89}{section*.118}
+\contentsline {subsubsection}{Solution to Second Part}{89}{section*.119}
+\contentsline {chapter}{\numberline {5}Graph Algorithms}{90}{chapter.5}
+\contentsline {section}{\numberline {5.1}Graph Algorithms Summary}{90}{section.5.1}
+\contentsline {section}{\numberline {5.2}Breadth First Search and Depth First Search (BFS and DFS)}{90}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Old Exam Questions}{90}{subsection.5.2.1}
+\contentsline {subsubsection}{Spring 2015 \#S9}{90}{section*.120}
+\contentsline {subsubsection}{Solutions}{91}{section*.121}
+\contentsline {subsubsection}{Spring 2019 \#S5}{91}{section*.122}
+\contentsline {subsubsection}{Solution}{91}{section*.123}
+\contentsline {subsubsection}{Fall 2015 \#S5}{95}{section*.124}
+\contentsline {subsubsection}{Solutions}{95}{section*.125}
+\contentsline {subsubsection}{Fall 2016 \#S8}{96}{section*.126}
+\contentsline {subsubsection}{Solutions}{96}{section*.127}
+\contentsline {subsubsection}{Fall 2018 \#L3}{96}{section*.128}
+\contentsline {subsubsection}{DFS Solution}{96}{section*.129}
+\contentsline {subsubsection}{BFS Solution}{100}{section*.130}
+\contentsline {section}{\numberline {5.3}Strongly Connected Components}{102}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Definition}{102}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Algorithm}{102}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Old Exam Questions}{102}{subsection.5.3.3}
+\contentsline {subsubsection}{Spring 2017 \#S3}{102}{section*.131}
+\contentsline {subsubsection}{Solutions}{102}{section*.132}
+\contentsline {subsubsection}{Fall 2016 \#S7}{103}{section*.133}
+\contentsline {subsubsection}{Solutions}{103}{section*.134}
+\contentsline {subsubsection}{Fall 2015 \#S7}{103}{section*.135}
+\contentsline {subsubsection}{Solutions}{103}{section*.136}
+\contentsline {subsubsection}{Spring 2015 \#S4}{104}{section*.137}
+\contentsline {subsubsection}{Solutions}{104}{section*.138}
+\contentsline {section}{\numberline {5.4}Minimum Spanning Trees}{104}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Definitions}{104}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Kruskal's Algorithm}{105}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Prim's Algorithm}{105}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Old Exam Questions}{105}{subsection.5.4.4}
+\contentsline {subsubsection}{Spring 2019 \#S6}{105}{section*.139}
+\contentsline {subsubsection}{Spring 2017 \#S6}{105}{section*.140}
+\contentsline {subsubsection}{Solution}{105}{section*.141}
+\contentsline {subsubsection}{Fall 2015 \#S4}{106}{section*.142}
+\contentsline {subsubsection}{Solution}{106}{section*.143}
+\contentsline {subsubsection}{Spring 2015 \#S4}{106}{section*.144}
+\contentsline {subsubsection}{Solutions}{106}{section*.145}
+\contentsline {subsubsection}{Spring 2015 \#L1}{107}{section*.146}
+\contentsline {subsubsection}{Solutions}{107}{section*.147}
+\contentsline {section}{\numberline {5.5}Single-Source Shortest Paths}{108}{section.5.5}
+\contentsline {section}{\numberline {5.6}Dijkstra}{108}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Old Exam Questions}{108}{subsection.5.6.1}
+\contentsline {subsubsection}{Fall 2018 \#L4}{108}{section*.148}
+\contentsline {subsubsection}{Spring 2018 \#S4 [Same as above]}{109}{section*.149}
+\contentsline {subsubsection}{Solution}{109}{section*.150}
+\contentsline {subsubsection}{Spring 2019 \#L4}{111}{section*.151}
+\contentsline {section}{\numberline {5.7}Ford-Fulkerson Algorithm}{114}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Old Exam Problems}{114}{subsection.5.7.1}
+\contentsline {subsubsection}{Spring 2019 \#L3}{114}{section*.152}
+\contentsline {subsubsection}{Solution}{114}{section*.153}
+\contentsline {section}{\numberline {5.8}Max Flow}{116}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}Old Exam Problems}{116}{subsection.5.8.1}
+\contentsline {subsubsection}{Spring 2017 \#L3}{116}{section*.154}
+\contentsline {subsubsection}{Solution}{116}{section*.155}
+\contentsline {subsubsection}{Solution}{118}{section*.156}
+\contentsline {subsubsection}{Spring 2015 \#S7}{118}{section*.157}
+\contentsline {subsubsection}{Solution}{118}{section*.158}
+\contentsline {chapter}{\numberline {6}Dynamic Programming}{120}{chapter.6}
+\contentsline {section}{\numberline {6.1}Knapsack Problem, \S 16.2, Exercise 35-7}{120}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}0-1, Top-Down with Memoization}{120}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Old Exam Questions}{122}{subsection.6.1.2}
+\contentsline {subsubsection}{ Fall 2015 \#L4}{122}{section*.159}
+\contentsline {subsubsection}{Solution}{122}{section*.160}
+\contentsline {subsubsection}{Fall 2016 \#L2}{123}{section*.161}
+\contentsline {subsubsection}{Solutions}{123}{section*.162}
+\contentsline {subsubsection}{Spring 2016 \#L2}{124}{section*.163}
+\contentsline {subsubsection}{Spring 2018 \#L4}{124}{section*.164}
+\contentsline {subsubsection}{Solutions}{125}{section*.165}
+\contentsline {subsubsection}{Spring 2019 \#L2}{125}{section*.166}
+\contentsline {subsubsection}{Solution}{126}{section*.167}
+\contentsline {chapter}{\numberline {7}Greedy Algorithms}{127}{chapter.7}
+\contentsline {section}{\numberline {7.1}Huffman Codes}{127}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Old Exam Questions}{128}{subsection.7.1.1}
+\contentsline {subsubsection}{Spring 2018, \#S3}{128}{section*.168}
+\contentsline {subsubsection}{Solution}{128}{section*.169}
+\contentsline {subsubsection}{Spring 2015, \#S6}{131}{section*.170}
+\contentsline {subsubsection}{Solution}{131}{section*.171}
+\contentsline {subsubsection}{Spring 2019 \#S3}{134}{section*.172}
+\contentsline {subsubsection}{Solution}{134}{section*.173}
+\contentsline {subsubsection}{Fall 2018 \#S6}{136}{section*.174}
+\contentsline {section}{\numberline {7.2}Matrix Chain Multiplication}{136}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Exercise 15.2-3}{137}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Optimal Substructure}{138}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Python Code}{138}{subsection.7.2.3}
+\contentsline {subsection}{\numberline {7.2.4}Textbook Example (page 376)}{140}{subsection.7.2.4}
+\contentsline {chapter}{\numberline {8}Hashing}{143}{chapter.8}
+\contentsline {section}{\numberline {8.1}Hashing}{143}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Definitions}{143}{subsection.8.1.1}
+\contentsline {subsection}{\numberline {8.1.2}Examples of Hash Functions}{143}{subsection.8.1.2}
+\contentsline {subsection}{\numberline {8.1.3}Collision Resolution}{144}{subsection.8.1.3}
+\contentsline {subsection}{\numberline {8.1.4}Cuckoo Hashing: NOT IN TEXTBOOK}{144}{subsection.8.1.4}
+\contentsline {subsection}{\numberline {8.1.5}Perfect Hashing}{144}{subsection.8.1.5}
+\contentsline {subsection}{\numberline {8.1.6}Old Exam Questions}{144}{subsection.8.1.6}
+\contentsline {subsubsection}{Spring 2019 \#S2}{144}{section*.175}
+\contentsline {subsubsection}{Solution}{144}{section*.176}
+\contentsline {subsubsection}{Fall 2018 \#S5}{145}{section*.177}
+\contentsline {subsubsection}{Solution}{145}{section*.178}
+\contentsline {subsubsection}{Spring 2018 \#S2}{145}{section*.179}
+\contentsline {subsubsection}{Solution}{145}{section*.180}
+\contentsline {subsubsection}{Fall 2016 \#S9}{145}{section*.181}
+\contentsline {subsubsection}{Solution}{146}{section*.182}
+\contentsline {subsubsection}{Fall 2015 \#L1}{146}{section*.183}
+\contentsline {chapter}{\numberline {9}Old Exams}{147}{chapter.9}
+\contentsline {section}{\numberline {9.1}Spring 2019}{147}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Short Questions (Answer all six questions.)}{147}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}Long Questions (Answer all four questions.)}{148}{subsection.9.1.2}
+\contentsline {subsection}{\numberline {9.1.3}Solutions}{149}{subsection.9.1.3}
+\contentsline {section}{\numberline {9.2}Fall 2018}{150}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Short Questions (Answer five of six.)}{150}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Long Questions (Answer four of five.)}{151}{subsection.9.2.2}
+\contentsline {section}{\numberline {9.3}Spring 2018}{153}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}Short Questions (Answer six of seven.)}{153}{subsection.9.3.1}
+\contentsline {subsection}{\numberline {9.3.2}Long Questions (Answer three of four.)}{154}{subsection.9.3.2}
+\contentsline {section}{\numberline {9.4}Spring 2017}{156}{section.9.4}
+\contentsline {subsection}{\numberline {9.4.1}Short Questions (Answer all six.)}{156}{subsection.9.4.1}
+\contentsline {subsection}{\numberline {9.4.2}Long Questions (Answer three of four.)}{156}{subsection.9.4.2}
+\contentsline {section}{\numberline {9.5}Fall 2016}{158}{section.9.5}
+\contentsline {subsection}{\numberline {9.5.1}Short Questions. (Answer eight of ten.)}{158}{subsection.9.5.1}
+\contentsline {subsection}{\numberline {9.5.2}Notes}{159}{subsection.9.5.2}
+\contentsline {subsection}{\numberline {9.5.3}Long Questions. (Answer three of four.)}{160}{subsection.9.5.3}
+\contentsline {subsection}{\numberline {9.5.4}Notes}{161}{subsection.9.5.4}
+\contentsline {section}{\numberline {9.6}Fall 2015}{161}{section.9.6}
+\contentsline {subsection}{\numberline {9.6.1}Short Questions (Answer all eight.)}{161}{subsection.9.6.1}
+\contentsline {subsection}{\numberline {9.6.2}Long Questions (Answer three of four.)}{162}{subsection.9.6.2}
+\contentsline {section}{\numberline {9.7}Spring 2015}{163}{section.9.7}
+\contentsline {subsection}{\numberline {9.7.1}Short Questions}{163}{subsection.9.7.1}
+\contentsline {subsection}{\numberline {9.7.2}Long Questions (Answer three of four.)}{165}{subsection.9.7.2}

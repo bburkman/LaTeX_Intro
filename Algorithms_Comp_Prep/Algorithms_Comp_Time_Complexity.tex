@@ -1,0 +1,760 @@
+\section{Time Complexity}
+
+%%%%%%%%%%
+\subsection{Definitions}
+
+\begin{description}
+	\item [Big-$\Omega$] Asymptotic lower bound 
+	
+	$\Omega(g(n)) = \{ f(n): \text{ there exist positive constants $c$ and $n_0$}$
+	
+	\hfil $\text{ such that } 0 \le c\cdot g(n) \le f(n) \text{ for all } n \ge n_0 \}$
+
+	\item [Big-$O$] Asymptotic upper bound
+	
+	$O(g(n)) = \{ f(n): \text{ there exist positive constants $c$ and $n_0$}$
+	
+	\hfil $\text{ such that } 0 \le f(n) \le c\cdot g(n) \text{ for all } n \ge n_0 \}$
+
+	\item [Big-$\Theta$] Asymptotic tight bound
+	
+	
+	$\Theta(g(n)) = \{ f(n): \text{ there exist positive constants $c_1$, $c_2$, and $n_0$}$
+	
+	\hfil $\text{ such that } 0 \le c_1 \cdot g(n) \le f(n) \le c_2\cdot g(n) \text{ for all } n \ge n_0 \}$
+	
+	\item For any two functions $f(n)$ and $g(n)$, we have $$f(n) = \Theta(g(n)) \iff f(n) = \Omega(g(n)) \text{ and } f(n) = O(g(n))$$
+
+\end{description}
+
+%%%%%%%%%%
+\subsection{Algorithms}
+
+\subsubsection{Sorting Algorithms}
+
+\begin{tabular}{>{$}l<{$}ll}
+	\Omega (n \lg n) & Any comparison sort.  \cr
+	\Theta(n^2) & Insertion Sort \cr
+	\Theta(n \lg n) & Merge Sort \cr
+	O(n \lg n) & Heap Sort \cr
+	\Theta(n^2) & Quicksort worst time \cr
+	\Theta(n \lg n) & Quicksort average time, assuming distinct elements. \cr
+\end{tabular}
+
+\subsubsection{Graph Algorithms}
+
+\begin{tabular}{>{$}l<{$}ll}
+	O(V+E) & BFS \cr
+	\Theta(V+E) & DFS \cr
+	\Theta(V+E) & Strongly Connected Components, because it's DFS \cr
+	O(E \lg V) & Minimum Spanning Tree with either Kruskal or Prim \cr
+	O(V^2) & Dijkstra's Algorithm with vertices in an array \cr
+	O(E \lg V) & Dijkstra with vertices in a binary min-heap \cr
+	O(E |f*|) & Ford-Fulkerson if $f*$ is a maximum flow.  \cr
+\end{tabular}
+
+%%%%%%%%%%
+\subsection{Old Exam Problems}
+
+%%%%%
+\subsubsection{Spring 2019 \#S1}
+% Finished
+
+	% S19 S1
+	Give a big-O (upper bound) estimate for $f(n) = n \log(n!) + 3n^2 + 2n - 10000$, where $n$ is a positive integer.
+	
+\subsubsection{Solution}
+
+\begin{align*}
+	n! &= n \cdot (n-1) \cdot (n-2) \cdot \cdots \cdot 2 \cdot 1 \cr
+	\log(n!) &= \log(n) + \log(n-1) + \log(n-2) + \cdots + \log(2) + \log(1) \cr
+	 	&\le \log(n) + \log(n) + \log(n) + \cdots + \log(n) + \log(n) \cr
+		&= n \log(n) \cr
+	n \log(n!) &\le n^2 \log(n) \cr
+\end{align*}
+
+Claim:  $f(n)$ is $O(n^2 \log n)$.  
+
+To prove the claim, we need to show that there exist positive constants $c$ and $n_0$ such that 
+$$0 \le n^2 \log n + 3n^2 + 2n - 10000 \le c \cdot n^2 \log n \text{ for all } n \ge n_0$$
+
+Choose $c=6$ and $n_0 = 100$.  For $n \ge n_0$, $f(n)>0$, and
+
+\begin{align*}
+	n &\le n^2 \log n \cr
+	2n &\le 2n^2 \log n \cr
+	n^2 &\le n^2 \log n \cr
+	3n^2 &\le 3n^2 \log n \cr
+	n^2 \log n + 3n^2 + 2n - 10000 &\le n^2 \log n + 3n^2 \log n + 2n^2 \log n - 10000 \cr
+		&= 6n^2 \log n	- 10000 \cr
+		&\le 6n^2 \log n \cr
+\end{align*}
+
+Since there exist constants $c$ and $n_0$ such that $f(n) \le c \cdot n^2 \log n$ for all $n \ge n_0$, $f(n) = O(n^2 \log n)$.  
+
+
+%%%%%
+\subsubsection{Spring 2019 \#L4}
+% Finished
+
+	% S19 #L4
+	The Dijkstra's algorithm (DIJ) solves the single-source shortest-path problem in a weighted directed graph $G=(V,E)$.  Given the graph $G$ below, follow DIJ to find shortest paths from vertex $s$ to all other vertices, with all predecessor edges shaded and estimated distance values from $s$ to all vertices provided at the end of each iteration.  
+	
+	What is the time complexity of DIJ for a general graph $G=(V,E)$, if the candidate vertices are kept in a binary min-heap?
+		
+	
+\
+
+\hfil \begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (s) [label=left:{s}] at (0,0) {$0$};
+	\node [circle, draw] (t) [label=above:{t}] at (1,1) {$\infty$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$\infty$};
+	\node [circle, draw] (y) [label=below:{y}] at (1,-1) {$\infty$};
+	\node [circle, draw] (z) [label=below:{z}] at (3,-1) {$\infty$};
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[-triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+\end{tikzpicture}
+
+\subsubsection{Solution to Time Complexity Part}
+
+The time complexity for Dijkstra's algorithm with the vertices stored in an array is $O(V^2)$.  If the vertices are stored in a binary min-heap, the time complexity is $O(E \lg V)$, which is faster if the graph is sparse.  If the graph is complete, $E = V(V-1)/2$, which would make the binary min-heap option $O(V^2 \lg V)$, worse than the array option.  
+
+%%%%%
+\subsubsection{Fall 2018 \#S1}
+% Finished
+
+	% F18 #S1
+	The divide and conquer strategy (D\&C) has been used to solve problem efficiently to reduce the overall computational cost to certain types of problems.
+	\begin{enumerate}[label=\alph*.]
+		\item Which conditions have to be satisfied for D\&C to solve such problems successfully?  (Clearly state.)
+		\item Suppose the size of a problem involved in D\&C is $n=2^k$.  Let the cost in dividing the problems into an equal size is constant and the time to combine solutions to sub-problems is linear.  Write the recurrence relations and then find the tight bound in solving such problems using D\&C.  
+	\end{enumerate}
+	
+\subsubsection{Solution} \
+
+Divide and conquer should be used (instead of dynamic programming) when the subproblems will not be solved only once.  
+
+\begin{enumerate}[label=\alph*.]
+\item The steps for divide and conquer are:
+
+\begin{description}
+	\item [Divide] the problem into subproblems.
+	\item [Conquer] by recursively solving the subproblems. 
+	\item [Combine] the solutions.  
+\end{description}
+
+\item
+Let $T(n)$ be the running time of the algorithm for a problem of size $n$.  
+
+Let $a$ be the (small) size of the problem for which the solution time is constant.  
+
+Let $d$ be the constant cost of dividing the problems.  
+
+Let $cn$ be the linear cost of combining the solutions to the subproblems.  
+
+$$T(n) = 
+\begin{cases}
+	\Theta(1) & \text{if } n \le a \cr
+	2 T \left( \frac{n}{2} \right) + d + cn & \text{otherwise} \cr
+\end{cases}
+$$
+
+\begin{align*}
+	T(n) &= 2 T \left( \frac{n}{2} \right) + d + cn\cr
+	&= 2 \left[ 2T\left( \frac{n}{4} \right) + d + c\frac{n}{2} \right] + d + cn = 4T\left( \frac{n}{4} \right) + 3d + 2cn \cr
+	&= 4 \left[ 2T\left( \frac{n}{8} \right) + d + c \frac{n}{4} \right] + 3d + 2cn = 8T\left( \frac{n}{8} \right) + 7d + 3cn  \cr
+	&= \cdots = 2^k T \left( \frac{n}{2^k} \right) + (2^k-1)d + kcn \cr
+	& \text{Terminates when } n = 2^k \iff k = \lg n. \cr
+	&= (n-1)d + c n\lg n \cr
+	&= \Theta(n \lg n) \cr
+\end{align*}
+
+\end{enumerate}
+
+%%%%%	
+\subsubsection{Fall 2018 \$S2}	
+% Finished
+	% F18 #S2
+	\begin{enumerate}[label=\alph*.]
+		\item What is the lower bound for comparisons based sorting algorithm? (Outline the justification of your answer.)
+		\item What is the strategy behind greedy algorithm?
+	\end{enumerate}
+	
+\subsubsection{Solution}
+
+\begin{enumerate}[label=\alph*.]
+	\item The lower bound (in the worst case) to sort $n$ elements by any comparison sort is $\Omega ( n \lg n )$, because it has to make that many comparisons.  
+	\item The strategy behind a greedy algorithm is to find optimal solutions to subproblems, and build those together into an optimal solution to the original problem.  In order to work the problem must have the greedy choice property, that choosing locally optimal solutions leads to a globally optimal solution.  
+\end{enumerate}
+
+%%%%%
+\subsubsection{Fall 2018 \#S3}	
+% Finished. 
+	% F18 #S3
+	Find the tight bounds (by deriving their upper and lower bounds) of the following expressions.
+	\begin{enumerate}[label=\alph*.]
+		\item $\displaystyle T(n) = 2 \cdot T \left( \frac{n}{8} \right) + n^{\frac{1}{3}}$
+		
+		\vskip 6pt
+		
+		\item $T(n) = \log(n!)$
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}[label=\alph*.]
+
+\item 
+\begin{align*}
+	 T(n) &= 2T\left(\frac{n}{8} \right) + n^{1/3} \cr
+	 T\left( \frac{n}{8} \right) &= 2T\left(\frac{n}{8^2} \right) + \left(\frac{n}{8}\right)^{1/3} \cr
+	 T\left( \frac{n}{8^2} \right) &= 2T\left(\frac{n}{8^3} \right) + \left(\frac{n}{8^2}\right)^{1/3} \cr
+	 &\vdots \cr	 
+	 T(n) &= 2T\left(\frac{n}{8} \right) + n^{1/3} \cr
+	 &= 2\left(2T\left(\frac{n}{8^2} \right) + \left(\frac{n}{8}\right)^{1/3}  \right) + n^{1/3} = 4T\left(\frac{n}{8^2} \right) + 2n^{1/3} \cr
+	 &= 4 \left( 2T\left(\frac{n}{8^3} \right) + \left(\frac{n}{8^2}\right)^{1/3} \right) + 2n^{1/3} =  8T\left(\frac{n}{8^3} \right) + 3n^{1/3}\cr
+	 &= \log_8 n \cdot n^{1/3}\cr
+	 T(n) &= \Theta(\root 3 \of n \cdot \lg n) \cr
+\end{align*}
+
+Because we didn't use any inequalities, we get Big-$\Theta$.  
+
+\item Upper bound:
+
+\begin{align*}
+	\log(n!) &= \log(1 \cdot 2 \cdot \cdots \cdot n) \cr
+		&= \log 1 + \log 2 + \cdots + \log n \cr
+		&\le \log n + \log n + \cdots + \log n \cr
+		&= n \log n \cr
+\end{align*}
+
+So $\log(n!) = O(n \log n)$.  
+	
+Lower bound:
+
+\begin{align*}
+	\log(n!) &=\log(1 \cdot 2 \cdot \cdots \cdot \frac{n}{2} \cdot \cdots \cdot n) \cr
+		&= \log 1 + \log 2 + \cdots + \log \frac{n}{2} + \cdots + \log n\cr
+		&\ge \log \frac{n}{2} + \log \left( \frac{n}{2} + 1 \right) + \cdots + \log n \cr
+		&\ge \log \frac{n}{2} + \log \frac{n}{2} + \cdots + \log \frac{n}{2} \cr
+		&= \frac{n}{2} \log \frac{n}{2} \cr
+		&= \frac{n}{2} ( \log n - \log 2) \cr
+		&\ge \frac{1}{4} n \log n \text{\qquad for } n\ge 4 \cr
+\end{align*}
+
+So $\log(n!) = \Omega(n \log n)$.  
+
+Since $\log(n!) = \Omega(n \log n)$ and $\log(n!) = O(n \log n)$, therefore $\log(n!) = \Theta(n \log n)$.  
+
+\end{enumerate}
+	
+%%%%%
+\subsubsection{Fall 2018 \#L4}
+% Finished
+	%  F18 #L4
+	The Dijkstra's algorithm (DS) solves the single-source shortest-path problem in a weighted graph $G = (V,E)$ without negative weighted edges or cycles, by edge relaxation at one vertex at a time until all vertices are examined.  Given the graph $G$ below, follow DS to find the shortest paths from vertex $v_1$ to all other vertices, with all predecessor edges shaded and estimated distance values from $v_1$ to all vertices provided at the end.  Also list the sequence of vertices at which relaxation takes place.  
+	
+	What is the time complexity of DS for a general graph $G = (V,E)$ when candidate vertices are kept in an array?
+	
+\hfil	\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$] (v1) {};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {};
+		\foreach \from/\to/\label in {v2/v1/1, v3/v2/13, v4/v1/4, v4/v5/3, v5/v2/7, v6/v2/5}{
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/9}{
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v3/v6/6, v6/v3/2}{
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		}
+		\foreach \from/\to/\label in {}{
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+ 	\end{tikzpicture}
+	
+\subsubsection{Solution to Time Complexity Part}
+
+The time complexity of Dijkstra's algorithm, if the candidate vertices are kept in an array, is $O(V^2)$.  If the candidate vertices are kept in a binary min-heap, then the time complexity is $O(E\lg V)$, which is worse if the graph is dense or complete, but better if the graph is sparse.  
+
+%%%%%
+\subsubsection{Spring 2018 \#S1}
+% Finished
+
+	% S18 #S1
+	A problem with size $n$ follows a typical divide-and-conquer approach to have its time complexity of
+	$$T(n) = T\left(\frac{n}{4} \right) + T \left( \frac{3n}{4} \right) + c \cdot n$$
+	Solve $T(n)$.  (Show your work.)
+
+\subsubsection{Solution}
+
+\begin{align*}
+	T(n) &= T\left(\frac{n}{4} \right) + T \left( \frac{3n}{4} \right) + c \cdot n \cr
+		&= \left[ T\left(\frac{n}{16} \right) + T \left( \frac{3n}{16} \right) + \frac{cn}{4}\right] 
+		+ \left[ T\left(\frac{3n}{16} \right) + T \left( \frac{9n}{16} \right) + \frac{3cn}{4}\right]  + cn \cr
+		&= T\left(\frac{n}{4^2} \right) + 2T\left(\frac{3n}{4^2} \right) + T\left(\frac{3^2}{4^2}n \right) + 2cn \cr
+		& \text{The recursion terminates when }\left( \frac{3}{4} \right) ^k n = 1 \text{ in step } k = \log_{4/3}n \cr
+		T(n) &= (\log_{4/3} n )( c )( n )\cr
+		T(n) &= O(n \log n) \cr
+\end{align*}
+
+
+%%%%%
+\subsubsection{Spring 2018 \#S4}
+% Finished
+
+	% S18 #S4
+	The Dijkstra's algorithm (DS) solves the single-source shortest-path problem in a weighted graph $G = (V,E)$ without negative weighted edges or cycles, by edge relaxation at one vertex at a time until all vertices are examined.  Given the graph $G$ below, follow DS to find the shortest paths from vertex $v_1$ to all other vertices, with all predecessor edges shaded and estimated distance values from $v_1$ to all vertices provided at the end.  Also list the sequence of vertices at which relaxation takes place.  
+	
+	What is the time complexity of DS for a general graph $G = (V,E)$ when candidate vertices are kept in an array?
+	
+\hfil	\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$] (v1) {};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {};
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}{
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}{
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2}{
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		}
+		\foreach \from/\to/\label in {v2/v6/5}{
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+ 	\end{tikzpicture}
+	
+\subsubsection{Solution to the Time Complexity Part}
+
+When the vertices are kept in an array, the time complexity of Dijkstra's algorithm is $O(V^2)$.  When the vertices are kept in a binary min-heap, the time complexity is $O(E \lg V)$.  In a complete graph, $E = V(V-1)/2$, so for a complete (or even dense) graph, the array is faster, but for a sparse graph, the binary min-heap is faster.  
+
+%%%%%
+\subsubsection{Spring 2018 \#L3}
+% Finished
+
+	% S18 #L3
+	\begin{enumerate}[label=\alph*.]
+		\item To what extent the asymptotic upper bound and lower bound provide insight on running time of an algorithm.
+		\item Compare and contrast asymptotic tight bound to the average running time of an algorithm.
+		\item Consider the pseudo code of an algorithm given below.  
+		\begin{enumerate}
+			\item What the value $K$ in line 4 denote?
+			\item What the value $m$ in line 8 denote?
+			\item When the algorithm terminates, what does the value $m+K$ in line 9 denote?
+			\item Find the asymptotic tight bound of Algorithm Test below.
+		\end{enumerate}
+	\end{enumerate}
+	
+	\verb|AlgorithmTest(n)|
+	
+	\begin{lstlisting}[mathescape=True, numbers=left]
+$K=0$
+for $i=1$ to $n$
+	for $j=1$ to $i$
+		$K = K+1$
+$m=0$
+for $i=1$ to $n-1$
+	for $j=i+1$ to $n$
+		$m = m+1$
+return $(m+K)$
+	\end{lstlisting}
+
+\subsubsection{Solution}
+
+\begin{enumerate}[label=\alph*.]
+	\item The asymptotic lower bound gives the order of magnitude of the best-case running time of an algorithm for sufficiently large input size; for instance, the time to run a sorting algorithm on a list that is already sorted.  The asymptotic upper bound gives the worst-case run time.  
+	
+	The bounds do not give the actual run time, because there is a (perhaps unknown) constant not given.  The bounds show how the run time increases with input size.  If the upper bound of algorithm $A$ is of lower order than the lower bound of algorithm $B$, there is an input size for which $A$ is always faster than $B$, but the input size may be larger than an actual application.  
+	
+	\item There are some actual applications for which we have algorithms with an asymptotic tight bound, like multiplication of dense square matrices of uniform data types (like double-precision floats).  For matrices of size $n \times n$, the algorithm has asymptotic tight bound $\Theta(n^3)$, meaning that, for sufficiently large $n$, there exist constants $c_1$ and $c_2$ such that the algorithm takes between $c_1n^3$ and $c_2n^3$ units of time, but $c_1$ and $c_2$ are not given, and in practice depend on everything from the hardware to the weather.  The asymptotic tight bound also makes the heroic assumption that the data needed is always in the registers, when in fact, for sufficiently large $n$, the data may not fit in cache or even in main memory.  The asymptotic tight bound is not very useful in predicting average running time of a particular instance, but is useful in comparing algorithms and understanding how the average running time will increase with the size of the input.  
+	
+	\item 
+	\begin{enumerate}
+		\item The value of $K$ denotes the arithmetic series $1 + 2 + 3 + \cdots + n = (n)(n+1)/2$.
+		\item The value of $m$ denotes the arithmetic series $(n-1) + (n-2) + \cdots + 2 + 1 = (n-1)(n)/2$.  
+		\item The value of $m+K$ is $n^2$.  
+		\item The asymptotic tight bound is $\Theta(n^2)$, which is the number of additions and the number of calls to the inner loops.  The number of calls to the outer loops is $O(n)$, and there's some constant overhead. 
+	\end{enumerate}
+\end{enumerate}
+
+%%%%%
+\subsubsection{Spring 2017 \#S1}
+% Finished
+	% S17 #S1
+	\begin{enumerate}[label=\alph*.]
+		\item Define height balanced binary tree.
+		\item Write a pseudo code to determine whether a tree is height balanced?
+		\item Obtain the tight bound of your algorithm.
+	\end{enumerate}
+
+\subsubsection{Solutions}
+
+\begin{enumerate}[label=\alph*.]
+	\item A height balanced binary tree is a binary tree such that, for each node $x$, the heights of the left and right subtrees of $x$ differ by at most 1.  Alternately, the depths of the leaves differ by no more than 1.  
+	\item Run BFS from the root.  First use the results to find the largest distance from the root to another node.   This largest distance will be the height of the tree, $h$.  Use the BFS results a second time to count the nodes whose depth (distance from the root) is $h-1$.  Iff that number of nodes is $2^{h-1}$, then the tree is height balanced.  For example, if the 
+	\item The time complexity of BFS is $O(V+E)$.  In a binary tree, $E = V-1$ and $V \le 2^{h+1}-1 < 2 \cdot 2^h$, so the time complexity of BFS on a binary tree is $O(V) = O(2^h)$.  It would be nice if the time complexity for BFS on a binary tree were less than for a general tree, but to get the depths of the leaf nodes we have to visit every node, and there are $V$ of them, so we can't hope for time complexity less than linear in $V$.  Tracking the maximum distance and counting the number of nodes with depth $n-1$ are at worst linear in $V$, so the time complexity of the algorithm is $\Theta(V) = \Theta(2^h)$.  
+\end{enumerate}
+
+%%%%%
+\subsubsection{Spring 2017 \#S2}
+% Finished
+	% S17 #S2
+	Suppose you have keys of $N$ objects stored in an array in the ascending order of key values.  Also assume that there is duplicate entry in the key.  
+	\begin{enumerate}[label=\alph*.]
+		\item Describe an efficient algorithm with the pseudo code that helps you to search for the object given the key. (The algorithm must return null value if the key is not in the array.) 
+		\item Obtain the tight upper bound for your algorithm.
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}[label=\alph*.]
+	\item Take a divide-and-conquer approach, bracket-and-halving.
+	
+	Let 
+	$N$ be the number of objects, 
+	$k$ the key of the object we seek, and
+	$A$ the array.
+	
+	Assume that all division truncates.
+
+	Let $a=1$ and $c=N$.  
+	
+	At each step, 
+	
+	\begin{enumerate}[label=\arabic*.]
+		\item $b = (a+c)/2$
+		\item if $A[b]==k$, return $b$
+		\item if $a==c$, return NULL
+		\item if $A[b] < k$, then $a=b+1$
+		\item if $k < A[b]$, then $c = b-1$
+	\end{enumerate}
+	
+	\item The tight upper bound for the algorithm is $O(\lg N)$.  
+		
+\end{enumerate}
+
+%%%%%
+\subsubsection{Spring 2017 \#S4}
+% Finished
+	% S17 #S4
+	Find the tight for the recurrence relation below without using the master theorem (show all the steps):
+	$$T(n) = T(n/2) + n$$
+	
+\begin{align*}
+	T(n) &= T\left( \frac{n}{2} \right) + n \cr
+	&= \left[ T\left( \frac{n}{4} \right) + \frac{n}{2} \right] + n  = T \left( \frac{n}{4} \right) + \frac{3}{2} n\cr
+	&= \left[ T \left( \frac{n}{8} \right) + \frac{n}{4} \right] + \frac{3}{2}n = T \left( \frac{n}{8} \right) + \frac{7}{4}n \cr
+	&= \cdots = T \left( \frac{n}{2^k} \right) + \frac{2^k-1}{2^{k-1}} n \cr
+	& \qquad \frac{n}{2^k} = 1 \text{ when } k = \log_2 n \cr
+	&= (\log_2 n) \left( \frac{2^{\log_2 n} - 1}{2^{\log_2 n - 1}} n \right) 
+	= (\log_2 n) \left( \frac{n-1}{n/2} \right) n
+	= (\log_2 n) (2)(n-1) \cr
+	&= \Theta(n \log n) \cr
+\end{align*}
+
+%%%%%
+\subsubsection{Fall 2016 \#S1}
+% Finished
+	% F16 #S1
+	\begin{enumerate}
+		\item Define an upper and the tight time bound of an algorithm.
+		\item In which way the average time bound will add more value to the tight bound?
+	\end{enumerate}
+	
+\subsubsection{Solutions}
+
+\begin{enumerate}
+	\item The time bounds are a function of the size of the inputs into an algorithm, such that the running time should be proportional to the value of the function for the input size.  Because they are proportional, we can ignore constants.  The upper bound gives the worst-case scenario, and the lower bound gives the best-case.  If the ratio of the upper to the lower bound does not depend on the input size, then the tight bound exists.  
+	\item For a given input size, the running time is proportional to the tight bound, but the constant of proportionality is unknown.  The average time bound may give more information, equivalent to an estimate of the constant.  
+\end{enumerate}
+	
+%%%%%	
+\subsubsection{Fall 2016 \#S2}
+% Not finished
+	% F16 #S2	
+	\begin{enumerate}
+		\item Briefly describe a quick sort algorithm for sorting objects in an ascending order of their keys.
+		\item What is the best and worst case time complexity of quick sort and the reason for such complexity?
+	\end{enumerate}
+	
+\subsubsection{Solution}
+
+\begin{enumerate}
+	\item
+	
+	\item Worst case:  $\Theta (n^2)$.  
+\end{enumerate}
+	
+%%%%%
+\subsubsection{Fall 2016 \#S3}
+% Finished
+	% F16 #S3
+	Find the tight [time bound, time complexity?] for the recurrence relations without using the master theorem. 
+	\begin{enumerate}
+		\item $T(n) = T(n-2) + 2 \lg(n)$
+		\item $T(n) = T(\sqrt{n}) + \lg(n)$
+	\end{enumerate}
+	
+\subsubsection{Solution}
+	
+\begin{enumerate}
+	\item	$T(n) = T(n-2) + 2 \lg n$
+	
+\begin{align*}
+	T(n) &= T(n-2) + 2 \lg (n) \cr
+	&= \left[ T(n-4) + 2 \lg(n-2) \right] + 2 \lg (n)
+	= T(n-4) + 2 \lg[(n)(n-2)] \cr
+	&= \left[ T(n-6) + 2\lg(n-4) \right] + 2\lg[(n)(n-2)] 
+	= T(n-6) + 2\lg[(n)(n-2)(n-4)] \cr
+	&= \cdots = T(0) + 2 \lg[(n)(n-2)(n-4) \cdots (4)(2)] \cr
+ 	T(n) &= 2 \lg (n) + 2 \lg(n-2) + \cdots + 2 \lg 2 \cr
+\end{align*}
+
+Upper bound
+\begin{align*}
+ 	T(n) &= 2 \lg (n) + 2 \lg(n-2) + \cdots + 2 \lg 2 \cr
+	&\le 2 \lg n + 2 \lg n + \cdots + 2 \lg n \cr
+	&= 2 \frac{n}{2} \lg n \cr
+	&= n \lg n \cr
+	T(n) &= O(n \lg n) \cr
+\end{align*}
+
+Lower bound
+\begin{align*}
+	T(n) &= 2 \lg (n) + 2 \lg(n-2) + \cdots + 2\lg (n/2) + 2 \lg (n/2 - 2) + \cdots + 2 \lg 2 \cr
+	&\ge 2 \lg (n) + 2 \lg(n-2) + \cdots + 2\lg (n/2) \cr
+	&= 2 \lg n + 2 \lg n + \cdots 2 \lg n \cr
+	&\ge 2 \frac{n}{4} \lg n = \frac{1}{2} n \lg n \cr
+	T(n) &= \Omega(n \lg n) \cr
+\end{align*}
+
+Since $T(n) = O(n \lg n)$ and $T(n) = \Omega(n \lg n)$, $T(n) = \Theta(n \lg n)$.  	
+
+	\item $T(n) = T(\sqrt{n}) + \lg n$
+
+\begin{align*}
+	T(n) &= T\left( n^\frac{1}{2} \right) + \lg \left( n \right) \cr
+	&= \left[ T\left( n^\frac{1}{4} \right) + \lg \left( n^\frac{1}{2} \right) \right] + \lg \left( n \right) = T\left( n^\frac{1}{4} \right) + \lg n + \frac{1}{2} \lg n \cr
+	&= 	T \left( n^\frac{1}{2^k} \right) + \lg n + \frac{1}{2}\lg n + \cdots + \frac{1}{2^{k-1}} \lg n \cr
+	&= T\left( n^\frac{1}{2^k} \right) +  \left( 1 + \frac{1}{2} + \cdots + \frac{1}{2^{k-1}} \right) \lg n \cr
+	&= T\left( n^\frac{1}{2^k} \right) +  \left( \frac{2^k - 1}{2^{k-1}}  \right) \lg n\cr
+\end{align*}
+
+This problem is different from the others in that we can't directly find how many steps we'd need to take to get the argument of $T$ to be 1, because that only happens with rounding, but we can find where the argument is 2. 
+
+Solve for $k$ when the argument is 2, as an approximation of how many steps it takes to get to an argument of 1.  
+
+Alternately, rather that 2 we could use any constant, which would become the base of the log in the solution, so the solution would be within that constant of the number of steps.  
+
+\begin{align*}
+	n^\frac{1}{2^k} &= 2 \cr
+	\frac{1}{2^k} \log_2 n &= 1 \cr
+	\log_2 n &= 2^k \cr
+	\log_2 (\log_2 n) &= k \cr
+\end{align*}	
+
+\begin{align*}
+	T(n) &= T\left( n^\frac{1}{2^k} \right) +  \left( \frac{2^k - 1}{2^{k-1}}  \right) \lg n\cr
+	&= T\left( 2 \right) +  \left( \frac{\log_2 n - 1}{\log_2 n)/2}  \right) \lg n\cr
+	&= T\left( 2 \right) +  \left( \frac{\log_2 n - 1}{\log_2 n)/2}  \right) \lg n\cr
+	&= T\left( 2 \right) +  2(\log_2 n - 1)\cr
+	& \text{Because there was no inequality, we get $\Theta$.} \cr
+	&= \Theta(\lg n) \cr
+\end{align*}
+
+
+	
+\end{enumerate}
+	
+%%%%%
+\subsubsection{Fall 2016 \#S5}	
+% Not finished
+	% F16 #S5
+	Suppose there are $n$ clauses and $m$ variables (propositions) in a given $3-p$ sat problem.
+	\begin{itemize}
+		\item How many possible interpretations are there?
+		\item Find the tight bound of checking for satisfiability of the $n$ clauses.  
+	\end{itemize}
+	
+%%%%%
+\subsubsection{Fall 2015 \#S1}
+% Finished
+	% #F15 S1
+	Show that for arbitrary real constants $a$ and $b$ with $b>0$, we have $(n+a)^b = \Theta(n^b)$.
+	
+\subsubsection{Solution}
+	
+$f(n) = \Theta(g(n))$ iff there exist constants $c_1$, $c_2$, and $n_0$ such that for all $n\ge n_0$, $$0 \le c_1 g(n) \le f(n) \le c_2 g(n)$$
+
+Show that there exist positive constants $c_1$, $c_2$, and $n_0$ such that, for all $n \ge n_0$, $$0 \le c_1 n^b \le (n+a)^b \le c_2 n^b$$
+
+In the following calculations, assume $n \ge \max(-a,1)$ so that both $n$ and $n+a$ are positive.  Then because both sides of the inequality are positive and the logarithm is an increasing function, taking the log of both sides preserves the inequality.  
+
+\begin{align*}
+	c_1 n^b &\le (n+a)^b \cr
+	\log(c_1 n^b) &\le \log \left( \left(n+a\right)^b\right) \cr
+	\log c_1 + b \log n &\le b \log (n+a) \cr
+	\log c_1 &\le b \log (n+a) - b\log n \cr
+	\log c_1 &\le b \log \frac{n+a}{n} \cr
+	c_1 &\le \left( \frac{n+a}{n} \right)^b \cr		
+\end{align*}
+
+Similarly for $c_2$, so $\displaystyle c_1 \le \left( \frac{n+a}{n} \right)^b \le c_2$.  
+
+If $a\ge 0$, then $\frac{n+a}{n}$ decreases towards 1 as $n \to \infty$ and $\min \left( \frac{n+a}{n} \right)^b=1$.  
+
+If, however, $a<0$, then $\displaystyle\frac{n+a}{n}$ increases towards 1 as $n \to \infty$, and its min value in the range $[n_0, \infty)$ is $\displaystyle\frac{n_0+a}{n_0}$.  
+
+I will choose $n_0 = |a|+1$ so that $\displaystyle\min \left(\frac{n_0+a}{n_0} \right) = \frac{1}{|a|+1}$ and $\displaystyle\max\left(\frac{n_0+a}{n_0} \right) = \frac{2|a|+1}{|a|+1} < 2$
+
+Let $n_0 = |a|+1$,  $\displaystyle c_1 = \left(\frac{1}{|a|+1}\right)^b$ and $\displaystyle c_2 = 2^b$.  
+
+\
+
+Then for all $n \ge n_0$, $0 \le c_1 n^b \le (n+a)^b \le c_2n^b$, so $(n+a)^b = \Theta (n^b)$.  
+
+%%%%%
+\subsubsection{Fall 2015 \#S2}	
+% Finished
+	% #F15 S2
+	Use the recursion-tree technique to derive the tight lower and upper bounds of the recursion $T(n) = T(n/3) + T(2n/3) + cn$.
+	
+\
+
+[Note that this exercise is the example on page 91.]
+
+\subsubsection{Solution}
+
+\begin{align*}
+	T(n) &= T\left( \frac{1}{3} n \right) + T \left( \frac{2}{3} n \right) + cn \cr
+	&= \left[ T\left( \frac{1}{9} n \right) + T \left( \frac{2}{9} n \right) + \frac{1}{3}cn\right] + \left[ T\left( \frac{2}{9} n \right) + T \left( \frac{4}{9} n \right) + \frac{2}{3}cn\right] + cn \cr
+	&= T\left( \frac{1}{9} n \right) + 2T\left( \frac{2}{9} n \right) + T\left( \frac{4}{9} n \right) + 2cn \cr
+	&= \left[ T\left( \frac{1}{27} n \right) + T \left( \frac{2}{27} n \right) + \frac{1}{9}cn\right] + 
+	2\left[ T\left( \frac{2}{27} n \right) + T \left( \frac{4}{27} n \right) + \frac{2}{9}cn\right] + 
+	\left[ T\left( \frac{4}{27} n \right) + T \left( \frac{8}{27} n \right) + \frac{4}{9}cn\right] + 2cn \cr	
+	&= T\left( \frac{1}{27} n \right) + 2 T\left( \frac{2}{27} n \right) + 2T\left( \frac{4}{27} n \right) + T\left( \frac{8}{27} n \right) + 3cn \cr
+	&= \cdots = T\left( \frac{1}{3^k} n \right) + 2T\left( \frac{2}{3^k} n \right) + 2T\left( \frac{2^2}{3^k} n \right) + \cdots + 2T\left( \frac{2^{k-1}}{3^k} n \right) +  T\left( \frac{2^k}{3^k} n \right) + kcn \cr
+	& \text{Last step when } \frac{2^k}{3^k}n=1, \text{ which happens when } k = \log_{3/2}n \cr
+	&= \log_{3/2}n \cdot c \cdot n \cr
+	&= \Theta ( n \lg n) \cr
+\end{align*}
+
+%%%%%
+\subsubsection{Fall 2015 \#L3}	
+% Finished
+	% F15 # L3
+	In the following pseudo code, 
+	\begin{enumerate}[label=\alph*.]
+		\item Write the formula to determine the number of add operations at line 5 when the algorithm terminates.  
+		\item What is the space complexity?
+		\item Find the following time bounds of this algorithm:  Upper, lower, and tight. (Must show all the details of your work.)
+	\end{enumerate}
+	
+	\
+	
+	\verb|Algorithm Count|
+	
+	\begin{lstlisting}[numbers=left, mathescape=true]
+$Cnt = 0$
+for $i=1$ to $n$ do {
+	for $j = 1$ to $i^2$ do {
+		for $k=1$ to $j$ do {
+			$Cnt = Cnt + 1$
+		}
+	}
+}
+	\end{lstlisting}
+	
+	Note that I have corrected (?) line 3 from \ \verb|for j=i^2 to i do {|
+	
+	This question is weird.  
+	
+\subsubsection{Solution?}
+
+\begin{align*}
+	Cnt &= \sum_{i=1}^n \sum_{j=1}^{i^2} j \cr
+		&= 1 + (1+2+3+4) + (1 + 2 + \cdots + 9) + \cdots + \frac{n^2(n^2+1)}{2} \cr
+		&\le n \cdot \frac{n^2(n^2+1)}{2} \cr
+		&\le n^5 \cr
+\end{align*}
+
+The number of add operations is the same as the value of $Cut$.  I've found a upper bound.  
+
+%%%%%
+\subsubsection{Spring 2015 \#S1}
+% Finished
+	% S15 #S1
+	Briefly define upper, lower, and tight time bound of an algorithm.  How does an average time complexity related to any of these bounds?
+	
+\subsubsection{Solution}
+
+See Fall 2016 \#S1.  
+	
+%%%%%
+\subsubsection{Spring 2015 \#S2}
+% Not finished
+	% S15 \#S2
+	In terms of run time efficiency, compare and contrast quick sort and merge sort.  What is the best and the worst case time complexity of the quick sort algorithm?  Also state under what conditions one may expect these two extreme cases.
+	
+%%%%%
+\subsubsection{Spring 2015 \#S3}
+% Finished
+	% S15 #S3
+	Find the tight bounds of the following sums.  
+	\begin{enumerate}
+		\item $\displaystyle \sum_{i=1}^n i^3 a^i$ where $a$ is a constant greater than 1
+		\item $\displaystyle \sum_{i=1}^n \log (i^3)$ 
+	\end{enumerate}
+	
+\subsubsection{Solution}
+
+\begin{enumerate}
+	\item No idea.  
+	\item 
+Upper bound:
+\begin{align*}
+	\sum_{i=1}^n \log(i^3) &= 3 \sum_{i=1}^n \log(i) \cr
+		&= 3 ( \log 1 + \log 2 + \cdots + \log n) \cr
+		&= 3\log(1 \cdot 2 \cdot \cdots \cdot n) \cr
+		&= 3 \log(n!) \cr
+		&\le 3 \log(n^n) \cr
+		&= 3n \log n \cr
+		\sum_{i=1}^n \log(i^3) &= O(n \log n) \cr
+\end{align*}
+
+Lower bound:  
+\begin{align*}
+	\sum_{i=1}^n \log(i^3) &= 3 \sum_{i=1}^n \log(i) \cr
+		&= 3 ( \log 1 + \log 2 + \cdots + \log(n/2) + \cdots + \log n) \cr
+		&\ge 3(\log(n/2) + \log(n/2+1) + \cdots + \log n) \cr
+		&\ge 3(\log(n/2) + \log(n/2) + \cdots + \log(n/2)) \cr
+		&= 3(n/2)(\log(n/2)) \cr
+		&= \frac{3n}{2}(\log n - \log 2) \cr
+		&\ge \frac{3n}{4}\log n \text{\qquad for } n\ge 4 \cr
+		&= \frac{3}{4} n \log n \cr
+	\sum_{i=1}^n \log(i^3) &= \Omega(n \log n) \cr
+\end{align*}
+
+Since $\displaystyle \sum_{i=1}^n \log(i^3) = \Omega(n \log n)$ and 
+$\displaystyle \sum_{i=1}^n \log(i^3) = O(n \log n)$, 
+$\displaystyle \sum_{i=1}^n \log(i^3) = \Theta(n \log n)$.
+\end{enumerate}
+
+

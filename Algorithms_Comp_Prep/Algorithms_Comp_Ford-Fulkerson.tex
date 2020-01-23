@@ -1,0 +1,177 @@
+\section{Ford-Fulkerson Algorithm}
+
+
+%%%%%%%%%
+\subsection{Old Exam Problems}
+
+%%%%%
+\subsubsection{Spring 2019 \#L3}
+
+	% S19 #L3
+Follow the Ford-Fulkerson Algorithm to compute the max flow of the flow network illustrated below.  Show each step to compute the max flow and also show the min cut of the flow network.  
+	\index{Max Flow!S19 \#L3}
+	\index{Min Cut!S19 \#L3}
+	\index{Ford-Fulkerson Algorithm!S19 \#L3}
+	
+\	
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (1,1) {$A$};
+	\node [circle, draw] (B) at (3,1) {$B$};
+	\node [circle, draw] (C) at (1,-1) {$C$};
+	\node [circle, draw] (D) at (3,-1) {$D$};
+	\node [circle, draw] (T) at (4,0) {$T$};
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {10} (A);
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {10} (C);
+	\draw [-triangle 60] (A) -- node [midway, circle, fill=white] {12} (B);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6} (D);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {5} (A);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {5} (B);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {6} (D);
+	\draw [-triangle 60] (D) -- node [midway, circle, fill=white] {14} (T);
+\end{tikzpicture}	
+
+\subsubsection{Solution}
+
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (2,1) {$A$};
+	\node [circle, draw] (B) at (4,1) {$B$};
+	\node [circle, draw] (C) at (2,-1) {$C$};
+	\node [circle, draw] (D) at (4,-1) {$D$};
+	\node [circle, draw] (T) at (6,0) {$T$};
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {0/10} (A);
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {0/10} (C);
+	\draw [-triangle 60] (A) -- node [midway, circle, fill=white] {0/12} (B);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {0/6} (D);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {0/6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (A);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (B);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/6} (D);
+	\draw [-triangle 60] (D) -- node [midway, circle, fill=white] {0/14} (T);
+\end{tikzpicture}	
+
+\	
+
+Add 6 to this path.
+
+\
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (2,1) {$A$};
+	\node [circle, draw] (B) at (4,1) {$B$};
+	\node [circle, draw] (C) at (2,-1) {$C$};
+	\node [circle, draw] (D) at (4,-1) {$D$};
+	\node [circle, draw] (T) at (6,0) {$T$};
+	\draw [-triangle 60, ultra thick] (S) -- node [midway, circle, fill=white] {6/10} (A);
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {0/10} (C);
+	\draw [-triangle 60, ultra thick] (A) -- node [midway, circle, fill=white] {6/12} (B);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {0/6} (D);
+	\draw [-triangle 60, ultra thick] (B) -- node [midway, circle, fill=white] {6/6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (A);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (B);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/6} (D);
+	\draw [-triangle 60] (D) -- node [midway, circle, fill=white] {0/14} (T);
+\end{tikzpicture}	
+
+\	
+
+Add 6 to this path.
+
+\
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (2,1) {$A$};
+	\node [circle, draw] (B) at (4,1) {$B$};
+	\node [circle, draw] (C) at (2,-1) {$C$};
+	\node [circle, draw] (D) at (4,-1) {$D$};
+	\node [circle, draw] (T) at (6,0) {$T$};
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {6/10} (A);
+	\draw [-triangle 60, ultra thick] (S) -- node [midway, circle, fill=white] {6/10} (C);
+	\draw [-triangle 60] (A) -- node [midway, circle, fill=white] {6/12} (B);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {0/6} (D);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6/6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (A);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (B);
+	\draw [-triangle 60, ultra thick] (C) -- node [midway, circle, fill=white] {6/6} (D);
+	\draw [-triangle 60, ultra thick] (D) -- node [midway, circle, fill=white] {6/14} (T);
+\end{tikzpicture}	
+
+\	
+
+Add 4 to this path.
+
+\
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (2,1) {$A$};
+	\node [circle, draw] (B) at (4,1) {$B$};
+	\node [circle, draw] (C) at (2,-1) {$C$};
+	\node [circle, draw] (D) at (4,-1) {$D$};
+	\node [circle, draw] (T) at (6,0) {$T$};
+	\draw [-triangle 60, ultra thick] (S) -- node [midway, circle, fill=white] {10/10} (A);
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {6/10} (C);
+	\draw [-triangle 60, ultra thick] (A) -- node [midway, circle, fill=white] {10/12} (B);
+	\draw [-triangle 60, ultra thick] (B) -- node [midway, circle, fill=white] {4/6} (D);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6/6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (A);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (B);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {6/6} (D);
+	\draw [-triangle 60, ultra thick] (D) -- node [midway, circle, fill=white] {10/14} (T);
+\end{tikzpicture}	
+
+\	
+
+Add 2 to this path.
+
+\
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (2,1) {$A$};
+	\node [circle, draw] (B) at (4,1) {$B$};
+	\node [circle, draw] (C) at (2,-1) {$C$};
+	\node [circle, draw] (D) at (4,-1) {$D$};
+	\node [circle, draw] (T) at (6,0) {$T$};
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {10/10} (A);
+	\draw [-triangle 60, ultra thick] (S) -- node [midway, circle, fill=white] {8/10} (C);
+	\draw [-triangle 60] (A) -- node [midway, circle, fill=white] {10/12} (B);
+	\draw [-triangle 60, ultra thick] (B) -- node [midway, circle, fill=white] {6/6} (D);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6/6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (A);
+	\draw [-triangle 60, ultra thick] (C) -- node [midway, circle, fill=white] {2/5} (B);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {6/6} (D);
+	\draw [-triangle 60, ultra thick] (D) -- node [midway, circle, fill=white] {12/14} (T);
+\end{tikzpicture}	
+
+
+$|f| = 18$
+
+Min cut:  $S = \{S,A, B, C\}$, $T = \{D, T\}$
+
+\
+	
+\hfil 	\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (S) at (0,0) {$S$};
+	\node [circle, draw] (A) at (2,1) {$A$};
+	\node [circle, draw] (B) at (4,1) {$B$};
+	\node [circle, draw] (C) at (2,-1) {$C$};
+	\node [circle, draw, fill=white!80!black] (D) at (4,-1) {$D$};
+	\node [circle, draw, fill=white!80!black] (T) at (6,0) {$T$};
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {10/10} (A);
+	\draw [-triangle 60] (S) -- node [midway, circle, fill=white] {8/10} (C);
+	\draw [-triangle 60] (A) -- node [midway, circle, fill=white] {10/12} (B);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6/6} (D);
+	\draw [-triangle 60] (B) -- node [midway, circle, fill=white] {6/6} (T);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {0/5} (A);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {2/5} (B);
+	\draw [-triangle 60] (C) -- node [midway, circle, fill=white] {6/6} (D);
+	\draw [-triangle 60] (D) -- node [midway, circle, fill=white] {12/14} (T);
+\end{tikzpicture}	
+

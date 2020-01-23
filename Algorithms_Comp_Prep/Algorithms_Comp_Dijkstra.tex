@@ -1,0 +1,542 @@
+\section{Dijkstra}
+
+BFS gives the single-source shortest path for an unweighted (possibly directed) graph.  
+
+Dijkstra's algorithm gives the single-source shortest path for a weighted, directed graph with no edges of negative weight.  
+
+The process of relaxing an edge $(u,v)$ consists of testing whether we can improve the shortest path to $v$ found so far by going through $u$, and, if so, updating $v.d$ and $v.\pi$.  
+
+In general, the algorithm takes $O(V^2)$ if the candidate vertices are kept in an array.  
+
+If the graph is sparse, implementing the min-priority queue with a binary min-heap and get it down to $O(E \lg V)$.  
+
+\subsection{Old Exam Questions}
+
+\subsubsection{Fall 2018 \#L4}
+	%  F18 #L4
+	The Dijkstra's algorithm (DS) solves the single-source shortest-path problem in a weighted graph $G = (V,E)$ without negative weighted edges or cycles, by edge relaxation at one vertex at a time until all vertices are examined.  Given the graph $G$ below, follow DS to find the shortest paths from vertex $v_1$ to all other vertices, with all predecessor edges shaded and estimated distance values from $v_1$ to all vertices provided at the end.  Also list the sequence of vertices at which relaxation takes place.  
+	
+	What is the time complexity of DS for a general graph $G = (V,E)$ when candidate vertices are kept in an array?
+	
+\hfil	\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$] (v1) {};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {};
+		\foreach \from/\to/\label in {v2/v1/1, v3/v2/13, v4/v1/4, v4/v5/3, v5/v2/7, v6/v2/5}{
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/9}{
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v3/v6/6, v6/v3/2}{
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		}
+		\foreach \from/\to/\label in {}{
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+ 	\end{tikzpicture}
+	
+\subsubsection{Spring 2018 \#S4 [Same as above]}
+
+	% S18 #S4
+	The Dijkstra's algorithm (DS) solves the single-source shortest-path problem in a weighted graph $G = (V,E)$ without negative weighted edges or cycles, by edge relaxation at one vertex at a time until all vertices are examined.  Given the graph $G$ below, follow DS to find the shortest paths from vertex $v_1$ to all other vertices, with all predecessor edges shaded and estimated distance values from $v_1$ to all vertices provided at the end.  Also list the sequence of vertices at which relaxation takes place.  
+	
+	What is the time complexity of DS for a general graph $G = (V,E)$ when candidate vertices are kept in an array?
+	
+\hfil	\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$] (v1) {};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {};
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}{
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}{
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2}{
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		}
+		\foreach \from/\to/\label in {v2/v6/5}{
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+ 	\end{tikzpicture}
+
+%%%%%
+\subsubsection{Solution}	
+	
+\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$, fill=gray] (v1) {\color{white}0};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {\color{black}$\infty$};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {\color{black}$\infty$};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {\color{black}$\infty$};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {\color{black}$\infty$};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {\color{black}$\infty$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2}
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {v2/v6/5}
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+	\node [right = 1cm of v3] () {Initialize-single-source ($G,v_1$)};
+	\node [below right = 5mm and 1cm of v3] {$Q = \{v_1,v_2, v_3, v_4, v_5, v_6\}$ };
+		
+ 	\end{tikzpicture}
+	
+\
+
+\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$, fill=black] (v1) {\color{white}0};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {\color{black}$1$};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {\color{black}$\infty$};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {\color{black}$4$};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {\color{black}$11$};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {\color{black}$\infty$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2}
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {v2/v6/5}
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {}
+			\path [ultra thick, -triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+	\node [below right = 0 cm and 1cm of v3] () {Extract $v_1$.};
+	\node [below right = 6mm and 1cm of v3] {$Q = \{v_2, v_3, v_4, v_5, v_6\}$ };
+	\node [below right = 12mm and 1cm of v3] {Update $v_2$, $v_4$, and $v_5$.};
+		
+ 	\end{tikzpicture}
+	
+\
+
+\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$, fill=black] (v1) {\color{white}0};
+		\node [circle, draw, label=above:$v_2$, right=of v1, fill=gray] (v2) {\color{white}$1$};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {\color{black}$10$};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {\color{black}$4$};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {\color{black}$11$};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {\color{black}$6$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2, v6/v2/5}
+			\path [-triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v2/v6/5}
+			\path [ultra thick, -triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+	\node [below right = 0 cm and 1cm of v3] () {Extract $v_2$.};
+	\node [below right = 6mm and 1cm of v3] {$Q = \{v_3, v_4, v_5, v_6\}$ };
+	\node [below right = 12mm and 1cm of v3] {Update $v_3$, and $v_6$.};
+		
+ 	\end{tikzpicture}
+	
+\
+
+\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$, fill=black] (v1) {\color{white}0};
+		\node [circle, draw, label=above:$v_2$, right=of v1, fill=black] (v2) {\color{white}$1$};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {\color{black}$10$};
+		\node [circle, draw, label=below:$v_4$, below= of v1, fill=gray] (v4) {\color{white}$4$};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {\color{black}$7$};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {\color{black}$6$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2, v6/v2/5}
+			\path [-triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v2/v6/5}
+			\path [ultra thick, -triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+	\node [below right = 0 cm and 1cm of v3] () {Extract $v_4$.};
+	\node [below right = 6mm and 1cm of v3] {$Q = \{v_3, v_5, v_6\}$ };
+	\node [below right = 12mm and 1cm of v3] {Update $v_5$.};
+	\node [below right = 18mm and 1cm of v3] {Update the path from $v_1$ to $v_5$ to $v_1,v_4,v_5$.};
+		
+ 	\end{tikzpicture}
+	
+\
+
+\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$, fill=black] (v1) {\color{white}0};
+		\node [circle, draw, label=above:$v_2$, right=of v1, fill=black] (v2) {\color{white}$1$};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {\color{black}$8$};
+		\node [circle, draw, label=below:$v_4$, below= of v1, fill=black] (v4) {\color{white}$4$};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {\color{black}$7$};
+		\node [circle, draw, label=below:$v_6$, right=of v5, fill=gray] (v6) {\color{white}$6$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2, v6/v2/5}
+			\path [-triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v4/v5/3}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v2/v6/5, v6/v3/2}
+			\path [ultra thick, -triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+	\node [below right = 0 cm and 1cm of v3] () {Extract $v_6$.};
+	\node [below right = 6mm and 1cm of v3] {$Q = \{v_3, v_5\}$ };
+	\node [below right = 12mm and 1cm of v3] {Update $v_3$.};
+	\node [below right = 18mm and 1cm of v3] {Update the path from $v_1$ to $v_3$ to $v_1,v_2,v_6,v_3$.};
+		
+ 	\end{tikzpicture}
+	
+\
+
+\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$, fill=black] (v1) {\color{white}0};
+		\node [circle, draw, label=above:$v_2$, right=of v1, fill=black] (v2) {\color{white}$1$};
+		\node [circle, draw, label=above:$v_3$, right=of v2, fill=gray] (v3) {\color{white}$8$};
+		\node [circle, draw, label=below:$v_4$, below= of v1, fill=black] (v4) {\color{white}$4$};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {\color{black}$7$};
+		\node [circle, draw, label=below:$v_6$, right=of v5, fill=black] (v6) {\color{white}$6$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2, v6/v2/5}
+			\path [-triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v4/v5/3}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v2/v6/5, v6/v3/2}
+			\path [ultra thick, -triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+	\node [below right = 0 cm and 1cm of v3] () {Extract $v_3$.};
+	\node [below right = 6mm and 1cm of v3] {$Q = \{v_5\}$ };
+		
+ 	\end{tikzpicture}
+	
+\
+
+\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$, fill=black] (v1) {\color{white}0};
+		\node [circle, draw, label=above:$v_2$, right=of v1, fill=black] (v2) {\color{white}$1$};
+		\node [circle, draw, label=above:$v_3$, right=of v2, fill=black] (v3) {\color{white}$8$};
+		\node [circle, draw, label=below:$v_4$, below= of v1, fill=black] (v4) {\color{white}$4$};
+		\node [circle, draw, label=below:$v_5$, right=of v4, fill=gray] (v5) {\color{white}$7$};
+		\node [circle, draw, label=below:$v_6$, right=of v5, fill=black] (v6) {\color{white}$6$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v2/v3/9, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2, v6/v2/5}
+			\path [-triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v4/v5/3}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v2/v6/5, v6/v3/2}
+			\path [ultra thick, -triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+	\node [below right = 0 cm and 1cm of v3] () {Extract $v_5$.};
+	\node [below right = 6mm and 1cm of v3] {$Q = \{\}$ };
+		
+ 	\end{tikzpicture}
+	
+\
+
+\hfil\begin{tikzpicture}[node distance = 1.5cm and 3cm]
+		\node [circle, draw, label=above:$v_1$, fill=black] (v1) {\color{white}0};
+		\node [circle, draw, label=left:$v_2$, below left=of v1, fill=black] (v2) {\color{white}$1$};
+		\node [circle, draw, label=right:$v_4$, below right= of v1, fill=black] (v4) {\color{white}$4$};
+		\node [circle, draw, label=right:$v_5$, below=of v4, fill=black] (v5) {\color{white}$7$};
+		\node [circle, draw, label=left:$v_6$, below=of v2, fill=black] (v6) {\color{white}$6$};
+		\node [circle, draw, label=left:$v_3$, below=of v6, fill=black] (v3) {\color{white}$8$};
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v4/v5/3, v5/v2/7}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/5}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v3/v6/8, v6/v3/2, v6/v2/5}
+			\path [-triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {v2/v3/9}
+			\path [-triangle 60] (\from) edge [bend left=40] node [midway, rectangle, fill=white] {\label} (\to);
+
+		\foreach \from/\to/\label in {v1/v2/1, v1/v4/4, v4/v5/3}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, -triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		\foreach \from/\to/\label in {v2/v6/5, v6/v3/2}
+			\path [ultra thick, -triangle 60] (\from) edge [bend left=20] node [midway, rectangle, fill=white] {\label} (\to);
+		\foreach \from/\to/\label in {}
+			\draw [ultra thick, triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+
+ 	\end{tikzpicture}
+	
+	
+
+%%%%%%%
+\subsubsection{Spring 2019 \#L4}
+
+
+	% S19 #L4
+	The Dijkstra's algorithm (DIJ) solves the single-source shortest-path problem in a weighted directed graph $G=(V,E)$.  Given the graph $G$ below, follow DIJ to find shortest paths from vertex $s$ to all other vertices, with all predecessor edges shaded and estimated distance values from $s$ to all vertices provided at the end of each iteration.  
+	
+	What is the time complexity of DIJ for a general graph $G=(V,E)$, if the candidate vertices are kept in a binary min-heap?
+		
+	\index{Dijkstra's Algorithm!S19 \#L4}
+	\index{Heaps!Binary Min-Heap!S19 \#L4}
+	\index{Time Complexity!S19 \#L4}
+	
+\
+
+\hfil \begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (s) [label=left:{s}] at (0,0) {$0$};
+	\node [circle, draw] (t) [label=above:{t}] at (1,1) {$\infty$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$\infty$};
+	\node [circle, draw] (y) [label=below:{y}] at (1,-1) {$\infty$};
+	\node [circle, draw] (z) [label=below:{z}] at (3,-1) {$\infty$};
+	
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[-triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+\end{tikzpicture}
+
+\
+
+[Note that the diagram is the example in the textbook on page 659.]
+
+\
+
+\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw] (s) [label=left:{s}] at (0,0) {$0$};
+	\node [circle, draw] (t) [label=above:{t}] at (1,1) {$\infty$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$\infty$};
+	\node [circle, draw] (y) [label=below:{y}] at (1,-1) {$\infty$};
+	\node [circle, draw] (z) [label=below:{z}] at (3,-1) {$\infty$};
+	
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[-triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+	
+	\node [right] () at (4,0) {$Q = \{s, t, x, y, z\}, \ S = \{ \}$ };
+
+\end{tikzpicture}
+
+\
+
+\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw, fill=gray] (s) [label=left:{s}] at (0,0) {\color{white}$0$};
+	\node [circle, draw] (t) [label=above:{t}] at (1,1) {$10$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$\infty$};
+	\node [circle, draw] (y) [label=below:{y}] at (1,-1) {$5$};
+	\node [circle, draw] (z) [label=below:{z}] at (3,-1) {$\infty$};
+	
+	\draw[ultra thick, -triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[ultra thick, -triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[-triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+	
+	\node [right] () at (4,0.5) {Extract $s$.};
+	\node [right] () at (4,0) {$Q = \{t, x, y, z\}, \ S = \{ s \}$ };
+	\node [right] () at (4,-0.5) {Update $t$ and $y$.  };
+	
+
+\end{tikzpicture}
+
+
+\
+
+\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw, fill=black] (s) [label=left:{s}] at (0,0) {\color{white}$0$};
+	\node [circle, draw] (t) [label=above:{t}] at (1,1) {$8$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$14$};
+	\node [circle, draw, fill=gray] (y) [label=below:{y}] at (1,-1) {\color{white}$5$};
+	\node [circle, draw] (z) [label=below:{z}] at (3,-1) {$7$};
+	
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[ultra thick, -triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[-triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[ultra thick, bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[ultra thick, -triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[ultra thick, -triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+	
+	\node [right] () at (4,0.5) {Extract $y$.};
+	\node [right] () at (4,0) {$Q = \{t, x, z\}, \ S = \{ s, y \}$ };
+	\node [right] () at (4,-0.5) {Update $t$, $x$, and $z$.  };
+	\node [right] () at (4,-1) {Change the path from $s$ to $t$ from $s,t$ to $s,y,t$.};
+	
+
+\end{tikzpicture}
+
+\
+
+\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw, fill=black] (s) [label=left:{s}] at (0,0) {\color{white}$0$};
+	\node [circle, draw] (t) [label=above:{t}] at (1,1) {$8$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$13$};
+	\node [circle, draw, fill=black] (y) [label=below:{y}] at (1,-1) {\color{white}$5$};
+	\node [circle, draw, fill=gray] (z) [label=below:{z}] at (3,-1) {\color{white}$7$};
+	
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[ultra thick, -triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[-triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[ultra thick, bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[ultra thick, -triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[ultra thick, bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+	
+	\node [right] () at (4,0.5) {Extract $z$.};
+	\node [right] () at (4,0) {$Q = \{t, x\}, \ S = \{ s, y, z \}$ };
+	\node [right] () at (4,-0.5) {Update $x$.  };
+	\node [right] () at (4,-1) {Change the path from $s$ to $x$ from $s,y,x$ to $s,y,z,x$.};
+	
+
+\end{tikzpicture}
+
+\
+
+\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw, fill=black] (s) [label=left:{s}] at (0,0) {\color{white}$0$};
+	\node [circle, draw, fill=gray] (t) [label=above:{t}] at (1,1) {\color{white}$8$};
+	\node [circle, draw] (x) [label=above:{x}] at (3,1) {$9$};
+	\node [circle, draw, fill=black] (y) [label=below:{y}] at (1,-1) {\color{white}$5$};
+	\node [circle, draw, fill=black] (z) [label=below:{z}] at (3,-1) {\color{white}$7$};
+	
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[ultra thick, -triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[ultra thick, -triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[ultra thick, bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[ultra thick, -triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+	
+	\node [right] () at (4,0.5) {Extract $t$.};
+	\node [right] () at (4,0) {$Q = \{x\}, \ S = \{ s, t, y, z \}$ };
+	\node [right] () at (4,-0.5) {Update $x$.  };
+	\node [right] () at (4,-1) {Change the path from $s$ to $x$ from $s,y,z,x$ to $s,y,t,x$.};
+	
+
+\end{tikzpicture}
+
+\
+
+\begin{tikzpicture}[x=20mm, y=15mm]
+	\node [circle, draw, fill=black] (s) [label=left:{s}] at (0,0) {\color{white}$0$};
+	\node [circle, draw, fill=black] (t) [label=above:{t}] at (1,1) {\color{white}$8$};
+	\node [circle, draw, fill=gray] (x) [label=above:{x}] at (3,1) {\color{white}$9$};
+	\node [circle, draw, fill=black] (y) [label=below:{y}] at (1,-1) {\color{white}$5$};
+	\node [circle, draw, fill=black] (z) [label=below:{z}] at (3,-1) {\color{white}$7$};
+	
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[ultra thick, -triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[ultra thick, -triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[ultra thick, bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[ultra thick, -triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+	
+	\node [right] () at (4,0.5) {Extract $x$.};
+	\node [right] () at (4,0) {$Q = \{\}, \ S = \{ s, t, x, y, z \}$ };
+	
+
+\end{tikzpicture}
+
+\
+
+\begin{tikzpicture}[x=20mm, y=25mm]
+	\node [circle, draw, fill=black] (s) [label=above:{s}] at (0,0) {\color{white}$0$};
+	\node [circle, draw, fill=black] (t) [label=left:{t}] at (-1,-2) {\color{white}$8$};
+	\node [circle, draw, fill=black] (x) [label=left:{x}] at (-1,-3) {\color{white}$9$};
+	\node [circle, draw, fill=black] (y) [label=right:{y}] at (0,-1) {\color{white}$5$};
+	\node [circle, draw, fill=black] (z) [label=right:{z}] at (1,-2) {\color{white}$7$};
+	
+	\draw[-triangle 60] (s) to node[circle, fill=white, midway]{10} (t);
+	\draw[ultra thick, -triangle 60] (s) to node[circle, fill=white, midway]{5} (y);
+	\draw[ultra thick, -triangle 60] (t) to node[circle, fill=white, midway]{1} (x);
+	\draw[bend right=20, -triangle 60] (t) to node[circle, fill=white, midway]{2} (y);
+	\draw[bend right=20, -triangle 60] (x) to node[circle, fill=white, midway]{4} (z);
+	\draw[ultra thick, bend right=20, -triangle 60] (y) to node[circle, fill=white, midway]{3} (t);
+	\draw[-triangle 60] (y) to node[circle, fill=white, midway]{9} (x);
+	\draw[ultra thick, -triangle 60] (y) to node[circle, fill=white, midway]{2} (z);
+	\draw[-triangle 60] (z) to node[circle, fill=white, pos=0.3]{7} (s);
+	\draw[bend right=20, -triangle 60] (z) to node[circle, fill=white, midway]{6} (x);
+	
+\end{tikzpicture}
+

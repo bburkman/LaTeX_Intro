@@ -1,0 +1,187 @@
+%%%%%%%%%%%%%%%%%%%%%
+\section{Fall 2018}
+
+\subsection{Short Questions (Answer five of six.)}
+
+\begin{enumerate}
+	% F18 #S1
+	\item The divide and conquer strategy (D\&C) has been used to solve problem efficiently to reduce the overall computational cost to certain types of problems.
+	\begin{enumerate}[label=\alph*.]
+		\item Which conditions have to be satisfied for D\&C to solve such problems successfully?  (Clearly state.)
+		\item Suppose the size of a problem involved in D\&C is $n=2^k$.  Let the cost in dividing the problems into an equal size is constant and the time to combine solutions to sub-problems is linear.  Write the recurrence relations and then find the tight bound in solving such problems using D\&C.  
+	\end{enumerate}
+	
+	\index{Divide and Conquer!F18 \#S1}
+	\index{Recurrence!F18 \#S1}
+	\index{Time Complexity!Big-$\Theta$!F18 \#S1}
+	
+	% F18 #S2
+	\item \begin{enumerate}[label=\alph*.]
+		\item What is the lower bound for comparisons based sorting algorithm? (Outline the justification of your answer.)
+		\item What is the strategy behind greedy algorithm?
+	\end{enumerate}
+	
+	\index{Sorting Algorithms!Comparison Based!F18 \#S2}
+	\index{Time Complexity!Big-$\Omega$!F18 \#S2}
+	\index{Greedy Algorithms!F18 \#S2}
+	
+	% F18 #S3
+	\item Find the tight bounds (by deriving their upper and lower bounds) of the following expressions.
+	\begin{enumerate}[label=\alph*.]
+		\item $\displaystyle T(n) = 2 \cdot T \left( \frac{n}{8} \right) + n^{\frac{1}{3}}$
+		
+		\vskip 6pt
+		
+		\item $T(n) = log(n!)$
+	\end{enumerate}
+	
+	\index{Time Complexity!Big-$\Theta$!F18 \#S3}
+	\index{Recurrence!F18 \#S3}
+	
+	% F18 #S4
+	\item Briefly describe what is dynamic programming.   Can one apply it to solve any optimization problem?  If yes, explain why; if not, what particular conditions must be met.
+	
+	\index{Dynamic Programming!F18 \#S4}
+	
+	% F18 #S5
+	\item The utilization efficiency of a hash table depends heavily on its hashing function(s) employed.  Describe with a diagram to illustrate how a multiplication method of hashing functions works on a machine with the word size of $w$ bits for a hash table with $2^p$ entries, $p<w$.  
+	
+	\index{Hash!Utilization Efficiency!F18 \#S5}
+	\index{Hash!Multiplication Method!F18 \#S5}
+	\index{Hash!Word Size!F18 \#S5}
+	
+	% F18 #S6
+	\item Show your construction of an optimal Huffman code for the set of 7 frequencies:  $\mathbf{a}: 3, \mathbf{b}: 12, \mathbf{c}: 5, \mathbf{d}: 20, \mathbf{e}:16, \mathbf{f}: 34, \mathbf{g}:18$
+	
+	\index{Huffman Code!Optimal!F18 \#S6}
+\end{enumerate}
+
+\subsection{Long Questions (Answer four of five.)}
+
+\begin{enumerate}
+	% F18 #L1
+	\item Describe how dynamic programming is used to construct an optimal binary search tree.  
+	
+	Use the following probability of $p$ and $q$, obtain the expected cost of searching an optimal binary search tree constructed by dynamic programming.  
+	
+	\index{Binary Search Tree!F18 \#L1}
+	\index{Dynamic Programming!F18 \#L1}
+	
+	\
+	
+\hfil	\begin{tabular}{*9{|r}|}
+		\hline
+		$i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \cr\hline
+		$p_i$ & & 0.04 & 0.06 & 0.08 & 0.06 & 0.10 & 0.12 & 0.10 \cr\hline
+		$q_i$ & 0.06 & 0.06 & 0.06 & 0.06 & 0.05 & 0.05 & 0.05 & 0.05 \cr\hline
+	\end{tabular}
+	
+	% F18 #L2
+	\item Given the initial B-tree with the minimum node degree of $t=3$ below, show the results 
+	
+	\begin{enumerate}[label=\alph*.]
+		\item After deleting the key of $K$, 
+		\item Followed by inserting the key of $L$, 
+		\item Then by deleting the key of $J_2$, 
+		\item Then by inserting the key of $N_4$ with $N_3 < N_4 < O$, and 
+		\item Then by deleting $K_4$.  
+	\end{enumerate}
+	
+	(Show the result after every deletion and after every insertion.)
+	
+\
+	
+\hfil	\begin{tikzpicture}[node distance=8 mm and 8 mm]
+		\node [rectangle, draw] (a) at (0,0) {$M$};
+		\node [rectangle, draw] (b) at (-3,-1) {$J K$};
+		\node [rectangle, draw] (c) at (3,-1) {$N O$};
+		\node [rectangle, draw, below left=of b] (d) {$A B$};
+		\node [rectangle, draw, below=of b] (e) {$J_2 J_3$};
+		\node [rectangle, draw, below right=of b] (f) {$K_4 K_6$};
+		\node [rectangle, draw, below left=of c] (g) {$M_2 M_4$};
+		\node [rectangle, draw, below=of c] (h) {$N_1 N_2 N_3$};
+		\node [rectangle, draw, below right=of c] (i) {$O_2 O_3$};
+		\foreach \from/\to in {a/b, a/c, b/d, b/e, b/f, c/g, c/h, c/i}
+			\draw (\from) -- (\to);
+	\end{tikzpicture}
+	
+	\index{Balanced Search Tree!F18 \#L2}
+
+\
+
+	% F18 #L3
+	\item Follow depth-first search (DFS), starting from Node $s$, to traverse the graph shown below, with its edge weights all ignored and the start time equal to 1.  Mark (1) the type of every edge and (2) the discovery and finish times of each node.
+	
+	Follow breadth-first search (BFS), starting from Node $s$, to traverse the graph shown below, with its edge weights all ignored.  Show the predecessor tree rooted at Node $s$ after BFS, with the number of links (i.e. distance) from Node $s$ to every other node indicated.  
+	
+	\
+	
+	\hfil \begin{tikzpicture}[x=15mm, y=15mm]
+		\node [circle, draw, label=left:$s$] (s) at (0,0) {};
+		\node [circle, draw, label=above:$t$] (t) at (1,1) {};
+		\node [circle, draw, label=above:$x$] (x) at (3,1) {};
+		\node [circle, draw, label=below:$y$] (y) at (1,-1) {};
+		\node [circle, draw, label=below:$z$] (z) at (3,-1) {};
+		\foreach \from/\to/\weight in {s/t/10, s/y/-8, t/x/1, y/x/9, y/z/2}
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {z/s/7}
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+		\foreach \from/\to/\weight in {t/y/2, y/t/3, x/z/-4, z/x/6}
+			\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+			
+	\end{tikzpicture}
+	
+	\index{Depth First Search!F18 \#L3}
+	\index{Breadth First Search!F18 \#L3}
+	
+	%  F18 #L4
+	\item The Dijkstra's algorithm (DS) solves the single-source shortest-path problem in a weighted graph $G = (V,E)$ without negative weighted edges or cycles, by edge relaxation at one vertex at a time until all vertices are examined.  Given the graph $G$ below, follow DS to find the shortest paths from vertex $v_1$ to all other vertices, with all predecessor edges shaded and estimated distance values from $v_1$ to all vertices provided at the end.  Also list the sequence of vertices at which relaxation takes place.  
+	
+	What is the time complexity of DS for a general graph $G = (V,E)$ when candidate vertices are kept in an array?
+	
+\hfil	\begin{tikzpicture}[node distance = 2cm and 4cm]
+		\node [circle, draw, label=above:$v_1$] (v1) {};
+		\node [circle, draw, label=above:$v_2$, right=of v1] (v2) {};
+		\node [circle, draw, label=above:$v_3$, right=of v2] (v3) {};
+		\node [circle, draw, label=below:$v_4$, below= of v1] (v4) {};
+		\node [circle, draw, label=below:$v_5$, right=of v4] (v5) {};
+		\node [circle, draw, label=below:$v_6$, right=of v5] (v6) {};
+		\foreach \from/\to/\label in {v2/v1/1, v3/v2/13, v4/v1/4, v4/v5/3, v5/v2/7, v6/v2/5}{
+			\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v1/v5/11, v2/v4/9}{
+			\draw [-triangle 60] (\from) -- (\to) node [pos=0.7, rectangle, fill=white] {\label};
+		}
+		\foreach \from/\to/\label in {v3/v6/6, v6/v3/2}{
+			\path [-triangle 60] (\from) edge [bend left] node [midway, rectangle, fill=white] {\label} (\to);
+		}
+		\foreach \from/\to/\label in {}{
+			\draw [triangle 60-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\label};
+		}
+ 	\end{tikzpicture}
+	
+	\index{Dijkstra's Algorithm!F18 \#L4}
+	\index{Time Complexity!F18 \#L4}
+
+	% F18 #L5
+	\item Given the matrix-chain multiplication problem for four matrices sized $30 \times 24$, $24 \times 15$, $15 \times 20$, $20 \times 50$, follow the tabular, bottom-up method in the procedure of \verb|MATRIX-CHAIN-ORDER| below to construct two tables of $m[i,j]$ for all $1\le i, j\le 4$, and $s[i,j]$ for all $1 \le i \le 3$ and $2 \le j \le 4$.  Construct the two tables, with their entry values shown.
+	
+\begin{lstlisting}[label = MATRIX-CHAIN-ORDER(p), numbers=left, mathescape=True]
+$n = p.length - 1$
+let $m[1..n, 1.n]$ and $s[1..n-1,2..n]$ be new tables. 
+for $i=1$ to $n$
+	$m[i][j]= 0$
+for $l=2$ to $n$ // $l$ is the chain length.
+	for $i=1$ to $n-l+1$
+		$j=i+l-1$
+		$m[i][j] = \infty$
+		for $k=i$ to $j-1$
+			$q = m[i,k] + m[k+1,j] + p_{i-1} p_k p_j$
+			if $q<m[i,j]$
+				$m[i,j] = q$
+				$s[i,j] = k$
+\end{lstlisting}
+
+	\index{Follow-the-Bouncing-Ball!F18 \#L5}
+	
+\end{enumerate}

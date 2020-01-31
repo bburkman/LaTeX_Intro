@@ -588,6 +588,11 @@ INPUT AcademicHorizontal_0.jpg
 INPUT ./AcademicHorizontal_0.jpg
 INPUT AcademicHorizontal_0.jpg
 INPUT ./AcademicHorizontal_0.jpg
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmssi12.tfm
+INPUT AcademicHorizontal_0.jpg
+INPUT ./AcademicHorizontal_0.jpg
+INPUT AcademicHorizontal_0.jpg
+INPUT ./AcademicHorizontal_0.jpg
 INPUT LaTeX_595.toc
 INPUT LaTeX_595.toc
 INPUT AcademicHorizontal_0.jpg
@@ -624,7 +629,6 @@ INPUT stuff.py
 INPUT stuff.py
 INPUT stuff.py
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
-INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmssi12.tfm
 INPUT AcademicHorizontal_0.jpg
 INPUT ./AcademicHorizontal_0.jpg
 INPUT stuff.py
@@ -831,6 +835,15 @@ INPUT AcademicHorizontal_0.jpg
 INPUT ./AcademicHorizontal_0.jpg
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm
+INPUT AcademicHorizontal_0.jpg
+INPUT ./AcademicHorizontal_0.jpg
+INPUT LaTeX_595.toc
+INPUT LaTeX_595.toc
+INPUT AcademicHorizontal_0.jpg
+INPUT ./AcademicHorizontal_0.jpg
+INPUT LSMSACrest_solid.png
+INPUT ./LSMSACrest_solid.png
+INPUT ./LSMSACrest_solid.png
 INPUT AcademicHorizontal_0.jpg
 INPUT ./AcademicHorizontal_0.jpg
 OUTPUT LaTeX_595.nav

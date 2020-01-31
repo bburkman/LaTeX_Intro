@@ -1,0 +1,13 @@
+import math
+def stuff():
+    for b in range (2,10):
+        for c in range (b+1,10):
+            if math.gcd(b,c)==1:
+                p = 1
+                a = c**2 - b**2
+                for g in range (2,9):
+                    if a%(g**2)==0:
+                        p = 0
+                if p==0:
+                    print (b, c, c**2 - b**2)
+stuff()

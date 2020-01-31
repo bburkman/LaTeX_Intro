@@ -1,0 +1,176 @@
+
+\begin{frame}[t]
+	\frametitle{Harmonic Series}
+\Large
+
+\only<1-2>{
+\hfil$\displaystyle1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \cdots = \lim_{n \to \infty}\sum_{r=1}^n \frac{1}{r}$
+
+}
+\only<3->{
+\hfil$\displaystyle1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \cdots + \frac{1}{n} = \sum_{r=1}^n \frac{1}{r}$
+
+}
+
+\only<1-3>{\vskip 12pt This series does not converge.}
+
+\only<2-3>{
+	\vskip 12pt
+	Source of my confusion:  In our work, $n$ is finite.
+}
+
+\only<4->{
+\begin{tikzpicture}[x=8mm,y=8mm]
+	\draw [triangle 60-triangle 60] (-1,0) -- (11,0);
+	\draw [triangle 60-triangle 60] (0,-1) -- (0,4.5);
+	\foreach \i in {1,2,...,10}{
+		\draw (\i,.2) -- (\i,-.2) node [below] {\i};
+	}
+	\foreach \i in {1,2,3}{
+		\draw (0.2,\i) -- (-0.2,\i) node [left] {\i};
+	}
+	\input{Graph01}
+	\path (10,3.0) node [right] {Partial Sum};
+	\only<5->{
+	\input{Graph02}
+	\path (10,2.0) node [vermillion,right] {$y = \log(n)$};
+	}
+	\only<7>{
+		\input{Graph05}
+	\path (2,3.5) node [vermillion,right] {$y = \log(n)+1$};
+	}
+	
+\end{tikzpicture}
+}
+
+%\vskip 6pt
+ 
+\only<6>{
+	$\displaystyle\frac{dy}{dx} = y, \ (0,1) \qquad \frac{dy}{dx} = \frac{1}{x}, \ (1,0)$
+}
+\only<7>{
+%	$\displaystyle\frac{dy}{dx} = y, \ (0,1) \qquad \frac{dy}{dx} = \frac{1}{x}, \ (1,0)$
+	$\displaystyle\frac{dy}{dx} = y, \ (0,1) \qquad \frac{dy}{dx} = \frac{1}{x}, \ (1,0) \ {\color{vermillion}(1,1)}$
+}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{}
+\Large
+
+\begin{tikzpicture}[domain=0.8:5.5,x=20mm,y=20mm]
+	\only<3>{
+		\foreach \i in {1,2,3,4}{
+			\fill [vermillion] (\i,0) rectangle ({\i+1},{1/\i});
+		}
+	}
+	\only<2->{
+	\fill [black, domain=1:4, variable=\x]
+  		(1, 0)  -- plot ({\x}, {1/\x})  -- (4, 0)  -- cycle;
+	}
+	\only<3>{
+		\foreach \i in {1,2,3,4}{
+			\draw [vermillion] (\i,0) rectangle ({\i+1},{1/\i});
+		}
+	}
+	\only<4>{
+	\foreach \i in {1,2,3,4}{
+		\fill [vermillion] ({\i-1},0) rectangle ({\i},{1/\i});
+	}
+	\fill [vermillion] (1,0) rectangle (2,{1/5});
+	}
+
+	\draw [triangle 60-triangle 60] (-0.5,0) -- (5.5,0);
+	\draw [triangle 60-triangle 60] (0,-0.3) -- (0,1.5);
+	\foreach \i in {1,2,...,5}{
+		\draw (\i,.1) -- (\i,-.1) node [below] {\i};
+	}
+	\foreach \i in {1}{
+		\draw (0.2,\i) -- (-0.2,\i) node [left] {\i};
+	}
+	\draw[color=black, ultra thick, triangle 60-triangle 60] plot[id=sin] function{1/x};
+	\path (0.8,1.25) node[above] {$y=1/x$};
+	\only<2>{\path (3.5,1) node {$\log(4)$};}
+	\only<3>{\path (3.5,1) node {$\displaystyle\log(4)< \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \frac{1}{4}$};}
+	\only<4>{\path (3.5,1) node {$\displaystyle\left(\frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \frac{1}{4}\right) - 1 < \log(4)$};}
+	
+	\end{tikzpicture}
+	\vskip -12pt
+	
+	\only<3>{
+		$$\log(n)<\sum_{r=1}^n \frac{1}{r}$$
+	}
+	\only<4>{
+		$$  \sum_{r=1}^n \frac{1}{r} - 1 \ < \ \log(n)$$
+	}
+	\only<5>{
+		$$\log(n)  \ < \ \sum_{r=1}^n \frac{1}{r} \ < \ \log(n)+1$$
+	}
+	
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{}
+\Large
+
+\begin{tikzpicture}[x=0.004mm,y=5.5mm]
+	\draw [triangle 60-triangle 60] (-2000,0) -- (22000,0);
+	\draw [triangle 60-triangle 60] (0,-1) -- (0,11);
+	\foreach \i in {1,2,3,...,10}{
+		\draw (400,\i) -- (-400,\i) node [left] {\i};
+	}
+	\draw (5000,.2) -- (5000,-.2) node [below] {5000};
+	\draw (10000,.2) -- (10000,-.2) node [below] {10000};
+	\draw (15000,.2) -- (15000,-.2) node [below] {15000};
+	\draw (20000,.2) -- (20000,-.2) node [below] {20000};
+	\input{Graph03}
+	\path (20000,10.5) node [right] {Partial Sum};
+	\input{Graph04}
+	\path (20000,9.5)node [vermillion,right] {$y = \log(n)$};
+	\path (20000,11.5)node [vermillion,right] {$y = \log(n)+1$};
+	\input{Graph06}
+	\fill [black] (12000,10) circle (6pt) node [above left] {$(12000,10)$};
+	\path (15000,8) node [below] {
+		\begin{minipage}{4in}
+\only<2>{
+\vskip 24pt
+Let $N$ be the total number of words in the corpus.
+
+Let $n$ be the number of unique words.
+}
+\only<2-3>{
+$$N = \sum_{r=1}^n f_r$$
+}
+\only<3-4>{
+$$N = \sum_{r=1}^n f_r = \sum_{r=1}^n \frac{NA}{r} =  NA \sum_{r=1}^n \frac{1}{r}  \approx NA\log(n)$$
+}
+\only<4-5>{
+$$N = NA \sum_{r=1}^n \frac{1}{r}  \approx NA\log(n)$$
+}
+\only<5-6>{
+$$1 = A \sum_{r=1}^n \frac{1}{r}  \approx A\log(n)$$
+}
+\only<6-8>{
+$$A = \frac{1}{\sum_{r=1}^n \frac{1}{r}}  \approx \frac{1}{log(n)}$$
+}
+\only<7-8>{
+
+	If $n \approx 12000$, then $\displaystyle A \approx 1/10$.
+}
+\only<8>{
+
+\vskip 6pt
+
+	If $n \approx 4500$, then $A \approx 1/9$.
+
+	If $n \approx 33000$, then $A \approx 1/11$.
+	
+}
+
+
+		\end{minipage}
+	};
+\end{tikzpicture}
+\end{frame}
+

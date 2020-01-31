@@ -45,11 +45,41 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\AtBeginSection[] {
+    \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection]
+    \end{frame}
+}
 
 %%%%%
 \title{\LaTeX: What? Why? and How?}
 \subtitle{CSCE 595 Presentation}
 \author{Brad Burkman}
+\institute[LSMSA]{Louisiana School for Math, Science, and the Arts}
 \date{31 January 2020}
 
 \begin{document}
@@ -62,12 +92,319 @@
 	\maketitle
 \end{frame}
 
+% TOC
 \begin{frame}[t]
 	\Large
-	\tableofcontents
+	\tableofcontents[hideallsubsections]
 \end{frame}
 
 
+
+% Overview
+\section{Overview}
+
+\subsection{Procedural Markup Language}
+\begin{frame}[t, fragile]
+	\frametitle{Procedural Markup Language}
+\Large
+
+
+\verb|$$\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$|
+
+$$\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+
+\begin{itemize}
+	\item NOT WYSIWIG, ``What You See Is What You Get''
+	\item Steep Learning Curve
+	\item Open Source, Free
+	
+	``Free as in Free Speech and Free Beer''
+	\item Lots of user-created libraries and packages
+	\item Programming Language Stuff
+\end{itemize} 
+\end{frame}
+
+\subsection{History}
+\begin{frame}[t]
+	\frametitle{History}
+\Large
+
+\begin{itemize}
+	\item Donald Knuth, \TeX, 1978
+	\item Leslie Lamport, \LaTeX, 1983
+	\item Last Stable Release, \LaTeX2$\epsilon$, 1994
+	\item MathType (WYSIWIG GUI for Word), 1987
+\end{itemize}
+
+\end{frame}
+
+\subsection{Examples in GitHub Repo}
+\begin{frame}[t]
+	\frametitle{Examples in GitHub Repo}
+\Large
+
+\begin{itemize}
+	\item This Presentation
+	\item Paper in ACL Format
+	\item Poster
+	\item Book
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\section{Examples}
+\subsection{Math}
+% Equations
+\begin{frame}[t, fragile]
+	\frametitle{Equations}
+\Large
+
+\verb|$$\int_a^b f(x) dx = \lim_{n \to \infty}|
+
+\qquad \verb| \sum_{i=1}^n f(x^*_i) \Delta x$$|
+
+$$\int_a^b f(x) dx = \lim_{n \to \infty} \sum_{i=1}^n f(x^*_i) \Delta x$$
+
+\verb|$\int_a^b f(x) dx = \lim_{n \to \infty}|
+
+\qquad \verb| \sum_{i=1}^n f(x^*_i) \Delta x$|
+
+\begin{center}
+$\int_a^b f(x) dx = \lim_{n \to \infty} \sum_{i=1}^n f(x^*_i) \Delta x$
+\end{center}
+\end{frame}
+
+% Aligned Equations
+\begin{frame}[t, fragile]
+	\frametitle{Aligned Equations}
+\Large
+
+\begin{columns}[T]
+\begin{column}{2in}
+\begin{verbatim}
+
+
+
+\begin{align*}
+    e^{3x+4} &= 2 \cr
+    3x+4 &= \ln 2 \cr
+    3x &= \ln 2 - 4 \cr
+    x &= \frac{\ln 2 - 4}{3} \cr
+\end{align*}
+\end{verbatim}
+\end{column}
+\begin{column}{2in}
+\begin{align*}
+	e^{3x+4} &= 2 \cr
+	3x+4 &= \ln 2 \cr
+	3x &= \ln 2 - 4 \cr
+	x &= \frac{\ln 2 - 4}{3} \cr
+\end{align*}
+\end{column}
+\end{columns}
+\end{frame}
+
+% Tables
+\subsection{Tables}
+\begin{frame}[t, fragile]
+	\frametitle{Tabular Environment}
+\large
+\begin{tabular}{ll|lclc}
+\multicolumn{2}{c}{Teacher} & Course & Period & Course & Period \cr\hline
+Emily  &  Allen  &  EN300.1  &  13  &  EN300.3  &  14 \cr
+Scott  &  Atkins  &  PH240L.1  &  12  &  PH120.2  &  13 \cr
+Robert  &  Dalling  &  PH320.1  &  13  &  PH350.1  &  14 \cr
+Leo  &  Eisenlohr  &  FL170.1  &  13  &  FL270.1  &  14 \cr
+Victor  &  Feske  &  EH122.1  &  13  &  EH122.2  &  14 \cr
+\end{tabular}
+
+\begin{verbatim}
+\begin{tabular}{ll|lclc}
+\multicolumn{2}{c}{Teacher} 
+    & Course & Period & Course & Period \cr\hline
+Emily & Allen & EN300.1 & 13 &  EN300.3 & 14 \cr
+...
+\end{tabular}
+\end{verbatim}
+\end{frame}
+
+% Alignment
+\begin{frame}[t, fragile]
+	\frametitle{Tables with Math}
+\Large
+
+\begin{center}
+\begin{tabular}{*5{@{\hspace{4pt}}>{$}r<{$}}}
+	2x &+& 15y &=& 6 \cr
+	3x &-& 4y &<& 12 \cr 
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+\begin{tabular}{*5{@{\hspace{4pt}}>{$}r<{$}}}
+    2x &+& 15y &=& 6 \cr
+    3x &-& 4y &<& 12 \cr 
+\end{tabular}
+\end{verbatim}
+\end{frame}
+
+% Code
+\subsection{Code}
+\begin{frame}[t]
+	\frametitle{Code}
+\Large
+
+\lstinputlisting[language=python, caption = Default Style, 
+	]{stuff.py}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Code}
+\Large
+
+\lstset{style=mystyle}
+\lstinputlisting[language=python, caption = Formatted No Color, 
+	backgroundcolor=\color{white},   
+	commentstyle=\color{black},
+	keywordstyle=\color{black},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{black},
+	basicstyle=\ttfamily,	
+	]{stuff.py}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Code}
+\Large
+
+\lstset{style=mystyle}
+\lstinputlisting[caption = Typical Colors]{stuff.py}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Code}
+\Large
+
+\lstset{style=mystyle}
+\lstinputlisting[language=python, caption = UL Colors, 
+	backgroundcolor=\color{white},   
+	commentstyle=\color{black},
+	keywordstyle=\color{vermillion},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{black},
+	basicstyle=\ttfamily,	
+	]{stuff.py}
+
+\end{frame}
+
+% Graphs
+\subsection{Graphs}
+
+\begin{frame}[t]
+	\frametitle{Ti\textit{k}Z}
+\Large
+
+Graphics Package for \LaTeX
+
+Ti\textit{k}Z {\it ist kein Zeichenprogramm}
+
+``Ti\textit{k}Z is not a graphing program.''
+
+
+
+\end{frame}
+
+
+
+\begin{frame}[t, fragile]
+	\frametitle{Graphs:  Fall 2018 \#L3}
+\Large
+\hfil\input{Graph_Code}
+\lstset{style=mystyle}
+\lstinputlisting[language=TeX, tabsize=2, linerange={1-2}]{Graph_Code.tex}
+\end{frame}
+
+\begin{frame}[t, fragile]
+	\frametitle{}
+\Large
+\hfil\input{Graph_Code}
+\lstset{style=mystyle}
+\lstinputlisting[language=TeX, tabsize=2, linerange={7-8}]{Graph_Code.tex}
+\end{frame}
+
+\begin{frame}[t, fragile]
+	\frametitle{}
+\Large
+\hfil\input{Graph_Code}
+\lstset{style=mystyle}
+\lstinputlisting[language=TeX, tabsize=2, linerange={11-12}]{Graph_Code.tex}
+\end{frame}
+
+
+\subsection{Graphing}
+\input{Burkman_561_NLTK}
+
+\section{Powerful Techniques}
+% Generating LaTeX
+\subsection{Code Output can be \LaTeX \ Input}
+
+\begin{frame}[t]
+	\frametitle{Code Output can be \LaTeX \ Input}
+\Large
+\lstset{style=mystyle}
+\lstinputlisting[
+	backgroundcolor=\color{white},   
+	commentstyle=\color{black},
+	keywordstyle=\color{vermillion},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{black},
+	basicstyle=\ttfamily,	
+]{Graph03.py}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{}
+\Large
+\lstset{style=mystyle}
+\lstinputlisting[language=TeX,     tabsize=2]{Graph03.tex}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{}
+\Large
+\lstset{style=mystyle}
+\lstinputlisting[language=TeX,     tabsize=2, linerange={117-117,127-128,133-133}]{Burkman_561_NLTK.tex}
+
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{\LaTeX \ Input is Plain Text}
+\Large
+\begin{itemize}
+	\item Code Output can be \LaTeX \ Input
+	\item Structured Documents
+	\begin{itemize}
+		\item Multi-File
+		\item Chapters, Sections, Subsections
+		\item Table of Contents
+		\item Index
+		\item Bibliography
+	\end{itemize}
+	\item Git
+	\begin{itemize}
+		\item Version Control
+		\item Collaboration
+	\end{itemize}
+\end{itemize}
+
+
+\end{frame}
 
 
 

@@ -1,0 +1,13 @@
+\begin{tikzpicture}[x=15mm, y=15mm]
+	\node [circle, draw, label=left:$s$] (s) at (0,0) {};
+	\node [circle, draw, label=above:$t$] (t) at (1,1) {};
+	\node [circle, draw, label=above:$x$] (x) at (3,1) {};
+	\node [circle, draw, label=below:$y$] (y) at (1,-1) {};
+	\node [circle, draw, label=below:$z$] (z) at (3,-1) {};
+	\foreach \from/\to/\weight in {s/t/10, s/y/-8, t/x/1, y/x/9, y/z/2}
+		\draw [-triangle 60] (\from) -- (\to) node [midway, rectangle, fill=white] {\weight};
+	\foreach \from/\to/\weight in {z/s/7}
+		\draw [-triangle 60] (\from) -- (\to) node [pos=0.3, rectangle, fill=white] {\weight};
+	\foreach \from/\to/\weight in {t/y/2, y/t/3, x/z/-4, z/x/6}
+		\draw [bend right=20, -triangle 60] (\from) to node [midway, rectangle, fill=white] {\weight} (\to);
+\end{tikzpicture}

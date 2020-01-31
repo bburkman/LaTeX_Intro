@@ -3,8 +3,76 @@
 \headcommand {\beamer@framepages {1}{1}}
 \headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\beamer@partpages {1}{2}}
-\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\sectionentry {1}{Overview}{3}{Overview}{0}}
 \headcommand {\beamer@sectionpages {1}{2}}
-\headcommand {\beamer@documentpages {2}}
-\headcommand {\def \inserttotalframenumber {2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{4}{Procedural Markup Language}}\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\slideentry {1}{1}{1}{4/4}{Procedural Markup Language}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{5}{History}}\headcommand {\beamer@subsectionpages {4}{4}}
+\headcommand {\slideentry {1}{2}{1}{5/5}{History}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{6}{Examples in GitHub Repo}}\headcommand {\beamer@subsectionpages {5}{5}}
+\headcommand {\slideentry {1}{3}{1}{6/6}{Examples in GitHub Repo}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\sectionentry {2}{Examples}{7}{Examples}{0}}
+\headcommand {\beamer@sectionpages {3}{6}}
+\headcommand {\beamer@subsectionpages {6}{6}}
+\headcommand {\slideentry {2}{0}{1}{7/7}{}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{8}{Math}}\headcommand {\beamer@subsectionpages {7}{7}}
+\headcommand {\slideentry {2}{1}{1}{8/8}{Math}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\slideentry {2}{1}{2}{9/9}{Math}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{10}{Tables}}\headcommand {\beamer@subsectionpages {8}{9}}
+\headcommand {\slideentry {2}{2}{1}{10/10}{Tables}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\slideentry {2}{2}{2}{11/11}{Tables}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{12}{Code}}\headcommand {\beamer@subsectionpages {10}{11}}
+\headcommand {\slideentry {2}{3}{1}{12/12}{Code}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\slideentry {2}{3}{2}{13/13}{Code}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\slideentry {2}{3}{3}{14/14}{Code}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\slideentry {2}{3}{4}{15/15}{Code}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\beamer@subsectionentry {0}{2}{4}{16}{Graphs}}\headcommand {\beamer@subsectionpages {12}{15}}
+\headcommand {\slideentry {2}{4}{1}{16/16}{Graphs}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\slideentry {2}{4}{2}{17/17}{Graphs}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {2}{4}{3}{18/18}{Graphs}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\slideentry {2}{4}{4}{19/19}{Graphs}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{20}{Graphing}}\headcommand {\beamer@subsectionpages {16}{19}}
+\headcommand {\slideentry {2}{5}{1}{20/26}{Graphing}{0}}
+\headcommand {\beamer@framepages {20}{26}}
+\headcommand {\slideentry {2}{5}{2}{27/31}{Graphing}{0}}
+\headcommand {\beamer@framepages {27}{31}}
+\headcommand {\slideentry {2}{5}{3}{32/39}{Graphing}{0}}
+\headcommand {\beamer@framepages {32}{39}}
+\headcommand {\sectionentry {3}{Powerful Techniques}{40}{Powerful Techniques}{0}}
+\headcommand {\beamer@sectionpages {7}{39}}
+\headcommand {\beamer@subsectionpages {20}{39}}
+\headcommand {\slideentry {3}{0}{1}{40/40}{}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{41}{Code Output can be \LaTeX \ Input}}\headcommand {\beamer@subsectionpages {40}{40}}
+\headcommand {\slideentry {3}{1}{1}{41/41}{Code Output can be \LaTeX \ Input}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\slideentry {3}{1}{2}{42/42}{Code Output can be \LaTeX \ Input}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {3}{1}{3}{43/43}{Code Output can be \LaTeX \ Input}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {3}{1}{4}{44/44}{Code Output can be \LaTeX \ Input}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\beamer@partpages {1}{44}}
+\headcommand {\beamer@subsectionpages {41}{44}}
+\headcommand {\beamer@sectionpages {40}{44}}
+\headcommand {\beamer@documentpages {44}}
+\headcommand {\def \inserttotalframenumber {27}}
